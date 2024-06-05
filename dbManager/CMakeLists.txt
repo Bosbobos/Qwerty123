@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.27)
 project(PostgresCRUDLibrary)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 23)
 
+# Use find_package to locate libpqxx and make it available for the project
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PQXX REQUIRED libpqxx)
 
-include_directories(${PQXX_INCLUDE_DIRS})
-link_directories(${PQXX_LIBRARY_DIRS})
+# Define the library target
+add_library(dbManager SHARED crud.cpp)
 
-add_library(dbContext SHARED dbContext.cpp)
-
-target_link_libraries(dbContext ${PQXX_LIBRARIES})
+# Link the library with libpqxx
+target_include_directories(dbManager PRIVATE ${PQXX_INCLUDE_DIRS})
+target_link_libraries(dbManager PRIVATE ${PQXX_LIBRARIES})

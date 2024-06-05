@@ -8,7 +8,6 @@ PostgresCRUD::PostgresCRUD(const std::string& connection_string)
 }
 
 PostgresCRUD::~PostgresCRUD() {
-    conn.disconnect();
 }
 
 void PostgresCRUD::create(const std::string& table, const std::map<std::string, std::string>& data) {

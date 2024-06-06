@@ -6,8 +6,15 @@
 class PostgresCRUDTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        // Create the PostgresCRUD object with a mock connection
-        crud = new PostgresCRUD("mock_connection_string");
+        // Connect to the real database
+        auto conn = new pqxx::connection("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
+        crud = new PostgresCRUD("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
+
+        // Set up the test table
+        pqxx::work W(*conn);
+        W.exec("DROP TABLE IF EXISTS test_table");
+        W.exec("CREATE TABLE test_table (name TEXT, age TEXT)");
+        W.commit();
     }
 
     void TearDown() override {
@@ -27,7 +34,7 @@ std::map<std::string, std::string> data = {{"name", "John"}, {"age", "30"}};
 ASSERT_NO_THROW(crud->create(table, data));
 
 // Verify that the data is inserted correctly
-pqxx::connection conn("");
+pqxx::connection conn("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
 pqxx::nontransaction N(conn);
 pqxx::result result = N.exec("SELECT * FROM " + table);
 ASSERT_EQ(result.size(), 1); // Expecting one row
@@ -63,7 +70,7 @@ std::map<std::string, std::string> updated_data = {{"age", "40"}};
 ASSERT_NO_THROW(crud->update(table, updated_data, "name='John'"));
 
 // Verify that the data is updated correctly
-pqxx::connection conn("");
+pqxx::connection conn("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
 pqxx::nontransaction N(conn);
 pqxx::result result = N.exec("SELECT * FROM " + table);
 ASSERT_EQ(result.size(), 1); // Expecting one row
@@ -82,7 +89,7 @@ crud->create(table, data);
 ASSERT_NO_THROW(crud->delete_record(table, "name='John'"));
 
 // Verify that the record is deleted
-pqxx::connection conn("");
+pqxx::connection conn("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
 pqxx::nontransaction N(conn);
 pqxx::result result = N.exec("SELECT * FROM " + table);
 ASSERT_EQ(result.size(), 0); // Expecting no rows

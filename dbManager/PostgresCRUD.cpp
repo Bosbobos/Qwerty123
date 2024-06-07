@@ -1,4 +1,4 @@
-#include "crud.h"
+#include "PostgresCRUD.h"
 
 PostgresCRUD::PostgresCRUD(const std::string& connection_string)
         : conn(connection_string) {

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <pqxx/pqxx>
-#include "../dbManager/crud.h"
+#include "../dbManager/PostgresCRUD.h"
 
 // Test fixture
 class PostgresCRUDTest : public ::testing::Test {

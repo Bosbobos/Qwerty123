@@ -1,0 +1,13 @@
+# ninja log v6
+16	1539	7395279912180956	UI_autogen/timestamp	5448692aab610b7e
+16	1539	7395279912180956	UI_autogen/mocs_compilation.cpp	5448692aab610b7e
+16	1539	7395279912180956	C:/Users/glukh/Desktop/Qwerty123/UI/bin/UI_autogen/timestamp	5448692aab610b7e
+16	1539	7395279912180956	C:/Users/glukh/Desktop/Qwerty123/UI/bin/UI_autogen/mocs_compilation.cpp	5448692aab610b7e
+1546	1676	7395279914550490	UI_autogen/EWIEGA46WW/qrc_resources.cpp	7751a9d7ca2ef286
+1546	1676	7395279914550490	C:/Users/glukh/Desktop/Qwerty123/UI/bin/UI_autogen/EWIEGA46WW/qrc_resources.cpp	7751a9d7ca2ef286
+1705	1905	7395279914941833	CMakeFiles/UI.dir/UI_autogen/EWIEGA46WW/qrc_resources.cpp.obj	9cd774332efcccb2
+1691	5727	7395279914801673	CMakeFiles/UI.dir/main.cpp.obj	e2132d1ee0f4852c
+1676	5914	7395279914651468	CMakeFiles/UI.dir/UI_autogen/mocs_compilation.cpp.obj	69e2e532f0c37f18
+1700	6135	7395279914891861	CMakeFiles/UI.dir/registrationwindow.cpp.obj	4dd9a45a9a257342
+1696	6557	7395279914841695	CMakeFiles/UI.dir/loginwindow.cpp.obj	cb963045188fa004
+6558	6872	7395279963471482	UI.exe	aad8b86dfad1264d

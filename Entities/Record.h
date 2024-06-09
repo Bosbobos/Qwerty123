@@ -7,26 +7,48 @@
 struct Record {
     int id;
     std::string master_username;
+    std::string rec_name;
+    std::string url;
     std::string username;
     std::string password;
     std::string tag;
+    std::string expires;
 
-    // Constructors
-    Record(int id, const std::string& master_username, const std::string& username, const std::string& password, const std::string& tag);
+    Record(const std::string &masterUsername, const std::string &recName, const std::string &url,
+           const std::string &username, const std::string &password, const std::string &tag, const std::string &expires,
+           int id);
 
-    // Getters
     int getId() const;
-    std::string getMasterUsername() const;
-    std::string getUsername() const;
-    std::string getPassword() const;
-    std::string getTag() const;
 
-    // Setters
     void setId(int id);
-    void setMasterUsername(const std::string& master_username);
-    void setUsername(const std::string& username);
-    void setPassword(const std::string& password);
-    void setTag(const std::string& tag);
+
+    const std::string &getMasterUsername() const;
+
+    void setMasterUsername(const std::string &masterUsername);
+
+    const std::string &getRecName() const;
+
+    void setRecName(const std::string &recName);
+
+    const std::string &getUrl() const;
+
+    void setUrl(const std::string &url);
+
+    const std::string &getUsername() const;
+
+    void setUsername(const std::string &username);
+
+    const std::string &getPassword() const;
+
+    void setPassword(const std::string &password);
+
+    const std::string &getTag() const;
+
+    void setTag(const std::string &tag);
+
+    const std::string &getExpires() const;
+
+    void setExpires(const std::string &expires);
 };
 
 

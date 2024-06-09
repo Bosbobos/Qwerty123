@@ -1,5 +1,6 @@
 #include "dbManager.h"
 
+
 DbManager::DbManager(const std::string& connection_string) : db(connection_string) {}
 
 void DbManager::createTable() {
@@ -7,22 +8,31 @@ void DbManager::createTable() {
             "CREATE TABLE IF NOT EXISTS Qwerty123 ("
             "id SERIAL PRIMARY KEY, "
             "master_username VARCHAR(50), "
+            "rec_name VARCHAR(50), "
+            "url VARCHAR(255), "
             "username VARCHAR(50), "
             "password VARCHAR(50), "
-            "tag VARCHAR(50)"
+            "tag VARCHAR(50), "
+            "expires VARCHAR(50)"
             ");";
     db.read(create_table_sql);
 }
 
 void DbManager::addRecord(const std::string& master_username,
+                          const std::string& rec_name,
+                          const std::string& url,
                           const std::string& username,
                           const std::string& password,
-                          const std::string& tag) {
+                          const std::string& tag,
+                          const std::string& expires) {
     std::map<std::string, std::string> data = {
             {"master_username", master_username},
+            {"rec_name", rec_name},
+            {"url", url},
             {"username", username},
             {"password", password},
-            {"tag", tag}
+            {"tag", tag},
+            {"expires", expires}
     };
     db.create("Qwerty123", data);
 }
@@ -74,11 +84,14 @@ std::vector<Record> DbManager::resultToRecord(const pqxx::result& result) {
     for (const auto& row : result) {
         int id = row["id"].as<int>();
         std::string master_username = row["master_username"].as<std::string>();
+        std::string rec_name = row["rec_name"].as<std::string>();
+        std::string url = row["url"].as<std::string>();
         std::string username = row["username"].as<std::string>();
         std::string password = row["password"].as<std::string>();
         std::string tag = row["tag"].as<std::string>();
+        std::string expires = row["expires"].as<std::string>();
 
-        records.emplace_back(id, master_username, username, password, tag);
+        records.emplace_back(master_username, rec_name, url, username, password, tag, expires, id);
     }
 
     return records;

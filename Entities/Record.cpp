@@ -1,48 +1,73 @@
 #include "Record.h"
 #include <iostream>
 
-// Constructor
-Record::Record(int id, const std::string& master_username, const std::string& username, const std::string& password, const std::string& tag)
-        : id(id), master_username(master_username), username(username), password(password), tag(tag) {}
 
-// Getters
+Record::Record(const std::string &masterUsername, const std::string &recName, const std::string &url,
+               const std::string &username, const std::string &password, const std::string &tag,
+               const std::string &expires, int id) : master_username(masterUsername), rec_name(recName), url(url),
+                                                     username(username), password(password), tag(tag), expires(expires),
+                                                     id(id) {}
+
 int Record::getId() const {
     return id;
 }
 
-std::string Record::getMasterUsername() const {
+void Record::setId(int id) {
+    Record::id = id;
+}
+
+const std::string &Record::getMasterUsername() const {
     return master_username;
 }
 
-std::string Record::getUsername() const {
+void Record::setMasterUsername(const std::string &masterUsername) {
+    master_username = masterUsername;
+}
+
+const std::string &Record::getRecName() const {
+    return rec_name;
+}
+
+void Record::setRecName(const std::string &recName) {
+    rec_name = recName;
+}
+
+const std::string &Record::getUrl() const {
+    return url;
+}
+
+void Record::setUrl(const std::string &url) {
+    Record::url = url;
+}
+
+const std::string &Record::getUsername() const {
     return username;
 }
 
-std::string Record::getPassword() const {
+void Record::setUsername(const std::string &username) {
+    Record::username = username;
+}
+
+const std::string &Record::getPassword() const {
     return password;
 }
 
-std::string Record::getTag() const {
+void Record::setPassword(const std::string &password) {
+    Record::password = password;
+}
+
+const std::string &Record::getTag() const {
     return tag;
 }
 
-// Setters
-void Record::setId(int id) {
-    this->id = id;
+void Record::setTag(const std::string &tag) {
+    Record::tag = tag;
 }
 
-void Record::setMasterUsername(const std::string& master_username) {
-    this->master_username = master_username;
+const std::string &Record::getExpires() const {
+    return expires;
 }
 
-void Record::setUsername(const std::string& username) {
-    this->username = username;
-}
-
-void Record::setPassword(const std::string& password) {
-    this->password = password;
-}
-
-void Record::setTag(const std::string& tag) {
-    this->tag = tag;
+void Record::setExpires(const std::string &expires) {
+    Record::expires = expires;
 }

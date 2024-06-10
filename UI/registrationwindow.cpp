@@ -2,13 +2,18 @@
 #include "ui_registrationwindow.h"
 #include <QMessageBox>
 #include <QRegularExpression>
-#include <QPalette>
 
 RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::RegistrationWindow)
 {
     ui->setupUi(this);
+
+    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
+
+    ui->usernameInput->setStyleSheet(defaultStyle);
+    ui->passwordInput->setStyleSheet(defaultStyle);
+    ui->confirmPasswordInput->setStyleSheet(defaultStyle);
 
     connect(ui->usernameInput, &QLineEdit::textChanged, this, &RegistrationWindow::validateInput);
     connect(ui->passwordInput, &QLineEdit::textChanged, this, &RegistrationWindow::validateInput);
@@ -25,12 +30,15 @@ void RegistrationWindow::on_registerButton_clicked()
     QString username = ui->usernameInput->text();
     QString password = ui->passwordInput->text();
     QString confirmPassword = ui->confirmPasswordInput->text();
-    // Logic for handling registration should be here
+
+    if (isValidInput(username) && isValidInput(password) && password == confirmPassword) {
+        processRegistration(username, password); // Вызов функции для обработки регистрации
+    }
 }
 
 bool RegistrationWindow::isValidInput(const QString &input)
 {
-    QRegularExpression regex("^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{8,32}$");
+    QRegularExpression regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,32}$");
     return regex.match(input).hasMatch();
 }
 
@@ -44,27 +52,23 @@ void RegistrationWindow::validateInput()
     bool isPasswordValid = isValidInput(password);
     bool isConfirmPasswordValid = (password == confirmPassword);
 
-    QPalette palette;
-    if (isUsernameValid) {
-        palette.setColor(QPalette::Base, Qt::white);
-    } else {
-        palette.setColor(QPalette::Base, Qt::red);
-    }
-    ui->usernameInput->setPalette(palette);
+    QString validStyle = "QLineEdit { border: 2px solid green; }";
+    QString invalidStyle = "QLineEdit { border: 2px solid red; }";
+    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
 
-    if (isPasswordValid) {
-        palette.setColor(QPalette::Base, Qt::white);
-    } else {
-        palette.setColor(QPalette::Base, Qt::red);
-    }
-    ui->passwordInput->setPalette(palette);
-
-    if (isConfirmPasswordValid) {
-        palette.setColor(QPalette::Base, Qt::white);
-    } else {
-        palette.setColor(QPalette::Base, Qt::red);
-    }
-    ui->confirmPasswordInput->setPalette(palette);
+    ui->usernameInput->setStyleSheet(username.isEmpty() ? defaultStyle : (isUsernameValid ? validStyle : invalidStyle));
+    ui->passwordInput->setStyleSheet(password.isEmpty() ? defaultStyle : (isPasswordValid ? validStyle : invalidStyle));
+    ui->confirmPasswordInput->setStyleSheet(confirmPassword.isEmpty() ? defaultStyle : (isConfirmPasswordValid ? validStyle : invalidStyle));
 
     ui->registerButton->setEnabled(isUsernameValid && isPasswordValid && isConfirmPasswordValid);
+}
+
+void RegistrationWindow::processRegistration(const QString &username, const QString &password)
+{
+    // Здесь добавьте логику для шифрования и отправки данных в базу данных при регистрации:
+
+    // ...
+
+    // Успешная регистрация
+    QMessageBox::information(this, "Registration", "Registration successful for user: " + username);
 }

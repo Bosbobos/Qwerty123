@@ -100,9 +100,9 @@ void LoginWindow::processLogin(const QString &username, const QString &password)
     // Пример логики проверки логина и пароля
     bool loginSuccessful = false;
 
-    // Здесь добавьте логику для проверки логина и пароля в базе данных
+    // Здесь добавьте логику для проверки логина и пароля (СЕЙЧАС ТЕСТОВАЯ ХУ9ТА)
 
-    if (loginSuccessful) {
+    if (username == "Admin123" && password == "Admin123") {
         goToMainScreen();
     } else {
         showErrorMessage("Invalid username or password. Please try a different login/password.");
@@ -118,4 +118,7 @@ void LoginWindow::showErrorMessage(const QString &message)
 void LoginWindow::goToMainScreen()
 {
     // Здесь добавить логику для перехода на основной экран
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->show();
+    this->close(); // Закрытие окна логина
 }

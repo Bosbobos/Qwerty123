@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMovie>
+#include "mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }

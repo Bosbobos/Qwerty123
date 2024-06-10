@@ -22,6 +22,7 @@ private slots:
 private:
     Ui::RegistrationWindow *ui;
     bool isValidInput(const QString &input);
+    void processRegistration(const QString &username, const QString &password);
 };
 
 #endif // REGISTRATIONWINDOW_H

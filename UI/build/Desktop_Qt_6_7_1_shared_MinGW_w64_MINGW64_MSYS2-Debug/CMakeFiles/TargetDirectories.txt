@@ -1,9 +1,0 @@
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/UI.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/edit_cache.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/rebuild_cache.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/list_install_components.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/install.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/install/local.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/install/strip.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/UI_autogen_timestamp_deps.dir
-C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/UI_autogen.dir

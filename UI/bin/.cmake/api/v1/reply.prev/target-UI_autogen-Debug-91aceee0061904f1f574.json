@@ -51,19 +51,19 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/UI_autogen",
+			"path" : "bin/CMakeFiles/UI_autogen",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/UI_autogen.rule",
+			"path" : "bin/CMakeFiles/UI_autogen.rule",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/UI_autogen/timestamp.rule",
+			"path" : "bin/UI_autogen/timestamp.rule",
 			"sourceGroupIndex" : 1
 		}
 	],

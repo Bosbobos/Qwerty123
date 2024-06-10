@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug"
+			"value" : "c:/Users/glukh/Desktop/Qwerty123/UI/bin"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -467,7 +467,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -551,7 +551,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI"
+			"value" : "C:/Users/glukh/Desktop/Qwerty123/UI"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -1051,7 +1051,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qtc/package-manager/auto-setup.cmake"
+			"value" : "C:/Users/glukh/Desktop/Qwerty123/UI/bin/.qtc/package-manager/auto-setup.cmake"
 		},
 		{
 			"name" : "CMAKE_PROJECT_NAME",
@@ -6135,7 +6135,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug"
+			"value" : "C:/Users/glukh/Desktop/Qwerty123/UI/bin"
 		},
 		{
 			"name" : "UI_IS_TOP_LEVEL",
@@ -6159,7 +6159,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI"
+			"value" : "C:/Users/glukh/Desktop/Qwerty123/UI"
 		},
 		{
 			"name" : "Vulkan_GLSLANG_VALIDATOR_EXECUTABLE",

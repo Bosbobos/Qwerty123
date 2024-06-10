@@ -3,8 +3,8 @@
 #include "registrationwindow.h"
 #include <QMessageBox>
 #include <QRegularExpression>
-#include <QPalette>
 #include <QMovie>
+
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LoginWindow)
@@ -21,6 +21,11 @@ LoginWindow::LoginWindow(QWidget *parent)
 
     // Масштабирование GIF-а до размеров QLabel
     connect(movie, &QMovie::frameChanged, this, &LoginWindow::scaleGif);
+
+    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
+
+    ui->usernameInput->setStyleSheet(defaultStyle);
+    ui->passwordInput->setStyleSheet(defaultStyle);
 
     connect(ui->usernameInput, &QLineEdit::textChanged, this, &LoginWindow::validateInput);
     connect(ui->passwordInput, &QLineEdit::textChanged, this, &LoginWindow::validateInput);
@@ -52,7 +57,12 @@ void LoginWindow::on_loginButton_clicked()
 {
     QString username = ui->usernameInput->text();
     QString password = ui->passwordInput->text();
-    // Логика работы с логином/паролем должа быть здесь
+
+    if (isValidInput(username) && isValidInput(password)) {
+        processLogin(username, password); // Вызов функции для обработки логина
+    } else {
+        showErrorMessage("Please check your username and password format.");
+    }
 }
 
 void LoginWindow::on_registerButton_clicked()
@@ -63,7 +73,7 @@ void LoginWindow::on_registerButton_clicked()
 
 bool LoginWindow::isValidInput(const QString &input)
 {
-    QRegularExpression regex("^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{8,32}$");
+    QRegularExpression regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,32}$");
     return regex.match(input).hasMatch();
 }
 
@@ -75,20 +85,40 @@ void LoginWindow::validateInput()
     bool isUsernameValid = isValidInput(username);
     bool isPasswordValid = isValidInput(password);
 
-    QPalette palette;
-    if (isUsernameValid) {
-        palette.setColor(QPalette::Base, Qt::white);
-    } else {
-        palette.setColor(QPalette::Base, Qt::red);
-    }
-    ui->usernameInput->setPalette(palette);
+    QString validStyle = "QLineEdit { border: 2px solid green; }";
+    QString invalidStyle = "QLineEdit { border: 2px solid red; }";
+    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
 
-    if (isPasswordValid) {
-        palette.setColor(QPalette::Base, Qt::white);
-    } else {
-        palette.setColor(QPalette::Base, Qt::red);
-    }
-    ui->passwordInput->setPalette(palette);
+    ui->usernameInput->setStyleSheet(username.isEmpty() ? defaultStyle : (isUsernameValid ? validStyle : invalidStyle));
+    ui->passwordInput->setStyleSheet(password.isEmpty() ? defaultStyle : (isPasswordValid ? validStyle : invalidStyle));
 
     ui->loginButton->setEnabled(isUsernameValid && isPasswordValid);
+}
+
+void LoginWindow::processLogin(const QString &username, const QString &password)
+{
+    // Пример логики проверки логина и пароля
+    bool loginSuccessful = false;
+
+    // Здесь добавьте логику для проверки логина и пароля (СЕЙЧАС ТЕСТОВАЯ ХУ9ТА)
+
+    if (username == "Admin123" && password == "Admin123") {
+        goToMainScreen();
+    } else {
+        showErrorMessage("Invalid username or password. Please try a different login/password.");
+    }
+}
+
+void LoginWindow::showErrorMessage(const QString &message)
+{
+    ui->errorMessageLabel->setText(message);
+    ui->errorMessageLabel->setStyleSheet("QLabel { color: red; }");
+}
+
+void LoginWindow::goToMainScreen()
+{
+    // Здесь добавить логику для перехода на основной экран
+    MainWindow *mainWindow = new MainWindow();
+    mainWindow->show();
+    this->close(); // Закрытие окна логина
 }

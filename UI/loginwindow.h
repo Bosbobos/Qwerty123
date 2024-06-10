@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMovie>
+#include "mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
@@ -25,8 +26,12 @@ private slots:
 
 private:
     Ui::LoginWindow *ui;
-    bool isValidInput(const QString &input);
+    bool isValidInput(const QString &input); // валидация на символы
     QMovie *movie;
+    void processLogin(const QString &username, const QString &password); // обработка логина
+    void showErrorMessage(const QString &message); // метод для отображения сообщения об ошибке
+    void goToMainScreen(); // Метод для перехода на основной экран
+
 };
 
 #endif // LOGINWINDOW_H

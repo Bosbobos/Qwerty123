@@ -6,11 +6,11 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qtc/package-manager/auto-setup.cmake"
+			"path" : "bin/.qtc/package-manager/auto-setup.cmake"
 		},
 		{
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/3.29.4/CMakeSystem.cmake"
+			"path" : "bin/CMakeFiles/3.29.4/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -24,7 +24,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/3.29.4/CMakeCXXCompiler.cmake"
+			"path" : "bin/CMakeFiles/3.29.4/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -88,7 +88,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/3.29.4/CMakeRCCompiler.cmake"
+			"path" : "bin/CMakeFiles/3.29.4/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -1273,13 +1273,16 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/msys64/mingw64/share/cmake/Modules/GNUInstallDirs.cmake"
+		},
+		{
+			"path" : "resources.qrc"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI/build/Desktop_Qt_6_7_1_shared_MinGW_w64_MINGW64_MSYS2-Debug",
-		"source" : "C:/Users/glukh/Desktop/HWHSE/AIP/ProjectCPP/Qwerty123/UI"
+		"build" : "C:/Users/glukh/Desktop/Qwerty123/UI/bin",
+		"source" : "C:/Users/glukh/Desktop/Qwerty123/UI"
 	},
 	"version" : 
 	{

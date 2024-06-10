@@ -18,52 +18,70 @@ void DbManager::createTable() {
     db.read(create_table_sql);
 }
 
-void DbManager::addRecord(const std::string& master_username,
-                          const std::string& rec_name,
-                          const std::string& url,
-                          const std::string& username,
-                          const std::string& password,
-                          const std::string& tag,
-                          const std::string& expires) {
+void DbManager::addRecord(Record record) {
     std::map<std::string, std::string> data = {
-            {"master_username", master_username},
-            {"rec_name", rec_name},
-            {"url", url},
-            {"username", username},
-            {"password", password},
-            {"tag", tag},
-            {"expires", expires}
+            {"master_username", record.master_username},
+            {"rec_name", record.rec_name},
+            {"url", record.url},
+            {"username", record.username},
+            {"password", record.password},
+            {"tag", record.tag},
+            {"expires", record.expires}
     };
     db.create("Qwerty123", data);
 }
 
+/**
+ * @brief Обновляет пароль записи по идентификатору.
+ * @param id Идентификатор записи.
+ * @param password Новый пароль.
+ */
 void DbManager::updatePassword(int id, const std::string& password) {
     std::string condition = "id = " + std::to_string(id);
     std::map<std::string, std::string> data = {{"password", password}};
     db.update("Qwerty123", data, condition);
 }
 
+/**
+ * @brief Обновляет тег записи по идентификатору.
+ * @param id Идентификатор записи.
+ * @param tag Новый тег.
+ */
 void DbManager::updateTag(int id, const std::string& tag) {
     std::string condition = "id = " + std::to_string(id);
     std::map<std::string, std::string> data = {{"tag", tag}};
     db.update("Qwerty123", data, condition);
 }
 
+/**
+ * @brief Удаляет запись по идентификатору.
+ * @param id Идентификатор записи.
+ */
 void DbManager::deleteRecord(int id) {
     std::string condition = "id = " + std::to_string(id);
     db.delete_record("Qwerty123", condition);
 }
 
+/**
+ * @brief Находит запись по идентификатору.
+ * @param id Идентификатор записи.
+ * @return Запись в виде объекта Record.
+ * @throws std::runtime_error Если запись не найдена.
+ */
 Record DbManager::findRecord(int id) {
     std::string query = "SELECT * FROM Qwerty123 WHERE id = " + std::to_string(id) + ";";
     pqxx::result r = db.read(query);
     if (r.empty()) {
-        // Return a default-constructed Record or throw an exception
         throw std::runtime_error("Record not found");
     }
     return resultToRecord(r)[0];
 }
 
+/**
+ * @brief Находит все записи пользователя по имени пользователя.
+ * @param username Имя пользователя.
+ * @return Вектор записей в виде объектов Record.
+ */
 std::vector<Record> DbManager::findAllUserRecords(const std::string& username) {
     std::string query = "SELECT * FROM Qwerty123 WHERE username = '" + username + "';";
     pqxx::result r = db.read(query);
@@ -71,6 +89,12 @@ std::vector<Record> DbManager::findAllUserRecords(const std::string& username) {
     return resultToRecord(r);
 }
 
+/**
+ * @brief Находит все записи пользователя по имени пользователя и тегу.
+ * @param username Имя пользователя.
+ * @param tag Тег.
+ * @return Вектор записей в виде объектов Record.
+ */
 std::vector<Record> DbManager::findAllUserRecordsWithTag(const std::string& username, const std::string& tag) {
     std::string query = "SELECT * FROM Qwerty123 WHERE username = '" + username + "' AND tag LIKE '%" + tag + "%';";
     pqxx::result r = db.read(query);
@@ -78,6 +102,11 @@ std::vector<Record> DbManager::findAllUserRecordsWithTag(const std::string& user
     return resultToRecord(r);
 }
 
+/**
+ * @brief Преобразует результат запроса в вектор записей.
+ * @param result Результат запроса к базе данных.
+ * @return Вектор записей в виде объектов Record.
+ */
 std::vector<Record> DbManager::resultToRecord(const pqxx::result& result) {
     std::vector<Record> records;
 

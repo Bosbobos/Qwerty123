@@ -28,7 +28,8 @@ TEST_F(DbManagerTest, CreateTableTest) {
 // Test case to check record insertion
 TEST_F(DbManagerTest, AddRecordTest) {
     // Insert a record
-    dbManager->addRecord("master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    Record record(1, "master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    dbManager->addRecord(record);
 
     // Find the inserted record
     Record record = dbManager->findRecord(1);

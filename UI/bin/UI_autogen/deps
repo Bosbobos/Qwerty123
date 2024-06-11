@@ -1,5 +1,7 @@
 UI_autogen/timestamp: \
 	C:/Users/glukh/Desktop/Qwerty123/UI/CMakeLists.txt \
+	C:/Users/glukh/Desktop/Qwerty123/UI/addeditdialog.cpp \
+	C:/Users/glukh/Desktop/Qwerty123/UI/addeditdialog.h \
 	C:/Users/glukh/Desktop/Qwerty123/UI/bin/.qtc/package-manager/auto-setup.cmake \
 	C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/3.29.4/CMakeCXXCompiler.cmake \
 	C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/3.29.4/CMakeRCCompiler.cmake \
@@ -371,6 +373,7 @@ UI_autogen/timestamp: \
 	C:/msys64/mingw64/include/qt6/QtGui/qvalidator.h \
 	C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
 	C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
+	C:/msys64/mingw64/include/qt6/QtWidgets/QDialog \
 	C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
 	C:/msys64/mingw64/include/qt6/QtWidgets/QTableWidget \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qabstractitemdelegate.h \
@@ -378,6 +381,7 @@ UI_autogen/timestamp: \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qabstractscrollarea.h \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qabstractslider.h \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qabstractspinbox.h \
+	C:/msys64/mingw64/include/qt6/QtWidgets/qdialog.h \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qframe.h \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qmainwindow.h \
 	C:/msys64/mingw64/include/qt6/QtWidgets/qrubberband.h \
@@ -615,6 +619,7 @@ UI_autogen/timestamp: \
 	C:/msys64/mingw64/share/cmake/Modules/Platform/Windows-windres.cmake \
 	C:/msys64/mingw64/share/cmake/Modules/Platform/Windows.cmake \
 	C:/msys64/mingw64/share/cmake/Modules/Platform/WindowsPaths.cmake \
+	C:/Users/glukh/Desktop/Qwerty123/UI/addeditdialog.ui \
 	C:/Users/glukh/Desktop/Qwerty123/UI/loginwindow.ui \
 	C:/Users/glukh/Desktop/Qwerty123/UI/mainwindow.ui \
 	C:/Users/glukh/Desktop/Qwerty123/UI/registrationwindow.ui \

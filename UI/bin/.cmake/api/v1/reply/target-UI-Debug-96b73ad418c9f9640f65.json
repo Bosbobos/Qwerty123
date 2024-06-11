@@ -77,13 +77,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 64,
+				"line" : 66,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 47,
+				"line" : 49,
 				"parent" : 0
 			},
 			{
@@ -412,7 +412,9 @@
 				1,
 				2,
 				6,
-				12
+				10,
+				13,
+				20
 			]
 		}
 	],
@@ -537,7 +539,9 @@
 				1,
 				2,
 				6,
-				12
+				10,
+				13,
+				20
 			]
 		},
 		{
@@ -547,7 +551,11 @@
 				3,
 				5,
 				9,
-				10
+				12,
+				15,
+				16,
+				17,
+				18
 			]
 		},
 		{
@@ -557,15 +565,17 @@
 				4,
 				7,
 				8,
-				11
+				11,
+				14,
+				19
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				13,
-				14
+				21,
+				22
 			]
 		}
 	],
@@ -622,6 +632,38 @@
 			"sourceGroupIndex" : 2
 		},
 		{
+			"backtrace" : 4,
+			"path" : "mainwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "mainwindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "mainwindow.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "addeditdialog.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "addeditdialog.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "addeditdialog.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "bin/UI_autogen/include/ui_loginwindow.h",
@@ -631,6 +673,18 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "bin/UI_autogen/include/ui_registrationwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "bin/UI_autogen/include/ui_mainwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "bin/UI_autogen/include/ui_addeditdialog.h",
 			"sourceGroupIndex" : 1
 		},
 		{

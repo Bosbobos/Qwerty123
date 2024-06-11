@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-ab027e4866ffb3ed096c.json",
+					"jsonFile" : "directory-.-Debug-fd2c185da32574ed0be5.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "UI::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-UI-Debug-33bb7fe3e0167326fa2a.json",
+					"jsonFile" : "target-UI-Debug-372a4c3111da9366f2fb.json",
 					"name" : "UI",
 					"projectIndex" : 0
 				},

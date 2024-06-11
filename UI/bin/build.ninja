@@ -89,6 +89,14 @@ build CMakeFiles/UI.dir/mainwindow.cpp.obj: CXX_COMPILER__UI_unscanned_Debug C$:
   OBJECT_DIR = CMakeFiles\UI.dir
   OBJECT_FILE_DIR = CMakeFiles\UI.dir
 
+build CMakeFiles/UI.dir/addeditdialog.cpp.obj: CXX_COMPILER__UI_unscanned_Debug C$:/Users/glukh/Desktop/Qwerty123/UI/addeditdialog.cpp || cmake_object_order_depends_target_UI
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -DWINVER=0x0A00 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN32_WINNT=0x0A00 -D_WIN64
+  DEP_FILE = CMakeFiles\UI.dir\addeditdialog.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/glukh/Desktop/Qwerty123/UI/bin/UI_autogen/include -isystem C:/msys64/mingw64/include/qt6/QtCore -isystem C:/msys64/mingw64/include/qt6 -isystem C:/msys64/mingw64/share/qt6/mkspecs/win32-g++ -isystem C:/msys64/mingw64/include/qt6/QtWidgets -isystem C:/msys64/mingw64/include/qt6/QtGui
+  OBJECT_DIR = CMakeFiles\UI.dir
+  OBJECT_FILE_DIR = CMakeFiles\UI.dir
+
 build CMakeFiles/UI.dir/UI_autogen/EWIEGA46WW/qrc_resources.cpp.obj: CXX_COMPILER__UI_unscanned_Debug C$:/Users/glukh/Desktop/Qwerty123/UI/bin/UI_autogen/EWIEGA46WW/qrc_resources.cpp || cmake_object_order_depends_target_UI
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -DWINVER=0x0A00 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN32_WINNT=0x0A00 -D_WIN64
   DEP_FILE = CMakeFiles\UI.dir\UI_autogen\EWIEGA46WW\qrc_resources.cpp.obj.d
@@ -105,7 +113,7 @@ build CMakeFiles/UI.dir/UI_autogen/EWIEGA46WW/qrc_resources.cpp.obj: CXX_COMPILE
 #############################################
 # Link the executable UI.exe
 
-build UI.exe: CXX_EXECUTABLE_LINKER__UI_Debug CMakeFiles/UI.dir/UI_autogen/mocs_compilation.cpp.obj CMakeFiles/UI.dir/main.cpp.obj CMakeFiles/UI.dir/loginwindow.cpp.obj CMakeFiles/UI.dir/registrationwindow.cpp.obj CMakeFiles/UI.dir/mainwindow.cpp.obj CMakeFiles/UI.dir/UI_autogen/EWIEGA46WW/qrc_resources.cpp.obj | C$:/msys64/mingw64/lib/libQt6Widgets.dll.a C$:/msys64/mingw64/lib/libQt6Gui.dll.a C$:/msys64/mingw64/lib/libQt6Core.dll.a C$:/msys64/mingw64/lib/libQt6EntryPoint.a || UI_autogen UI_autogen_timestamp_deps
+build UI.exe: CXX_EXECUTABLE_LINKER__UI_Debug CMakeFiles/UI.dir/UI_autogen/mocs_compilation.cpp.obj CMakeFiles/UI.dir/main.cpp.obj CMakeFiles/UI.dir/loginwindow.cpp.obj CMakeFiles/UI.dir/registrationwindow.cpp.obj CMakeFiles/UI.dir/mainwindow.cpp.obj CMakeFiles/UI.dir/addeditdialog.cpp.obj CMakeFiles/UI.dir/UI_autogen/EWIEGA46WW/qrc_resources.cpp.obj | C$:/msys64/mingw64/lib/libQt6Widgets.dll.a C$:/msys64/mingw64/lib/libQt6Gui.dll.a C$:/msys64/mingw64/lib/libQt6Core.dll.a C$:/msys64/mingw64/lib/libQt6EntryPoint.a || UI_autogen UI_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/msys64/mingw64/lib/libQt6Widgets.dll.a  C:/msys64/mingw64/lib/libQt6Gui.dll.a  C:/msys64/mingw64/lib/libQt6Core.dll.a  -lmpr  -luserenv  -lmingw32  C:/msys64/mingw64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -191,7 +199,7 @@ build UI_autogen_timestamp_deps: phony
 #############################################
 # Utility command for UI_autogen
 
-build UI_autogen: phony CMakeFiles/UI_autogen UI_autogen/include/ui_loginwindow.h UI_autogen/include/ui_registrationwindow.h UI_autogen/include/ui_mainwindow.h UI_autogen/timestamp UI_autogen/mocs_compilation.cpp UI_autogen_timestamp_deps
+build UI_autogen: phony CMakeFiles/UI_autogen UI_autogen/include/ui_loginwindow.h UI_autogen/include/ui_registrationwindow.h UI_autogen/include/ui_mainwindow.h UI_autogen/include/ui_addeditdialog.h UI_autogen/timestamp UI_autogen/mocs_compilation.cpp UI_autogen_timestamp_deps
 
 
 #############################################
@@ -217,7 +225,7 @@ build UI_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}UI_autogen
 #############################################
 # Phony custom command for CMakeFiles\UI_autogen
 
-build CMakeFiles/UI_autogen UI_autogen/include/ui_loginwindow.h UI_autogen/include/ui_registrationwindow.h UI_autogen/include/ui_mainwindow.h | ${cmake_ninja_workdir}CMakeFiles/UI_autogen ${cmake_ninja_workdir}UI_autogen/include/ui_loginwindow.h ${cmake_ninja_workdir}UI_autogen/include/ui_registrationwindow.h ${cmake_ninja_workdir}UI_autogen/include/ui_mainwindow.h: phony UI_autogen/timestamp || UI_autogen_timestamp_deps
+build CMakeFiles/UI_autogen UI_autogen/include/ui_loginwindow.h UI_autogen/include/ui_registrationwindow.h UI_autogen/include/ui_mainwindow.h UI_autogen/include/ui_addeditdialog.h | ${cmake_ninja_workdir}CMakeFiles/UI_autogen ${cmake_ninja_workdir}UI_autogen/include/ui_loginwindow.h ${cmake_ninja_workdir}UI_autogen/include/ui_registrationwindow.h ${cmake_ninja_workdir}UI_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}UI_autogen/include/ui_addeditdialog.h: phony UI_autogen/timestamp || UI_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.

@@ -22,13 +22,11 @@ struct Record {
     /// Дата истечения записи
     std::string expires;
 
-    Record(const std::string &masterUsername, const std::string &recName, const std::string &url,
-           const std::string &username, const std::string &password, const std::string &tag, const std::string &expires,
-           int id);
+    Record(int id, const std::string &masterUsername, const std::string &recName, const std::string &url,
+           const std::string &username, const std::string &password, const std::string &tag, const std::string &expires);
 
-    Record(const std::string masterUsername, const std::string recName, const std::string url,
-           const std::string username, const std::string password, const std::string tag, const std::string expires,
-           int id);
+    Record(const std::string &masterUsername, const std::string &recName, const std::string &url,
+           const std::string &username, const std::string &password, const std::string &tag, const std::string &expires);
 
     int getId() const;
 

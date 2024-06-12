@@ -8,6 +8,12 @@ Record::Record(const std::string &masterUsername, const std::string &recName, co
                                                      username(username), password(password), tag(tag), expires(expires),
                                                      id(id) {}
 
+Record::Record(const std::string masterUsername, const std::string recName, const std::string url,
+               const std::string username, const std::string password, const std::string tag,
+               const std::string expires, int id) : master_username(masterUsername), rec_name(recName), url(url),
+                                                     username(username), password(password), tag(tag), expires(expires),
+                                                     id(id) {}
+
 int Record::getId() const {
     return id;
 }

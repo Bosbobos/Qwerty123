@@ -2,17 +2,17 @@
 #include <iostream>
 
 
+Record::Record(int id, const std::string &masterUsername, const std::string &recName, const std::string &url,
+               const std::string &username, const std::string &password, const std::string &tag,
+               const std::string &expires) : id(id), master_username(masterUsername), rec_name(recName), url(url),
+                                                     username(username), password(password), tag(tag), expires(expires)
+                                                     {}
+
 Record::Record(const std::string &masterUsername, const std::string &recName, const std::string &url,
                const std::string &username, const std::string &password, const std::string &tag,
-               const std::string &expires, int id) : master_username(masterUsername), rec_name(recName), url(url),
-                                                     username(username), password(password), tag(tag), expires(expires),
-                                                     id(id) {}
-
-Record::Record(const std::string masterUsername, const std::string recName, const std::string url,
-               const std::string username, const std::string password, const std::string tag,
-               const std::string expires, int id) : master_username(masterUsername), rec_name(recName), url(url),
-                                                     username(username), password(password), tag(tag), expires(expires),
-                                                     id(id) {}
+               const std::string &expires) : master_username(masterUsername), rec_name(recName), url(url),
+                                             username(username), password(password), tag(tag), expires(expires)
+                                             {id = 0;}
 
 int Record::getId() const {
     return id;

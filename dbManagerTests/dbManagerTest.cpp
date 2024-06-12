@@ -6,8 +6,13 @@
 class DbManagerTest : public ::testing::Test {
 protected:
     void SetUp() override {
+        auto conn = new pqxx::connection("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
+        pqxx::work W(*conn);
+        W.exec("DROP TABLE IF EXISTS Test");
+        W.commit();
+
         // Initialize DbManager with connection string
-        dbManager = new DbManager("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd");
+        dbManager = new DbManager("host=localhost port=5431 dbname=postgres user=postgres password=P@ssw0rd", "Test");
         dbManager->createTable(); // Ensure the table exists before each test
     }
 
@@ -28,8 +33,8 @@ TEST_F(DbManagerTest, CreateTableTest) {
 // Test case to check record insertion
 TEST_F(DbManagerTest, AddRecordTest) {
     // Insert a record
-    Record record(1, "master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
-    dbManager->addRecord(record);
+    Record originalRecord(1, "master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    dbManager->addRecord(originalRecord);
 
     // Find the inserted record
     Record record = dbManager->findRecord(1);
@@ -47,7 +52,8 @@ TEST_F(DbManagerTest, AddRecordTest) {
 // Test case to check record updating
 TEST_F(DbManagerTest, UpdateRecordTest) {
     // Insert a record
-    dbManager->addRecord("master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    Record originalRecord("master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    dbManager->addRecord(originalRecord);
 
     // Update the password of the inserted record
     dbManager->updatePassword(1, "new_password");
@@ -62,7 +68,8 @@ TEST_F(DbManagerTest, UpdateRecordTest) {
 // Test case to check record deletion
 TEST_F(DbManagerTest, DeleteRecordTest) {
     // Insert a record
-    dbManager->addRecord("master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    Record originalRecord("master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    dbManager->addRecord(originalRecord);
 
     // Delete the inserted record
     dbManager->deleteRecord(1);
@@ -74,8 +81,10 @@ TEST_F(DbManagerTest, DeleteRecordTest) {
 // Test case to check finding records by username
 TEST_F(DbManagerTest, FindAllUserRecordsTest) {
     // Insert records for a specific username
-    dbManager->addRecord("master", "record1", "http://example.com", "user1", "password1", "tag1", "2023-12-31");
-    dbManager->addRecord("master", "record2", "http://example.com", "user1", "password2", "tag2", "2023-12-31");
+    Record record1("master", "record1", "http://example.com", "user1", "password1", "tag1", "2023-12-31");
+    Record record2("master", "record2", "http://example.com", "user1", "password2", "tag2", "2023-12-31");
+    dbManager->addRecord(record1);
+    dbManager->addRecord(record2);
 
     // Find all records for the given username
     std::vector<Record> records = dbManager->findAllUserRecords("user1");
@@ -87,9 +96,12 @@ TEST_F(DbManagerTest, FindAllUserRecordsTest) {
 // Test case to check finding records by username and tag
 TEST_F(DbManagerTest, FindAllUserRecordsWithTagTest) {
     // Insert records for a specific username with a specific tag
-    dbManager->addRecord("master", "record1", "http://example.com", "user2", "password1", "tag1", "2023-12-31");
-    dbManager->addRecord("master", "record2", "http://example.com", "user2", "password2", "tag1", "2023-12-31");
-    dbManager->addRecord("master", "record3", "http://example.com", "user2", "password3", "tag2", "2023-12-31");
+    Record record1("master", "record1", "http://example.com", "user2", "password1", "tag1", "2023-12-31");
+    Record record2("master", "record2", "http://example.com", "user2", "password2", "tag1", "2023-12-31");
+    Record record3("master", "record3", "http://example.com", "user2", "password3", "tag2", "2023-12-31");
+    dbManager->addRecord(record1);
+    dbManager->addRecord(record2);
+    dbManager->addRecord(record3);
 
     // Find all records for the given username and tag
     std::vector<Record> records = dbManager->findAllUserRecordsWithTag("user2", "tag1");

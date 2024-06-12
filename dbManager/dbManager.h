@@ -14,7 +14,7 @@ public:
      * @brief Конструктор класса DbManager.
      * @param connection_string Строка подключения к базе данных.
      */
-    explicit DbManager(const std::string& connection_string);
+    explicit DbManager(const std::string& connection_string, const std::string& table_name);
 
     /**
      * @brief Создает таблицу Qwerty123, если она не существует.
@@ -70,6 +70,7 @@ public:
      */
     std::vector<Record> findAllUserRecordsWithTag(const std::string& username, const std::string& tag);
 private:
+    std::string table_name;
     PostgresCRUD db;
 
     std::vector<Record> resultToRecord(const pqxx::result& result);

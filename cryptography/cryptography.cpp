@@ -1,15 +1,19 @@
+/**
+ * @file cryptography.cpp
+ * @brief Реализация алгоритма блочного шифра Кузнечика (ГОСТ Р 34.12-2015).
+ */
 #include <iostream>
 #include <iomanip>
 #include <random>
 #include <cstring>
 #include <windows.h>
 #include <algorithm>
+#include <sstream>
 
-
-// длина блока в алгоритме кузнечик = 16 байт
+/// Длина блока в алгоритме Кузнечика = 16 байт
 const int block_len = 16;
 
-// матрица для нелинейного преобразования
+/// S-блок для нелинейного преобразования
 const uint8_t S[256] = {
         252, 238, 221, 17, 207, 110, 49, 22, 251, 196, 250, 218, 35, 197, 4, 77, 233, 119, 240, 219,
         147, 46, 153, 186, 23, 54, 241, 187, 20, 205, 95, 193, 249, 24, 101, 90, 226, 92, 239, 33, 129,
@@ -26,7 +30,7 @@ const uint8_t S[256] = {
         180, 192, 209, 102, 175, 194, 57, 75, 99, 182,
 };
 
-// для обратного нелинейного преобразования
+/// Инверсный S-блок для нелинейного преобразования
 const uint8_t INVERSE_S[256] = {
         0xa5, 0x2D, 0x32, 0x8F, 0x0E, 0x30, 0x38, 0xC0, 0x54, 0xE6, 0x9E, 0x39, 0x55, 0x7E, 0x52, 0x91,
         0x64, 0x03, 0x57, 0x5A, 0x1C, 0x60, 0x07, 0x18, 0x21, 0x72, 0xA8, 0xD1, 0x29, 0xC6, 0xA4, 0x3F,
@@ -46,12 +50,12 @@ const uint8_t INVERSE_S[256] = {
         0x12, 0x1A, 0x48, 0x68, 0xF5, 0x81, 0x8B, 0xC7, 0xD6, 0x20, 0x0A, 0x08, 0x00, 0x4C, 0xD7, 0x74,
 };
 
-// вектор линейного преобразования
+/// вектор линейного преобразования
 const uint8_t L[16] = {
         1, 148, 32, 133, 16, 194, 192, 1, 251, 1, 192, 194, 16, 133, 32, 148,
 };
 
-// таблица степеней двойки в поле GF(2^8)
+/// таблица степеней двойки в поле GF(2^8)
 const uint8_t DEGREE[255] = {
         1, 2, 4, 8, 16, 32, 64, 128, 195, 69, 138, 215, 109, 218, 119, 238, 31, 62, 124, 248, 51, 102,
         204, 91, 182, 175, 157, 249, 49, 98, 196, 75, 150, 239, 29, 58, 116, 232, 19, 38, 76, 152, 243,
@@ -68,7 +72,7 @@ const uint8_t DEGREE[255] = {
         94, 188, 187, 181, 169, 145, 225,
 };
 
-// таблица: по числу получить его степень в поле Галуа
+/// таблица: по числу получить его степень в поле Галуа
 const uint8_t INVERSE_DEGREE[255] = {
         0, 1, 157, 2, 59, 158, 151, 3, 53, 60, 132, 159, 70, 152, 216, 4, 118, 54, 38, 61, 47, 133,
         227, 160, 181, 71, 210, 153, 34, 217, 16, 5, 173, 119, 221, 55, 43, 39, 191, 62, 88, 48, 83,
@@ -86,7 +90,17 @@ const uint8_t INVERSE_DEGREE[255] = {
 };
 
 
-// функция перемножения двух чисел в поле Галуа
+/**
+ * @brief Выполняет умножение двух байтов в поле Галуа (GF(2^8)).
+ *
+ * Функция принимает два байта и выполняет их умножение в поле Галуа.
+ * Если один из байтов равен 0, результатом будет 0. Иначе, используются
+ * логарифмы и экспоненты для выполнения умножения.
+ *
+ * @param a Первый байт.
+ * @param b Второй байт.
+ * @return uint8_t Результат умножения в поле Галуа.
+ */
 uint8_t multiply_in_Galua(uint8_t a, uint8_t b) {
     if (a == 0 || b == 0) {
         return 0;
@@ -100,9 +114,14 @@ uint8_t multiply_in_Galua(uint8_t a, uint8_t b) {
     return DEGREE[indmul];
 }
 
-//можем подсчитать всевозможные перемножения iго байта на jый, так как их всего 256
+/**
+ * @brief Таблица предварительно вычисленных произведений в поле Галуа (GF(2^8)).
+ */
 uint8_t MULS[256][256] = {};
 
+/**
+ * @brief Создает таблицу предварительно вычисленных произведений в поле Галуа (GF(2^8)).
+ */
 void create_muls() {
     for (size_t i = 0; i < 256; ++i) {
         for (size_t j = 0; j < 256; ++j) {
@@ -111,16 +130,24 @@ void create_muls() {
     }
 }
 
+/**
+ * @brief Матрица для линейного преобразования.
+ */
 uint8_t MATRIX[block_len][256][block_len] = {};
 
-// аналогично для обратного преобразования
+/**
+ * @brief Матрица для обратного линейного преобразования.
+ */
 uint8_t INVERSE_MATRIX[block_len][256][block_len] = {};
 
-// с этой предпосчитанной матрицей операции линейного преобразования работают как
+/**
+ * @brief Выполняет линейное преобразование блока данных.
+ *
+ * @param block Блок данных длиной block_len байт.
+ */
 void L_transform(uint8_t block[block_len]) {
     uint8_t res[block_len] = {};
     for (uint8_t i = 0; i < block_len; ++i) {
-        // эта операция будет векторизовываться и по сути линейное преобразование за O(n)
         for (uint8_t f_ind = 0; f_ind < block_len; ++f_ind) {
             res[f_ind] ^= MATRIX[i][block[i]][f_ind];
         }
@@ -128,6 +155,11 @@ void L_transform(uint8_t block[block_len]) {
     memcpy(block, res, block_len);
 }
 
+/**
+ * @brief Выполняет обратное линейное преобразование блока данных.
+ *
+ * @param block Блок данных длиной block_len байт.
+ */
 void inverse_L_transform(uint8_t block[block_len]) {
     uint8_t res[block_len] = {};
     for (uint8_t i = 0; i < block_len; ++i) {
@@ -138,7 +170,13 @@ void inverse_L_transform(uint8_t block[block_len]) {
     memcpy(block, res, block_len);
 }
 
+/**
+ * @brief Выполняет линейное преобразование блока данных без использования предварительно вычисленных матриц.
+ *
+ * @param block Блок данных длиной block_len байт.
+ */
 void linear_transform(uint8_t block[block_len]) {
+    create_muls();
     uint8_t cur = 0;
     for (uint8_t i = 0; i < block_len; ++i) {
         for (uint8_t f_ind = 0; f_ind < block_len; ++f_ind) {
@@ -149,7 +187,13 @@ void linear_transform(uint8_t block[block_len]) {
     }
 }
 
+/**
+ * @brief Выполняет обратное линейное преобразование блока данных без использования предварительно вычисленных матриц.
+ *
+ * @param block Блок данных длиной block_len байт.
+ */
 void inverse_linear_transform(uint8_t block[block_len]) {
+    create_muls();
     uint8_t cur = 0;
     for (uint8_t i = 0; i < block_len; ++i) {
         for (uint8_t f_ind = 0; f_ind < block_len; ++f_ind) {
@@ -160,27 +204,30 @@ void inverse_linear_transform(uint8_t block[block_len]) {
     }
 }
 
+/**
+ * @brief Создает матрицы для линейного и обратного линейного преобразования.
+ */
 void create_MATRIX() {
     uint8_t block[block_len] = {};
-
     for (uint8_t i = 0; i < block_len; ++i) {
         for (size_t j = 0; j < 256; ++j) {
             memset(block, (uint8_t) 0, block_len);
             block[i] = j;
             linear_transform(block);
             memcpy(MATRIX[i][j], block, block_len);
-
             memset(block, (uint8_t) 0, block_len);
             block[i] = j;
             inverse_linear_transform(block);
             memcpy(INVERSE_MATRIX[i][j], block, block_len);
-
         }
     }
 }
 
-// ГЕНЕРАЦИЯ КЛЮЧЕЙ
-
+/**
+ * @brief Генерирует константы для раундов шифрования.
+ *
+ * @param round_constants Массив для хранения раундовых констант (размер 32x16).
+ */
 void generate_round_constants(uint8_t round_constants[32][16]) {
     // создание матриц всевозможных перемножений в поле Галуа
     create_muls();
@@ -193,9 +240,13 @@ void generate_round_constants(uint8_t round_constants[32][16]) {
     }
 }
 
-// сделаем генерацию ключей для Кузнечика сетью Фейстиля
+/**
+ * @brief Генерация раундовых ключей для алгоритма Кузнечик с использованием сети Фейстеля.
+ *
+ * @param key Исходный ключ длиной 32 байта.
+ * @param round_keys Массив для хранения 10 раундовых ключей, каждый длиной block_len байт.
+ */
 void generate(const uint8_t key[32], uint8_t round_keys[10][block_len]) {
-
     // получаем 32 константы: 4 итерации по 8 констант каждая
     uint8_t round_constants[32][block_len] = {};
     generate_round_constants(round_constants);
@@ -224,54 +275,105 @@ void generate(const uint8_t key[32], uint8_t round_keys[10][block_len]) {
             memcpy(right, left, block_len);
             memcpy(left, new_left, block_len);
         }
-
         memcpy(round_keys[2 * i], left, block_len);
         memcpy(round_keys[2 * i + 1], right, block_len);
     }
 }
 
-std::string padBlock(const std::string& input) {
+/**
+ * @brief Добавляет нулевой байт в начало строки и дополняет ее нулями до длины 32 символа.
+ *
+ * @param input Входная строка.
+ * @return std::string Результат после дополнения.
+ */
+std::string padBlock(const std::string &input) {
     std::string padded = input;
     if (padded.length() < 32) {
         padded.insert(padded.begin(), '8'); // Добавляем '8' в начало
         while (padded.length() < 32) {
-            padded.push_back('0'); // Дополняем нулями
+            padded.insert(padded.begin() + 1, '0'); // Дополняем нулями
         }
     }
     return padded;
 }
 
+/**
+ * @brief Преобразует строку из шестнадцатеричного представления в обратный массив uint8_t.
+ *
+ * @param input_key Входная строка ключа.
+ * @return const uint8_t* Указатель на массив обратного ключа.
+ */
 const uint8_t *stringToReversedKey(const std::string &input_key) {
     static uint8_t key[32];
-
     for (int i = 0; i < 32; ++i) {
         std::string part = input_key.substr(i * 2, 2);
         key[31 - i] = std::stoul(part, nullptr, 16);
     }
-
     return key;
 }
 
+/**
+ * @brief Преобразует строку в массив uint8_t.
+ *
+ * @param input Входная строка.
+ * @param output Выходной массив.
+ */
 void convertStringToBlock(const std::string &input, uint8_t output[16]) {
     std::string paddedBlock = padBlock(input);
     std::vector<uint8_t> block_vec;
-
     // Преобразование строки в вектор uint8_t
-    for (size_t i = 0; i < input.size(); i += 2) {
-        std::string byte_str = input.substr(i, 2);
+    for (size_t i = 0; i < paddedBlock.size(); i += 2) {
+        std::string byte_str = paddedBlock.substr(i, 2);
         uint8_t byte = std::stoul(byte_str, nullptr, 16);
         block_vec.push_back(byte);
     }
-
     // Разворот вектора
     std::reverse(block_vec.begin(), block_vec.end());
-
     // Преобразование вектора в массив
     for (size_t i = 0; i < block_vec.size(); ++i) {
         output[i] = block_vec[i];
     }
 }
 
+/**
+ * @brief Преобразует текстовую строку в её шестнадцатеричное представление.
+ *
+ * @param input Строка текста.
+ * @return Строка, содержащая шестнадцатеричное представление входной строки.
+ */
+std::string textToHex(const std::string &input) {
+    std::stringstream hexStream;
+    hexStream << std::hex << std::setfill('0');
+    for (char c: input) {
+        hexStream << std::setw(2) << static_cast<int>(static_cast<unsigned char>(c));
+    }
+    return hexStream.str();
+}
+
+/**
+ * @brief Преобразует шестнадцатеричную строку обратно в текст.
+ *
+ * @param hexInput Строка, содержащая шестнадцатеричное представление.
+ * @return Строка текста.
+ */
+std::string hexToText(const std::string &hexInput) {
+
+    std::string text;
+    text.reserve(hexInput.length() / 2);
+    for (size_t i = 0; i < hexInput.length(); i += 2) {
+        std::string byteString = hexInput.substr(i, 2);
+        char byte = static_cast<char>(std::stoul(byteString, nullptr, 16));
+        text.push_back(byte);
+    }
+    return text;
+}
+
+/**
+ * @brief Шифрует блок данных с использованием раундовых ключей.
+ *
+ * @param block Указатель на блок данных для шифрования.
+ * @param round_keys Массив раундовых ключей.
+ */
 void encode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_len]) {
     for (uint8_t i = 0; i < 9; ++i) {
         for (uint8_t idx = 0; idx < block_len; ++idx) {
@@ -284,6 +386,12 @@ void encode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_l
     }
 }
 
+/**
+ * @brief Дешифрует блок данных с использованием раундовых ключей.
+ *
+ * @param block Указатель на блок данных для дешифрования.
+ * @param round_keys Массив раундовых ключей.
+ */
 void decode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_len]) {
     for (uint8_t idx = 0; idx < block_len; ++idx) {
         block[idx] ^= round_keys[9][idx];
@@ -296,16 +404,143 @@ void decode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_l
     }
 }
 
-void displayBlock(const uint8_t *block) {
+/**
+ * @brief Отображает блок данных в формате шифрования.
+ *
+ * @param block Указатель на блок данных.
+ */
+void displayBlockEncode(const uint8_t *block) {
     std::cout << std::hex << std::setfill('0');
     for (size_t j = 0; j < 16; ++j)
         std::cout << std::setw(2) << (int) block[15 - j];
     std::cout << std::dec << std::endl << std::endl;
 }
 
+/**
+ * @brief Шифрование текста в режиме CBC.
+ *
+ * @param plaintext Входной текст для шифрования.
+ * @param iv Вектор инициализации.
+ * @param round_keys Раундовые ключи.
+ * @return Зашифрованный текст.
+ */
+std::vector<uint8_t> cbcEncrypt(const std::vector<uint8_t> &plaintext, const uint8_t iv[block_len],
+                                const uint8_t round_keys[10][block_len]) {
+    size_t num_blocks = (plaintext.size() + block_len - 1) / block_len;
+    std::vector<uint8_t> ciphertext(num_blocks * block_len);
+    uint8_t prev_block[block_len];
+    std::memcpy(prev_block, iv, block_len);
+
+    for (size_t i = 0; i < num_blocks; ++i) {
+        uint8_t block[block_len] = {};
+        size_t block_start = i * block_len;
+
+        for (size_t j = 0; j < block_len && block_start + j < plaintext.size(); ++j) {
+            block[j] = plaintext[block_start + j];
+        }
+
+        // XOR с предыдущим блоком или IV
+        for (size_t j = 0; j < block_len; ++j) {
+            block[j] ^= prev_block[j];
+        }
+
+        encode_block(block, round_keys);
+        std::memcpy(&ciphertext[block_start], block, block_len);
+        std::memcpy(prev_block, block, block_len);
+    }
+
+    return ciphertext;
+}
+
+/**
+ * @brief Расшифрование текста в режиме CBC.
+ *
+ * @param ciphertext Входной зашифрованный текст.
+ * @param iv Вектор инициализации.
+ * @param round_keys Раундовые ключи.
+ * @return Расшифрованный текст.
+ */
+std::vector<uint8_t> cbcDecrypt(const std::vector<uint8_t> &ciphertext, const uint8_t iv[block_len],
+                                const uint8_t round_keys[10][block_len]) {
+    size_t num_blocks = ciphertext.size() / block_len;
+    std::vector<uint8_t> plaintext(num_blocks * block_len);
+    uint8_t prev_block[block_len];
+    std::memcpy(prev_block, iv, block_len);
+
+    for (size_t i = 0; i < num_blocks; ++i) {
+        uint8_t block[block_len] = {};
+        size_t block_start = i * block_len;
+
+        std::memcpy(block, &ciphertext[block_start], block_len);
+        uint8_t decrypted_block[block_len];
+        std::memcpy(decrypted_block, block, block_len);
+
+        decode_block(decrypted_block, round_keys);
+
+        // XOR с предыдущим блоком или IV
+        for (size_t j = 0; j < block_len; ++j) {
+            plaintext[block_start + j] = decrypted_block[j] ^ prev_block[j];
+        }
+
+        std::memcpy(prev_block, block, block_len);
+    }
+
+    return plaintext;
+}
+
+/**
+ * @brief Отображает блок данных в формате дешифрования.
+ *
+ * @param block Указатель на блок данных.
+ */
+void displayBlockDecode(const uint8_t *block) {
+    // Преобразуем блок данных в строку
+    std::stringstream ss;
+    ss << std::hex << std::setfill('0');
+    for (size_t j = 0; j < 16; ++j)
+        ss << std::setw(2) << (int) block[15 - j];
+    std::string hexString = ss.str();
+    // Применяем условие удаления '8' и последующих нулей
+    if (!hexString.empty() && hexString[0] == '8') {
+        size_t pos = 1;
+        while (pos < hexString.size() && hexString[pos] == '0') {
+            ++pos;
+        }
+        hexString = hexString.substr(pos);
+    }
+    // Выводим измененную строку
+    std::cout << hexString << std::dec << std::endl << std::endl;
+}
+
+
+/* Пример использования
+ * /
+ */
 int main() {
     SetConsoleOutputCP(CP_UTF8);
+    std::string text = "matievmagomed2019@gmail.com";
+    std::vector<uint8_t> plaintext(text.begin(), text.end());
+    std::string textHex = textToHex(text);
+
     std::string input_key = "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef";
+    const uint8_t *key = stringToReversedKey(input_key);
+
+    // создаем ключи
+    uint8_t round_keys[10][block_len] = {};
+    generate(key, round_keys);
+
+    generate(key, round_keys);
+
+    uint8_t iv[block_len] = {0xa5, 0x2D, 0x32, 0x8F, 0x0E, 0x30, 0x38, 0xC0, 0x54, 0xE6, 0x9E, 0x39, 0x55, 0x7E, 0x52,
+                             0x91};
+
+    std::vector<uint8_t> ciphertext = cbcEncrypt(plaintext, iv, round_keys);
+    std::cout << "Ciphertext (hex): " << textToHex(std::string(ciphertext.begin(), ciphertext.end())) << std::endl;
+
+    std::vector<uint8_t> decryptedtext = cbcDecrypt(ciphertext, iv, round_keys);
+    std::cout << "Decrypted text: " << std::string(decryptedtext.begin(), decryptedtext.end()) << std::endl;
+
+    /* std::string input_key = "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef";
     const uint8_t *key = stringToReversedKey(input_key);
 
     // создаем ключи
@@ -319,11 +554,17 @@ int main() {
     encode_block(gost_block, round_keys);
 
     std::cout << "Закодированный блок: " << std::endl;
-    displayBlock(gost_block);
+    displayBlockEncode(gost_block);
 
     decode_block(gost_block, round_keys);
     std::cout << "Раскодированный блок: " << std::endl;
-    displayBlock(gost_block);
+    displayBlockDecode(gost_block);
 
+    std::string text = "Hello, World!";
+    std::string hexRepresentation = textToHex(text);
+    std::string toText = hexToText(hexRepresentation);
+    std::cout << "Original text: " << text << std::endl;
+    std::cout << "Hexadecimal representation: " << toText << std::endl;
+*/
     return 0;
 }

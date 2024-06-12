@@ -21,3 +21,6 @@ target_link_libraries(dbManagerTests PRIVATE dbManager GTest::GTest GTest::Main)
 target_include_directories(dbManagerTests PRIVATE ${PQXX_INCLUDE_DIRS})
 target_link_libraries(dbManagerTests PRIVATE ${PQXX_LIBRARIES})
 target_include_directories(dbManagerTests PRIVATE ${GTEST_INCLUDE_DIRS})
+
+# Copy config file to the build directory
+configure_file(${CMAKE_SOURCE_DIR}/config.txt ${CMAKE_BINARY_DIR}/config.txt COPYONLY)

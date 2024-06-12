@@ -19,16 +19,14 @@ void DbManager::createTable() {
 }
 
 void DbManager::addRecord(Record record) {
-    std::map<std::string, std::string> data = {
-            {"master_username", record.master_username},
-            {"rec_name", record.rec_name},
-            {"url", record.url},
-            {"username", record.username},
-            {"password", record.password},
-            {"tag", record.tag},
-            {"expires", record.expires}
-    };
+    std::map<std::string, std::string> data = recordToMap(record);
     db.create(table_name, data);
+}
+
+void DbManager::updateRecord(const Record& record) {
+    std::map<std::string, std::string> data = recordToMap(record);
+    std::string condition = "id = " + std::to_string(record.id);
+    db.update(table_name, data, condition);
 }
 
 void DbManager::updatePassword(int id, const std::string& password) {
@@ -71,10 +69,22 @@ std::vector<Record> DbManager::findAllUserRecordsWithTag(const std::string& user
     return resultToRecord(r);
 }
 
-std::vector<Record> DbManager::resultToRecord(const pqxx::result& result) {
+std::map<std::string, std::string> DbManager::recordToMap(const Record& record) {
+    return {
+            {"master_username", record.master_username},
+            {"rec_name",        record.rec_name},
+            {"url",             record.url},
+            {"username",        record.username},
+            {"password",        record.password},
+            {"tag",             record.tag},
+            {"expires",         record.expires}
+    };
+}
+
+std::vector<Record> DbManager::resultToRecord(const pqxx::result &result) {
     std::vector<Record> records;
 
-    for (const auto& row : result) {
+    for (const auto &row: result) {
         int id = row["id"].as<int>();
         std::string master_username = row["master_username"].as<std::string>();
         std::string rec_name = row["rec_name"].as<std::string>();

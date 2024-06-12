@@ -73,6 +73,29 @@ TEST_F(DbManagerTest, AddRecordTest) {
 // Test case to check record updating
 TEST_F(DbManagerTest, UpdateRecordTest) {
     // Insert a record
+    Record originalRecord(1, "master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
+    dbManager->addRecord(originalRecord);
+
+    // Update the inserted record
+    Record updatedRecord(1, "new_master", "new_record", "http://newexample.com", "new_user", "new_password", "new_tag", "2024-12-31");
+    dbManager->updateRecord(updatedRecord);
+
+    // Find the updated record
+    Record record = dbManager->findRecord(1);
+
+    // Check if the record is updated correctly
+    EXPECT_EQ(record.getMasterUsername(), "new_master");
+    EXPECT_EQ(record.getRecName(), "new_record");
+    EXPECT_EQ(record.getUrl(), "http://newexample.com");
+    EXPECT_EQ(record.getUsername(), "new_user");
+    EXPECT_EQ(record.getPassword(), "new_password");
+    EXPECT_EQ(record.getTag(), "new_tag");
+    EXPECT_EQ(record.getExpires(), "2024-12-31");
+}
+
+// Test case to check record updating
+TEST_F(DbManagerTest, updatePasswordTest) {
+    // Insert a record
     Record originalRecord("master", "record1", "http://example.com", "user", "password", "tag", "2023-12-31");
     dbManager->addRecord(originalRecord);
 

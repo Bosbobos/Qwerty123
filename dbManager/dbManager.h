@@ -28,6 +28,12 @@ public:
     void addRecord(Record record);
 
     /**
+     * @brief Полностью обновляет запись в БД на основе переданной.
+     * @param record Новый вид записи.
+     */
+    void updateRecord(const Record& record);
+
+    /**
      * @brief Обновляет пароль записи по идентификатору.
      * @param id Идентификатор записи.
      * @param password Новый пароль.
@@ -73,6 +79,7 @@ private:
     std::string table_name;
     PostgresCRUD db;
 
+    std::map<std::string, std::string> recordToMap(const Record& record);
     std::vector<Record> resultToRecord(const pqxx::result& result);
 };
 

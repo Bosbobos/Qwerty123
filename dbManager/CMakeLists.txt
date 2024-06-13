@@ -8,7 +8,8 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(PQXX REQUIRED libpqxx)
 
 # Define the library target
-add_library(dbManager SHARED dbManager.cpp PostgresCRUD.cpp)
+add_library(dbManager SHARED dbManager.cpp PostgresCRUD.cpp
+        authManager.cpp)
 
 # Include directory for Entities
 add_subdirectory(../Entities Entities)

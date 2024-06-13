@@ -32,3 +32,4 @@
 *.app
 
 config.txt
+cmake-build-debug

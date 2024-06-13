@@ -7,13 +7,13 @@ void DbManager::createTable() {
     std::string create_table_sql =
             "CREATE TABLE IF NOT EXISTS " + table_name + " ("
                                                          "id SERIAL PRIMARY KEY, "
-                                                         "master_username VARCHAR(50), "
-                                                         "rec_name VARCHAR(50), "
+                                                         "master_username VARCHAR(32), "
+                                                         "rec_name VARCHAR(32), "
                                                          "url VARCHAR(255), "
-                                                         "username VARCHAR(50), "
-                                                         "password VARCHAR(50), "
-                                                         "tag VARCHAR(50), "
-                                                         "expires VARCHAR(50)"
+                                                         "username VARCHAR(32), "
+                                                         "password VARCHAR(32), "
+                                                         "tag VARCHAR(32), "
+                                                         "expires VARCHAR(32)"
                                                          ");";
     db.read(create_table_sql);
 }

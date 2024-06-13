@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "addeditdialog.h"
-#include <QHeaderView>  // Добавляем заголовочный файл QHeaderView
+#include <QHeaderView>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,13 +10,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setupTable();
+
     connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::on_addButton_clicked);
     connect(ui->editButton, &QPushButton::clicked, this, &MainWindow::on_editButton_clicked);
     connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::on_deleteButton_clicked);
     connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::on_searchButton_clicked);
     connect(tableWidget, &QTableWidget::cellClicked, this, &MainWindow::showDetails);
 
-    // Настройка detailsLabel для копирования текста
     ui->detailsLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 }
 
@@ -30,15 +31,16 @@ void MainWindow::setupTable()
     tableWidget->setColumnCount(5);
     QStringList headers = {"Title", "Login", "Password", "URL", "Tag"};
     tableWidget->setHorizontalHeaderLabels(headers);
-    tableWidget->horizontalHeader()->setStretchLastSection(true); // Устанавливаем растяжение последней секции заголовка
+    tableWidget->horizontalHeader()->setStretchLastSection(true);
+    tableWidget->setSortingEnabled(true);  // Enable sorting
+    tableWidget->sortByColumn(4, Qt::AscendingOrder);  // Initial sort by Tag column
     ui->verticalLayout->addWidget(tableWidget);
-    ui->verticalLayout->addWidget(ui->detailsLabel); // Перемещаем detailsLabel в вертикальный layout
+    ui->verticalLayout->addWidget(ui->detailsLabel);
 }
 
 void MainWindow::on_addButton_clicked()
 {
     EntryDialog dialog(this);
-    dialog.setModal(true); // Устанавливаем модальность диалога
     if (dialog.exec() == QDialog::Accepted) {
         int row = tableWidget->rowCount();
         tableWidget->insertRow(row);
@@ -60,8 +62,6 @@ void MainWindow::on_editButton_clicked()
         dialog.setPassword(tableWidget->item(currentRow, 2)->text());
         dialog.setUrl(tableWidget->item(currentRow, 3)->text());
         dialog.setTag(tableWidget->item(currentRow, 4)->text());
-
-        dialog.setModal(true); // Устанавливаем модальность диалога
 
         if (dialog.exec() == QDialog::Accepted) {
             tableWidget->item(currentRow, 0)->setText(dialog.getTitle());
@@ -106,4 +106,16 @@ void MainWindow::showDetails(int row, int column)
                           .arg(tableWidget->item(row, 3)->text())
                           .arg(tableWidget->item(row, 4)->text());
     ui->detailsLabel->setText(details);
+}
+
+// Slot for handling column header clicks to sort by tag alphabetically
+void MainWindow::on_tableHeaderClicked(int column)
+{
+    if (column == 4) {  // Check if the Tag column header was clicked
+        if (tableWidget->horizontalHeader()->sortIndicatorOrder() == Qt::AscendingOrder) {
+            tableWidget->sortByColumn(column, Qt::DescendingOrder);  // Sort descending on second click
+        } else {
+            tableWidget->sortByColumn(column, Qt::AscendingOrder);   // Sort ascending on first click
+        }
+    }
 }

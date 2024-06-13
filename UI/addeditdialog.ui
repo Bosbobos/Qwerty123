@@ -31,7 +31,7 @@
    <item>
     <widget class="QLineEdit" name="passwordInput">
      <property name="echoMode">
-      <enum>QLineEdit::EchoMode::Password</enum>
+      <enum>QLineEdit::Password</enum>
      </property>
      <property name="placeholderText">
       <string>Password</string>

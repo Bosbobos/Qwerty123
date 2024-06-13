@@ -7,7 +7,9 @@ EntryDialog::EntryDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    // Connect signals and slots only once
+    connect(ui->okButton, &QPushButton::clicked, this, &EntryDialog::on_okButton_clicked);
+    connect(ui->cancelButton, &QPushButton::clicked, this, &EntryDialog::on_cancelButton_clicked);
 }
 
 EntryDialog::~EntryDialog()

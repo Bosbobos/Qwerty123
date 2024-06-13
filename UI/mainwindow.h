@@ -22,6 +22,7 @@ private slots:
     void on_deleteButton_clicked();
     void on_searchButton_clicked();
     void showDetails(int row, int column);
+    void on_tableHeaderClicked(int column);
 
 private:
     Ui::MainWindow *ui;

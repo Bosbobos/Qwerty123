@@ -505,7 +505,8 @@ std::vector<uint8_t> cbcDecrypt(const std::vector<uint8_t> &ciphertext, const ui
     return plaintext;
 }
 
-
+/* пример использования
+ *
 int main() {
     std::string text = "matievmagomed2019@gmail.com";
     std::string textHex = textToHex(text);
@@ -535,3 +536,4 @@ int main() {
     std::cout << "Decrypted text: " << decrypted_string << std::endl;
     return 0;
 }
+ */

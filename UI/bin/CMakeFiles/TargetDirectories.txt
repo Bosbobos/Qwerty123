@@ -1,9 +1,0 @@
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/UI.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/edit_cache.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/rebuild_cache.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/list_install_components.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/install.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/install/local.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/install/strip.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/UI_autogen_timestamp_deps.dir
-C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/UI_autogen.dir

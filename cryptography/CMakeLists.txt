@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(crypto)
+project(cryptography)
 
 set(CMAKE_CXX_STANDARD 23)
 
@@ -7,4 +7,5 @@ set(CMAKE_CXX_STANDARD 23)
 
 #add_executable(crypto
 #        crypto.cpp)
-add_library(crypto SHARED cryptography.cpp)
+add_library(cryptography SHARED cryptography.cpp
+        CryptographyManager.cpp)

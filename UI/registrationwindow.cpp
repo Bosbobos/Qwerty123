@@ -2,6 +2,7 @@
 #include "ui_registrationwindow.h"
 #include <QMessageBox>
 #include <QRegularExpression>
+#include "../cryptography/cryptography.cpp"
 
 RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -65,6 +66,7 @@ void RegistrationWindow::validateInput()
 
 void RegistrationWindow::processRegistration(const QString &username, const QString &password)
 {
+
     // Здесь добавьте логику для шифрования, отправку данных и сверку на повторение в БД  при регистрации:
 
     // ...

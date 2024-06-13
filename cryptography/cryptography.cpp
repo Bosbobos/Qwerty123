@@ -284,23 +284,6 @@ void generate(const uint8_t key[32], uint8_t round_keys[10][block_len]) {
 }
 
 /**
- * @brief Добавляет нулевой байт в начало строки и дополняет ее нулями до длины 32 символа.
- *
- * @param input Входная строка.
- * @return std::string Результат после дополнения.
- */
-std::string padBlock(const std::string &input) {
-    std::string padded = input;
-    if (padded.length() < 32) {
-        padded.insert(padded.begin(), '8'); // Добавляем '8' в начало
-        while (padded.length() < 32) {
-            padded.insert(padded.begin() + 1, '0'); // Дополняем нулями
-        }
-    }
-    return padded;
-}
-
-/**
  * @brief Преобразует текстовую строку в её шестнадцатеричное представление.
  *
  * @param input Строка текста.
@@ -316,30 +299,21 @@ std::string textToHex(const std::string &input) {
 }
 
 /**
- * @brief Преобразует шестнадцатеричную строку обратно в текст.
+ * @brief Дополняет ключ до 64 символов нулями после первого символа.
  *
- * @param hexInput Строка, содержащая шестнадцатеричное представление.
- * @return Строка текста.
+ * Эта функция принимает строку ключа и дополняет её нулями после первого символа,
+ * если длина ключа меньше 64 символов. Это необходимо для обеспечения того,
+ * чтобы ключ всегда имел длину 64 символа.
+ *
+ * @param input_key Строка ключа, которая будет дополнена нулями.
  */
-std::string hexToText(const std::string &hexInput) {
-
-    std::string text;
-    text.reserve(hexInput.length() / 2);
-    for (size_t i = 0; i < hexInput.length(); i += 2) {
-        std::string byteString = hexInput.substr(i, 2);
-        char byte = static_cast<char>(std::stoul(byteString, nullptr, 16));
-        text.push_back(byte);
-    }
-    return text;
-}
-
-void padKey(std::string& input_key){
+void padKey(std::string &input_key) {
     if (input_key.length() < 64) {
         while (input_key.length() < 64) {
             input_key.insert(input_key.begin() + 1, '0'); // Дополняем нулями
         }
     }
-};
+}
 
 /**
  * @brief Преобразует строку из шестнадцатеричного представления в обратный массив uint8_t.
@@ -358,29 +332,40 @@ const uint8_t *stringToReversedKey(std::string &input_key) {
     return key;
 }
 
+
 /**
- * @brief Преобразует строку в массив uint8_t.
+ * @brief Преобразует hex строку в вектор байтов (uint8_t).
  *
- * @param input Входная строка.
- * @param output Выходной массив.
+ * Эта функция принимает строку в формате hex и преобразует её в вектор байтов (uint8_t).
+ *
+ * @param hex Входная строка в формате hex.
+ * @return std::vector<uint8_t> Вектор байтов, представляющих входную hex строку.
  */
-void convertStringToBlock(const std::string &input, uint8_t output[16]) {
-    std::string paddedBlock = padBlock(input);
-    std::vector<uint8_t> block_vec;
-    // Преобразование строки в вектор uint8_t
-    for (size_t i = 0; i < paddedBlock.size(); i += 2) {
-        std::string byte_str = paddedBlock.substr(i, 2);
-        uint8_t byte = std::stoul(byte_str, nullptr, 16);
-        block_vec.push_back(byte);
+std::vector<uint8_t> hexToVector(const std::string &hex) {
+    std::vector<uint8_t> result;
+    for (size_t i = 0; i < hex.length(); i += 2) {
+        std::string byteString = hex.substr(i, 2);
+        auto byte = (uint8_t) strtol(byteString.c_str(), nullptr, 16);
+        result.push_back(byte);
     }
-    // Разворот вектора
-    std::reverse(block_vec.begin(), block_vec.end());
-    // Преобразование вектора в массив
-    for (size_t i = 0; i < block_vec.size(); ++i) {
-        output[i] = block_vec[i];
-    }
+    return result;
 }
 
+/**
+ * @brief Преобразует вектор байтов (uint8_t) в hex строку.
+ *
+ * Эта функция принимает вектор байтов (uint8_t) и преобразует его в строку в формате hex.
+ *
+ * @param vec Вектор байтов для преобразования.
+ * @return std::string Строка в формате hex, представляющая входной вектор байтов.
+ */
+std::string vectorToHex(const std::vector<uint8_t> &vec) {
+    std::ostringstream oss;
+    for (uint8_t byte : vec) {
+        oss << std::hex << std::setw(2) << std::setfill('0') << (int) byte;
+    }
+    return oss.str();
+}
 
 /**
  * @brief Шифрует блок данных с использованием раундовых ключей.
@@ -419,31 +404,42 @@ void decode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_l
 }
 
 /**
- * @brief Отображает блок данных в формате шифрования.
+ * @brief Выполняет побитовую операцию XOR над двумя блоками данных.
  *
- * @param block Указатель на блок данных.
+ * Эта функция принимает два блока данных и выполняет побитовую операцию XOR над ними.
+ * Результат операции записывается в первый блок данных.
+ *
+ * @param block1 Указатель на первый блок данных. Результат операции будет записан в этот блок.
+ * @param block2 Указатель на второй блок данных, с которым будет выполнена операция XOR.
+ * @param length Длина блоков данных.
  */
-void displayBlockEncode(const uint8_t *block) {
-    std::cout << std::hex << std::setfill('0');
-    for (size_t j = 0; j < 16; ++j)
-        std::cout << std::setw(2) << (int) block[15 - j];
-    std::cout << std::dec << std::endl << std::endl;
+void xorBlocks(uint8_t *block1, const uint8_t *block2, size_t length) {
+    for (size_t i = 0; i < length; ++i) {
+        block1[i] ^= block2[i];
+    }
 }
 
 /**
- * @brief Шифрование текста в режиме CBC.
+ * @brief Шифрует данные в режиме CBC (Cipher Block Chaining).
  *
- * @param plaintext Входной текст для шифрования.
- * @param iv Вектор инициализации.
- * @param round_keys Раундовые ключи.
- * @return Зашифрованный текст.
+ * Эта функция шифрует данные, используя режим CBC, с заданными раундовыми ключами.
+ *
+ * @param plaintext Вектор данных, представляющий открытый текст для шифрования.
+ * @param round_keys Раундовые ключи для шифрования.
+ * @return std::vector<uint8_t> Вектор данных, представляющий зашифрованный текст.
  */
-std::vector<uint8_t> cbcEncrypt(const std::vector<uint8_t> &plaintext,
-                                const uint8_t round_keys[10][block_len]) {
-    uint8_t iv[block_len] = {0xa5, 0x2D, 0x32, 0x8F, 0x0E, 0x30, 0x38, 0xC0, 0x54, 0xE6, 0x9E, 0x39, 0x55, 0x7E, 0x52,
-                             0x91};
+std::vector<uint8_t> cbcEncrypt(const std::vector<uint8_t> &plaintext, const uint8_t round_keys[10][block_len]) {
+    // Инициализационный вектор (IV)
+    uint8_t iv[block_len] = {
+            0xa5, 0x2D, 0x32, 0x8F, 0x0E, 0x30, 0x38, 0xC0,
+            0x54, 0xE6, 0x9E, 0x39, 0x55, 0x7E, 0x52, 0x91
+    };
+
+    // Расчет количества блоков
     size_t num_blocks = (plaintext.size() + block_len - 1) / block_len;
     std::vector<uint8_t> ciphertext(num_blocks * block_len);
+
+    // Предыдущий блок, используется для XOR с текущим блоком (начинаем с IV)
     uint8_t prev_block[block_len];
     std::memcpy(prev_block, iv, block_len);
 
@@ -451,17 +447,21 @@ std::vector<uint8_t> cbcEncrypt(const std::vector<uint8_t> &plaintext,
         uint8_t block[block_len] = {};
         size_t block_start = i * block_len;
 
+        // Копирование данных открытого текста в блок с учетом возможного неполного блока
         for (size_t j = 0; j < block_len && block_start + j < plaintext.size(); ++j) {
             block[j] = plaintext[block_start + j];
         }
 
         // XOR с предыдущим блоком или IV
-        for (size_t j = 0; j < block_len; ++j) {
-            block[j] ^= prev_block[j];
-        }
+        xorBlocks(block, prev_block, block_len);
 
+        // Шифрование блока
         encode_block(block, round_keys);
+
+        // Копирование зашифрованного блока в результат
         std::memcpy(&ciphertext[block_start], block, block_len);
+
+        // Обновление предыдущего блока для следующей итерации
         std::memcpy(prev_block, block, block_len);
     }
 
@@ -470,25 +470,20 @@ std::vector<uint8_t> cbcEncrypt(const std::vector<uint8_t> &plaintext,
 
 /**
  * @brief Расшифрование текста в режиме CBC.
- *
  * @param ciphertext Входной зашифрованный текст.
- * @param iv Вектор инициализации.
  * @param round_keys Раундовые ключи.
  * @return Расшифрованный текст.
  */
-std::vector<uint8_t> cbcDecrypt(const std::vector<uint8_t> &ciphertext,
-                                const uint8_t round_keys[10][block_len]) {
+std::vector<uint8_t> cbcDecrypt(const std::vector<uint8_t> &ciphertext, const uint8_t round_keys[10][block_len]) {
     uint8_t iv[block_len] = {0xa5, 0x2D, 0x32, 0x8F, 0x0E, 0x30, 0x38, 0xC0, 0x54, 0xE6, 0x9E, 0x39, 0x55, 0x7E, 0x52,
                              0x91};
     size_t num_blocks = ciphertext.size() / block_len;
     std::vector<uint8_t> plaintext(num_blocks * block_len);
     uint8_t prev_block[block_len];
     std::memcpy(prev_block, iv, block_len);
-
     for (size_t i = 0; i < num_blocks; ++i) {
         uint8_t block[block_len] = {};
         size_t block_start = i * block_len;
-
         std::memcpy(block, &ciphertext[block_start], block_len);
         uint8_t decrypted_block[block_len];
         std::memcpy(decrypted_block, block, block_len);
@@ -496,48 +491,25 @@ std::vector<uint8_t> cbcDecrypt(const std::vector<uint8_t> &ciphertext,
         decode_block(decrypted_block, round_keys);
 
         // XOR с предыдущим блоком или IV
-        for (size_t j = 0; j < block_len; ++j) {
-            plaintext[block_start + j] = decrypted_block[j] ^ prev_block[j];
-        }
+        xorBlocks(decrypted_block, prev_block, block_len);
 
+        std::memcpy(&plaintext[block_start], decrypted_block, block_len);
         std::memcpy(prev_block, block, block_len);
+    }
+
+    // Удаление дополнения
+    while (!plaintext.empty() && plaintext.back() == 0) {
+        plaintext.pop_back();
     }
 
     return plaintext;
 }
 
-/**
- * @brief Отображает блок данных в формате дешифрования.
- *
- * @param block Указатель на блок данных.
- */
-void displayBlockDecode(const uint8_t *block) {
-    // Преобразуем блок данных в строку
-    std::stringstream ss;
-    ss << std::hex << std::setfill('0');
-    for (size_t j = 0; j < 16; ++j)
-        ss << std::setw(2) << (int) block[15 - j];
-    std::string hexString = ss.str();
-    // Применяем условие удаления '8' и последующих нулей
-    if (!hexString.empty() && hexString[0] == '8') {
-        size_t pos = 1;
-        while (pos < hexString.size() && hexString[pos] == '0') {
-            ++pos;
-        }
-        hexString = hexString.substr(pos);
-    }
-    // Выводим измененную строку
-    std::cout << hexString << std::dec << std::endl << std::endl;
-}
 
-
-/* Пример использования
- * /
- */
 int main() {
     std::string text = "matievmagomed2019@gmail.com";
-    std::vector<uint8_t> plaintext(text.begin(), text.end());
     std::string textHex = textToHex(text);
+    std::vector<uint8_t> plaintext(text.begin(), text.end());
 
     std::string input_key = "Qwerty123";
     const uint8_t *key = stringToReversedKey(input_key);
@@ -550,9 +522,16 @@ int main() {
     std::vector<uint8_t> ciphertext = cbcEncrypt(plaintext, round_keys);
     std::cout << "Ciphertext (hex): " << textToHex(std::string(ciphertext.begin(), ciphertext.end())) << std::endl;
 
-    //расшифровка
-    std::vector<uint8_t> decryptedtext = cbcDecrypt(ciphertext, round_keys);
-    std::cout << "Decrypted text: " << std::string(decryptedtext.begin(), decryptedtext.end()) << std::endl;
+    // pаcшифрованный текст "matievmagomed2019@gmail.com" в hex формате
+    std::string ciphertext_hex = "c93bf617bf7ede259f65948404db02517303110db16ff4c370fe3ce4383d347b";
 
+    // преобразуем hex строку в вектор байтов
+    std::vector<uint8_t> Ciphertext = hexToVector(ciphertext_hex);
+    // расшифровка
+    std::vector<uint8_t> decryptedtext = cbcDecrypt(Ciphertext, round_keys);
+    std::string decrypted_string(decryptedtext.begin(), decryptedtext.end());
+
+    // вывод расшифрованного текста
+    std::cout << "Decrypted text: " << decrypted_string << std::endl;
     return 0;
 }

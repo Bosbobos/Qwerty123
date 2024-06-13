@@ -2,7 +2,10 @@
 #include "ui_registrationwindow.h"
 #include <QMessageBox>
 #include <QRegularExpression>
-#include "../cryptography/cryptography.cpp"
+#include "cryptography.cpp"
+#include "authManager.cpp"
+#include "ConfigManager.h"
+#include "CryptographyManager.h"
 
 RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -66,10 +69,12 @@ void RegistrationWindow::validateInput()
 
 void RegistrationWindow::processRegistration(const QString &username, const QString &password)
 {
+    std::string userId = Encrypt(username.toStdString(), password.toStdString());
+    AuthManager* auth = new AuthManager(GetDbConnectionString(), "Auth");
+    bool alreadyRegistered = auth->loginExists(userId);
 
-    // Здесь добавьте логику для шифрования, отправку данных и сверку на повторение в БД  при регистрации:
-
-    // ...
+    if (alreadyRegistered)
+        // TODO: Выдать ошибку
 
     // Успешная регистрация
     QMessageBox::information(this, "Registration", "Registration successful for user: " + username);

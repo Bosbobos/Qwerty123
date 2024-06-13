@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "cryptography.h"
+#include "CryptographyManager.h"
 
 std::string Encrypt(const std::string& plaintext, std::string password) {
     std::string textHex = textToHex(plaintext);

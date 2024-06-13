@@ -11,7 +11,7 @@ pkg_check_modules(PQXX REQUIRED libpqxx)
 find_package(GTest REQUIRED)
 
 # Add an executable target for the test suite
-add_executable(dbManagerTests CrudTest.cpp dbManagerTest.cpp)
+add_executable(dbManagerTests CrudTest.cpp dbManagerTest.cpp AuthManagerTest.cpp)
 
 # Link the test executable with the library being tested and Google Test
 add_subdirectory(../dbManager dbManager)

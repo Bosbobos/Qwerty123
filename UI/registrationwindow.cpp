@@ -65,7 +65,7 @@ void RegistrationWindow::validateInput()
 
 void RegistrationWindow::processRegistration(const QString &username, const QString &password)
 {
-    // Здесь добавьте логику для шифрования и отправки данных в базу данных при регистрации:
+    // Здесь добавьте логику для шифрования, отправку данных и сверку на повторение в БД  при регистрации:
 
     // ...
 

@@ -316,6 +316,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/glukh/Desktop/Qwerty123/UI/addeditdialog.h",
+			"MU",
+			"EWIEGA46WW/moc_addeditdialog.cpp",
+			null
+		],
+		[
 			"C:/Users/glukh/Desktop/Qwerty123/UI/loginwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_loginwindow.cpp",
@@ -407,6 +413,7 @@
 	"SETTINGS_FILE" : "C:/Users/glukh/Desktop/Qwerty123/UI/bin/CMakeFiles/UI_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "C:/Users/glukh/Desktop/Qwerty123/UI/addeditdialog.cpp", "MU", null ],
 		[ "C:/Users/glukh/Desktop/Qwerty123/UI/loginwindow.cpp", "MU", null ],
 		[ "C:/Users/glukh/Desktop/Qwerty123/UI/main.cpp", "MU", null ],
 		[ "C:/Users/glukh/Desktop/Qwerty123/UI/mainwindow.cpp", "MU", null ],

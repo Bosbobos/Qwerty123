@@ -420,11 +420,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "UI_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "UI_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "UI_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "UI::@6890427a1f51a3e7e1df",

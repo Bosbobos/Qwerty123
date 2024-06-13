@@ -43,9 +43,25 @@ else()
 endif()
 
 # Add project dependencies
+if (NOT TARGET dbManager)
+    add_subdirectory(../dbManager ${CMAKE_BINARY_DIR}/dbManager)
+endif()
+
+if (NOT TARGET cryptography)
+    add_subdirectory(../cryptography ${CMAKE_BINARY_DIR}/cryptography)
+endif()
+
+if (NOT TARGET Configs)
+    add_subdirectory(../Configs ${CMAKE_BINARY_DIR}/Configs)
+endif()
+
+# Assuming dbManager already includes the Entities library
 target_include_directories(UI PUBLIC ../Entities ../dbManager ../cryptography ../Configs)
-target_link_libraries(UI PUBLIC Entities dbManager cryptography Configs)
+target_link_libraries(UI PUBLIC dbManager cryptography Configs)
 target_link_libraries(UI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+target_include_directories(UI PRIVATE ${PQXX_INCLUDE_DIRS})
+target_link_libraries(UI PRIVATE ${PQXX_LIBRARIES})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

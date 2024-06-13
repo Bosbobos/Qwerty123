@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
+#include "CryptographyManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,6 +17,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    CryptographyManager *getCryptoManager() const;
+    void setCryptoManager(CryptographyManager *cryptoManager);
+
 private slots:
     void on_addButton_clicked();
     void on_editButton_clicked();
@@ -28,6 +32,8 @@ private:
     Ui::MainWindow *ui;
     QTableWidget *tableWidget;
     void setupTable();
+    CryptographyManager* cryptoManager;
+
 };
 
 #endif // MAINWINDOW_H

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMovie>
 #include "mainwindow.h"
+#include "CryptographyManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
@@ -30,7 +31,7 @@ private:
     QMovie *movie;
     void processLogin(const QString &username, const QString &password); // обработка логина
     void showErrorMessage(const QString &message); // метод для отображения сообщения об ошибке
-    void goToMainScreen(); // Метод для перехода на основной экран
+    void goToMainScreen(CryptographyManager* cryptoManager); // Метод для перехода на основной экран
 
 };
 

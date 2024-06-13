@@ -3,8 +3,19 @@
 
 #include <string>
 
-std::string Encrypt(const std::string& plaintext, std::string password);
+class CryptographyManager {
+public:
+    CryptographyManager(const std::string &username, const std::string &password);
 
-std::string Decrypt(const std::string& ciphertext, std::string password);
+    std::string Encrypt(const std::string &plaintext);
+    std::string Decrypt(const std::string &ciphertext);
+
+    const std::string &getUserId() const;
+
+private:
+    std::string username;
+    std::string password;
+    std::string userId;
+};
 
 #endif //CRYPTOGRAPHY_CRYPTOGRAPHYMANAGER_H

@@ -56,9 +56,9 @@ void RegistrationWindow::validateInput()
     bool isPasswordValid = isValidInput(password);
     bool isConfirmPasswordValid = (password == confirmPassword);
 
-    QString validStyle = "QLineEdit { border: 2px solid green; }";
-    QString invalidStyle = "QLineEdit { border: 2px solid red; }";
-    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
+    QString validStyle = "QLineEdit { border: 1px solid green; }";
+    QString invalidStyle = "QLineEdit { border: 1px solid red; }";
+    QString defaultStyle = "QLineEdit { border: 1px solid grey; }";
 
     ui->usernameInput->setStyleSheet(username.isEmpty() ? defaultStyle : (isUsernameValid ? validStyle : invalidStyle));
     ui->passwordInput->setStyleSheet(password.isEmpty() ? defaultStyle : (isPasswordValid ? validStyle : invalidStyle));
@@ -69,13 +69,16 @@ void RegistrationWindow::validateInput()
 
 void RegistrationWindow::processRegistration(const QString &username, const QString &password)
 {
-    std::string userId = Encrypt(username.toStdString(), password.toStdString());
+    CryptographyManager* cryptoManager = new CryptographyManager(username.toStdString(), password.toStdString());
     AuthManager* auth = new AuthManager(GetDbConnectionString(), "Auth");
-    bool alreadyRegistered = auth->loginExists(userId);
+    auth->createTable();
+    bool alreadyRegistered = auth->loginExists(cryptoManager->getUserId());
 
     if (alreadyRegistered)
-        // TODO: Выдать ошибку
-
-    // Успешная регистрация
-    QMessageBox::information(this, "Registration", "Registration successful for user: " + username);
+        QMessageBox::warning (this, "Registration", "Such" + username + " already exists in the database, enter a different username");
+    else
+    {
+        auth->addRecord(cryptoManager->getUserId());
+        QMessageBox::information(this, "Registration", "Registration successful for user: " + username);
+    }
 }

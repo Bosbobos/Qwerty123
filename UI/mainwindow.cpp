@@ -119,3 +119,11 @@ void MainWindow::on_tableHeaderClicked(int column)
         }
     }
 }
+
+CryptographyManager *MainWindow::getCryptoManager() const {
+    return cryptoManager;
+}
+
+void MainWindow::setCryptoManager(CryptographyManager *cryptoManager) {
+    this->cryptoManager = cryptoManager;
+}

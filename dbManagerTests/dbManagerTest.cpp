@@ -1,13 +1,14 @@
 #include <gtest/gtest.h>
 #include <pqxx/pqxx>
 #include "fstream"
-#include "../dbManager/dbManager.h"
+#include "dbManager.h"
+#include "ConfigManager.h"
 
 // Test fixture to set up the environment
 class DbManagerTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        std::string connection_string = getConnectionStringFromFile("./config.txt");
+        std::string connection_string = GetDbConnectionString();
 
         auto conn = new pqxx::connection(connection_string);
         pqxx::work W(*conn);
@@ -17,24 +18,6 @@ protected:
         // Initialize DbManager with connection string
         dbManager = new DbManager(connection_string, "Test");
         dbManager->createTable(); // Ensure the table exists before each test
-    }
-
-    std::string getConnectionStringFromFile(const std::string& filename) {
-        std::ifstream configFile(filename);
-        if (!configFile.is_open()) {
-            throw std::runtime_error("Cannot open " + filename);
-        }
-
-        std::string line;
-        std::getline(configFile, line);
-        configFile.close();
-
-        std::string prefix = "db_connection_string=";
-        if (line.compare(0, prefix.length(), prefix) == 0) {
-            return line.substr(prefix.length());
-        } else {
-            throw std::runtime_error("Invalid configuration file format");
-        }
     }
 
     void TearDown() override {

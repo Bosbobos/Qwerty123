@@ -1,13 +1,14 @@
 #include <gtest/gtest.h>
 #include <pqxx/pqxx>
 #include "fstream"
-#include "../dbManager/PostgresCRUD.h"
+#include "PostgresCRUD.h"
+#include "ConfigManager.h"
 
 // Test fixture
 class PostgresCRUDTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        std::string connection_string = getConnectionStringFromFile("./config.txt");
+        std::string connection_string = GetDbConnectionString();
 
         // Connect to the real database
         auto conn = new pqxx::connection(connection_string);
@@ -18,24 +19,6 @@ protected:
         W.exec("DROP TABLE IF EXISTS test_table");
         W.exec("CREATE TABLE test_table (name TEXT, age TEXT)");
         W.commit();
-    }
-
-    std::string getConnectionStringFromFile(const std::string& filename) {
-        std::ifstream configFile(filename);
-        if (!configFile.is_open()) {
-            throw std::runtime_error("Cannot open " + filename);
-        }
-
-        std::string line;
-        std::getline(configFile, line);
-        configFile.close();
-
-        std::string prefix = "db_connection_string=";
-        if (line.compare(0, prefix.length(), prefix) == 0) {
-            return line.substr(prefix.length());
-        } else {
-            throw std::runtime_error("Invalid configuration file format");
-        }
     }
 
     void TearDown() override {
@@ -55,7 +38,7 @@ std::map<std::string, std::string> data = {{"name", "John"}, {"age", "30"}};
 ASSERT_NO_THROW(crud->create(table, data));
 
 // Verify that the data is inserted correctly
-pqxx::connection conn(getConnectionStringFromFile("config.txt"));
+pqxx::connection conn(GetDbConnectionString());
 pqxx::nontransaction N(conn);
 pqxx::result result = N.exec("SELECT * FROM " + table);
 ASSERT_EQ(result.size(), 1); // Expecting one row
@@ -91,7 +74,7 @@ std::map<std::string, std::string> updated_data = {{"age", "40"}};
 ASSERT_NO_THROW(crud->update(table, updated_data, "name='John'"));
 
 // Verify that the data is updated correctly
-pqxx::connection conn(getConnectionStringFromFile("config.txt"));
+pqxx::connection conn(GetDbConnectionString());
 pqxx::nontransaction N(conn);
 pqxx::result result = N.exec("SELECT * FROM " + table);
 ASSERT_EQ(result.size(), 1); // Expecting one row
@@ -110,7 +93,7 @@ crud->create(table, data);
 ASSERT_NO_THROW(crud->delete_record(table, "name='John'"));
 
 // Verify that the record is deleted
-pqxx::connection conn(getConnectionStringFromFile("config.txt"));
+pqxx::connection conn(GetDbConnectionString());
 pqxx::nontransaction N(conn);
 pqxx::result result = N.exec("SELECT * FROM " + table);
 ASSERT_EQ(result.size(), 0); // Expecting no rows

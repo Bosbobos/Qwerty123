@@ -2,12 +2,13 @@
 #include <string>
 #include <vector>
 #include "cryptography.h"
+#include "CryptographyManager.h"
 
-std::string Encrypt(const std::string& plaintext, std::string password) {
+std::string CryptographyManager::Encrypt(const std::string& plaintext) {
     std::string textHex = textToHex(plaintext);
     std::vector<uint8_t> encoded(plaintext.begin(), plaintext.end());
 
-    const uint8_t *key = stringToReversedKey(password);
+    const uint8_t *key = stringToReversedKey(this->password);
 
     // создаем ключи
     uint8_t round_keys[10][block_len] = {};
@@ -18,8 +19,8 @@ std::string Encrypt(const std::string& plaintext, std::string password) {
     return textToHex(std::string(ciphertext.begin(), ciphertext.end()));
 }
 
-std::string Decrypt(const std::string& ciphertext, std::string password) {
-    const uint8_t *key = stringToReversedKey(password);
+std::string CryptographyManager::Decrypt(const std::string& ciphertext) {
+    const uint8_t *key = stringToReversedKey(this->password);
 
     // создаем ключи
     uint8_t round_keys[10][block_len] = {};
@@ -32,4 +33,13 @@ std::string Decrypt(const std::string& ciphertext, std::string password) {
     std::string decrypted_string(decryptedtext.begin(), decryptedtext.end());
 
     return decrypted_string;
+}
+
+CryptographyManager::CryptographyManager(const std::string &username, const std::string &password) : username(username),
+                                                                                                     password(password) {
+    userId = Encrypt(username);
+}
+
+const std::string &CryptographyManager::getUserId() const {
+    return userId;
 }

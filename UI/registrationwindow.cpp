@@ -2,7 +2,10 @@
 #include "ui_registrationwindow.h"
 #include <QMessageBox>
 #include <QRegularExpression>
-#include "../cryptography/cryptography.cpp"
+#include "cryptography.cpp"
+#include "authManager.cpp"
+#include "ConfigManager.h"
+#include "CryptographyManager.h"
 
 RegistrationWindow::RegistrationWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -53,9 +56,9 @@ void RegistrationWindow::validateInput()
     bool isPasswordValid = isValidInput(password);
     bool isConfirmPasswordValid = (password == confirmPassword);
 
-    QString validStyle = "QLineEdit { border: 2px solid green; }";
-    QString invalidStyle = "QLineEdit { border: 2px solid red; }";
-    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
+    QString validStyle = "QLineEdit { border: 1px solid green; }";
+    QString invalidStyle = "QLineEdit { border: 1px solid red; }";
+    QString defaultStyle = "QLineEdit { border: 1px solid grey; }";
 
     ui->usernameInput->setStyleSheet(username.isEmpty() ? defaultStyle : (isUsernameValid ? validStyle : invalidStyle));
     ui->passwordInput->setStyleSheet(password.isEmpty() ? defaultStyle : (isPasswordValid ? validStyle : invalidStyle));
@@ -66,11 +69,16 @@ void RegistrationWindow::validateInput()
 
 void RegistrationWindow::processRegistration(const QString &username, const QString &password)
 {
+    CryptographyManager* cryptoManager = new CryptographyManager(username.toStdString(), password.toStdString());
+    AuthManager* auth = new AuthManager(GetDbConnectionString(), "Auth");
+    auth->createTable();
+    bool alreadyRegistered = auth->loginExists(cryptoManager->getUserId());
 
-    // Здесь добавьте логику для шифрования, отправку данных и сверку на повторение в БД  при регистрации:
-
-    // ...
-
-    // Успешная регистрация
-    QMessageBox::information(this, "Registration", "Registration successful for user: " + username);
+    if (alreadyRegistered)
+        QMessageBox::warning (this, "Registration", "Such" + username + " already exists in the database, enter a different username");
+    else
+    {
+        auth->addRecord(cryptoManager->getUserId());
+        QMessageBox::information(this, "Registration", "Registration successful for user: " + username);
+    }
 }

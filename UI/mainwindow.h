@@ -39,6 +39,8 @@ private:
     void fillTable();
     void addRecordToTable(Record* record, int row = -1);
     Record getRecordFromDialog(const EntryDialog& dialog);
+    void addRecordToDb(Record record, bool update = false);
+    std::vector<Record> getAllUserRecordsFromDb(const std::string& username);
     std::string getDateAfterThreeMonths();
 };
 

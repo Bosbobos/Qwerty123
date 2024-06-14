@@ -17,12 +17,6 @@ MainWindow::MainWindow(QWidget *parent, CryptographyManager* cryptographyManager
     cryptoManager = cryptographyManager;
     setupTable();
 
-    connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::on_addButton_clicked);
-    connect(ui->editButton, &QPushButton::clicked, this, &MainWindow::on_editButton_clicked);
-    connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::on_deleteButton_clicked);
-    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::on_searchButton_clicked);
-    connect(tableWidget, &QTableWidget::cellClicked, this, &MainWindow::showDetails);
-
     ui->detailsLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 }
 
@@ -49,9 +43,8 @@ void MainWindow::setupTable()
 
 void MainWindow::fillTable()
 {
-    std::string id = cryptoManager->getUserId();
     dbManager->createTable();
-    std::vector<Record> records = dbManager->findAllUserRecords(id);
+    std::vector<Record> records = getAllUserRecordsFromDb(cryptoManager->getUserId());
 
     for (auto record : records)
         addRecordToTable(&record);
@@ -70,7 +63,7 @@ void MainWindow::on_addButton_clicked()
                                     getDateAfterThreeMonths()
                                     );
         addRecordToTable(record);
-        dbManager->addRecord(*record);
+        addRecordToDb(*record);
     }
 }
 
@@ -97,7 +90,7 @@ void MainWindow::on_editButton_clicked()
                 newRecord.setExpires(tableWidget->item(currentRow, 5)->text().toStdString());
 
             addRecordToTable(&newRecord, currentRow);
-            dbManager->updateRecord(newRecord);
+            addRecordToDb(newRecord, true);
         }
     }
 }
@@ -185,6 +178,29 @@ Record MainWindow::getRecordFromDialog(const EntryDialog& dialog)
             dialog.getTag().toStdString(),
             getDateAfterThreeMonths()
     };
+}
+
+void MainWindow::addRecordToDb(Record record, bool update)
+{
+    record.setUsername(cryptoManager->Encrypt(record.getUsername()));
+    record.setPassword(cryptoManager->Encrypt(record.getPassword()));
+    record.setUrl(cryptoManager->Encrypt(record.getUrl()));
+    record.setRecName(cryptoManager->Encrypt(record.getRecName()));
+
+    update ? dbManager->updateRecord(record) : dbManager->addRecord(record);
+}
+
+std::vector<Record> MainWindow::getAllUserRecordsFromDb(const std::string& username)
+{
+    std::vector<Record> records = dbManager->findAllUserRecords(username);
+    for (auto &record : records) {
+        record.setUsername(cryptoManager->Decrypt(record.getUsername()));
+        record.setPassword(cryptoManager->Decrypt(record.getPassword()));
+        record.setUrl(cryptoManager->Decrypt(record.getUrl()));
+        record.setRecName(cryptoManager->Decrypt(record.getRecName()));
+    }
+
+    return records;
 }
 
 std::string MainWindow::getDateAfterThreeMonths()

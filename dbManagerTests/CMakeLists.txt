@@ -10,17 +10,16 @@ pkg_check_modules(PQXX REQUIRED libpqxx)
 # Locate and include Google Test
 find_package(GTest REQUIRED)
 
-# Add an executable target for the test suite
-add_executable(dbManagerTests CrudTest.cpp dbManagerTest.cpp)
+# Add the library targets (assuming they are part of this project)
+# You should ensure these libraries are built before linking them
+add_subdirectory(../dbManager ${CMAKE_BINARY_DIR}/dbManager)
+add_subdirectory(../Configs ${CMAKE_BINARY_DIR}/Configs)
 
-# Link the test executable with the library being tested and Google Test
-add_subdirectory(../dbManager dbManager)
-target_link_libraries(dbManagerTests PRIVATE dbManager GTest::GTest GTest::Main)
+# Add an executable target for the test suite
+add_executable(dbManagerTests CrudTest.cpp dbManagerTest.cpp AuthManagerTest.cpp)
 
 # Include directories for the library and Google Test
-target_include_directories(dbManagerTests PRIVATE ${PQXX_INCLUDE_DIRS})
-target_link_libraries(dbManagerTests PRIVATE ${PQXX_LIBRARIES})
-target_include_directories(dbManagerTests PRIVATE ${GTEST_INCLUDE_DIRS})
+target_include_directories(dbManagerTests PRIVATE ../dbManager ../Configs ${PQXX_INCLUDE_DIRS} ${GTEST_INCLUDE_DIRS})
 
-# Copy config file to the build directory
-configure_file(${CMAKE_SOURCE_DIR}/config.txt ${CMAKE_BINARY_DIR}/config.txt COPYONLY)
+# Link the test executable with the library being tested and Google Test
+target_link_libraries(dbManagerTests PRIVATE dbManager Configs ${PQXX_LIBRARIES} GTest::GTest GTest::Main)

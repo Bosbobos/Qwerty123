@@ -8,6 +8,8 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(PkgConfig REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Core5Compat)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -21,52 +23,66 @@ set(PROJECT_SOURCES
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(UI
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-        registrationwindow.h registrationwindow.cpp registrationwindow.ui
-        resources.qrc
-        mainwindow.h mainwindow.cpp mainwindow.ui
-        addeditdialog.h addeditdialog.cpp addeditdialog.ui
+            MANUAL_FINALIZATION
+            ${PROJECT_SOURCES}
+            registrationwindow.h registrationwindow.cpp registrationwindow.ui
+            resources.qrc
+            mainwindow.h mainwindow.cpp mainwindow.ui
+            addeditdialog.h addeditdialog.cpp addeditdialog.ui
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
         add_library(UI SHARED
-            ${PROJECT_SOURCES}
+                ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(UI
-            ${PROJECT_SOURCES}
+                ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
+# Add project dependencies
+if (NOT TARGET dbManager)
+    add_subdirectory(../dbManager ${CMAKE_BINARY_DIR}/dbManager)
+endif()
+
+if (NOT TARGET cryptography)
+    add_subdirectory(../cryptography ${CMAKE_BINARY_DIR}/cryptography)
+endif()
+
+if (NOT TARGET Configs)
+    add_subdirectory(../Configs ${CMAKE_BINARY_DIR}/Configs)
+endif()
+
+# Assuming dbManager already includes the Entities library
+target_include_directories(UI PUBLIC ../Entities ../dbManager ../cryptography ../Configs)
+target_link_libraries(UI PUBLIC dbManager cryptography Configs)
 target_link_libraries(UI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+target_include_directories(UI PRIVATE ${PQXX_INCLUDE_DIRS})
+target_link_libraries(UI PRIVATE ${PQXX_LIBRARIES})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.UI)
+    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.UI)
 endif()
+
 set_target_properties(UI PROPERTIES
-    ${BUNDLE_ID_OPTION}
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+        ${BUNDLE_ID_OPTION}
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        MACOSX_BUNDLE TRUE
+        WIN32_EXECUTABLE TRUE
 )
 
 include(GNUInstallDirs)
 install(TARGETS UI
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        BUNDLE DESTINATION .
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)

@@ -31,4 +31,6 @@
 *.out
 *.app
 
+DbConf.txt
 config.txt
+cmake-build-debug

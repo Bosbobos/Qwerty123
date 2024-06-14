@@ -4,6 +4,9 @@
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QMovie>
+#include "authManager.h"
+#include "ConfigManager.h"
+#include "CryptographyManager.h"
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -85,9 +88,9 @@ void LoginWindow::validateInput()
     bool isUsernameValid = isValidInput(username);
     bool isPasswordValid = isValidInput(password);
 
-    QString validStyle = "QLineEdit { border: 2px solid green; }";
-    QString invalidStyle = "QLineEdit { border: 2px solid red; }";
-    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
+    QString validStyle = "QLineEdit { border: 1px solid green; }";
+    QString invalidStyle = "QLineEdit { border: 1px solid red; }";
+    QString defaultStyle = "QLineEdit { border: 1px solid grey; }";
 
     ui->usernameInput->setStyleSheet(username.isEmpty() ? defaultStyle : (isUsernameValid ? validStyle : invalidStyle));
     ui->passwordInput->setStyleSheet(password.isEmpty() ? defaultStyle : (isPasswordValid ? validStyle : invalidStyle));
@@ -97,13 +100,13 @@ void LoginWindow::validateInput()
 
 void LoginWindow::processLogin(const QString &username, const QString &password)
 {
-    // Пример логики проверки логина и пароля
-    bool loginSuccessful = false;
+    CryptographyManager* cryptoManager = new CryptographyManager(username.toStdString(), password.toStdString());
+    AuthManager* auth = new AuthManager(GetDbConnectionString(), "Auth");
+    auth->createTable();
+    bool loginSuccessful = auth->loginExists(cryptoManager->getUserId());
 
-    // Здесь добавьте логику для проверки логина и пароля (СЕЙЧАС ТЕСТОВАЯ ХУ9ТА)
-
-    if (username == "Admin123" && password == "Admin123") {
-        goToMainScreen();
+    if (loginSuccessful) {
+        goToMainScreen(cryptoManager);
     } else {
         showErrorMessage("Invalid username or password. Please try a different login/password.");
     }
@@ -115,10 +118,9 @@ void LoginWindow::showErrorMessage(const QString &message)
     ui->errorMessageLabel->setStyleSheet("QLabel { color: red; }");
 }
 
-void LoginWindow::goToMainScreen()
+void LoginWindow::goToMainScreen(CryptographyManager* cryptoManager)
 {
-    // Здесь добавить логику для перехода на основной экран
-    MainWindow *mainWindow = new MainWindow();
+    MainWindow *mainWindow = new MainWindow(nullptr, cryptoManager);
     mainWindow->show();
     this->close(); // Закрытие окна логина
 }

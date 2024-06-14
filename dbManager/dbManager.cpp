@@ -7,13 +7,13 @@ void DbManager::createTable() {
     std::string create_table_sql =
             "CREATE TABLE IF NOT EXISTS " + table_name + " ("
                                                          "id SERIAL PRIMARY KEY, "
-                                                         "master_username VARCHAR(50), "
-                                                         "rec_name VARCHAR(50), "
+                                                         "master_username VARCHAR(128), "
+                                                         "rec_name VARCHAR(128), "
                                                          "url VARCHAR(255), "
-                                                         "username VARCHAR(50), "
-                                                         "password VARCHAR(50), "
-                                                         "tag VARCHAR(50), "
-                                                         "expires VARCHAR(50)"
+                                                         "username VARCHAR(128), "
+                                                         "password VARCHAR(128), "
+                                                         "tag VARCHAR(128), "
+                                                         "expires VARCHAR(128)"
                                                          ");";
     db.read(create_table_sql);
 }
@@ -56,7 +56,7 @@ Record DbManager::findRecord(int id) {
 }
 
 std::vector<Record> DbManager::findAllUserRecords(const std::string& username) {
-    std::string query = "SELECT * FROM " + table_name + " WHERE username = '" + username + "';";
+    std::string query = "SELECT * FROM " + table_name + " WHERE master_username = '" + username + "';";
     pqxx::result r = db.read(query);
 
     return resultToRecord(r);

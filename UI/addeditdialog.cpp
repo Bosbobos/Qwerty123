@@ -76,3 +76,11 @@ void EntryDialog::on_cancelButton_clicked()
 {
     reject();
 }
+
+int EntryDialog::getId() const {
+    return id;
+}
+
+void EntryDialog::setId(int id) {
+    EntryDialog::id = id;
+}

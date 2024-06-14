@@ -13,7 +13,7 @@ RegistrationWindow::RegistrationWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString defaultStyle = "QLineEdit { border: 2px solid grey; }";
+    QString defaultStyle = "QLineEdit { border: 1px solid grey; }";
 
     ui->usernameInput->setStyleSheet(defaultStyle);
     ui->passwordInput->setStyleSheet(defaultStyle);

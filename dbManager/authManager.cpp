@@ -7,7 +7,7 @@ void AuthManager::createTable() {
     std::string create_table_sql =
             "CREATE TABLE IF NOT EXISTS " + table_name + " ("
                                                          "id SERIAL PRIMARY KEY, "
-                                                         "login VARCHAR(32) UNIQUE"
+                                                         "login VARCHAR(128) UNIQUE"
                                                          ");";
     db.read(create_table_sql);
 }

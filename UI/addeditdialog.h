@@ -30,12 +30,16 @@ public:
     QString getTag() const;
     void setTag(const QString &tag);
 
+    int getId() const;
+    void setId(int id);
+
 private slots:
     void on_okButton_clicked();
     void on_cancelButton_clicked();
 
 private:
     Ui::EntryDialog *ui;
+    int id;
 };
 
 #endif // ENTRYDIALOG_H

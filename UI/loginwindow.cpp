@@ -120,8 +120,7 @@ void LoginWindow::showErrorMessage(const QString &message)
 
 void LoginWindow::goToMainScreen(CryptographyManager* cryptoManager)
 {
-    MainWindow *mainWindow = new MainWindow();
-    mainWindow->setCryptoManager(cryptoManager);
+    MainWindow *mainWindow = new MainWindow(nullptr, cryptoManager);
     mainWindow->show();
     this->close(); // Закрытие окна логина
 }

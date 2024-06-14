@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTableWidget>
 #include "CryptographyManager.h"
+#include "dbManager.h"
+#include "addeditdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,11 +16,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr, CryptographyManager* cryptographyManager = nullptr);
     ~MainWindow();
 
     CryptographyManager *getCryptoManager() const;
-    void setCryptoManager(CryptographyManager *cryptoManager);
 
 private slots:
     void on_addButton_clicked();
@@ -31,9 +32,14 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTableWidget *tableWidget;
-    void setupTable();
     CryptographyManager* cryptoManager;
+    DbManager* dbManager;
 
+    void setupTable();
+    void fillTable();
+    void addRecordToTable(Record* record, int row = -1);
+    Record getRecordFromDialog(const EntryDialog& dialog);
+    std::string getDateAfterThreeMonths();
 };
 
 #endif // MAINWINDOW_H

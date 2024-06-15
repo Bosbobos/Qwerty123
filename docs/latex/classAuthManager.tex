@@ -1,0 +1,80 @@
+\doxysection{Класс Auth\+Manager}
+\hypertarget{classAuthManager}{}\label{classAuthManager}\index{AuthManager@{AuthManager}}
+
+
+Класс, отвечающий за аутентификацию.  
+
+
+
+
+{\ttfamily \#include $<$auth\+Manager.\+h$>$}
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAuthManager_a2a651aa8868db2033e1ad3a1dc6367ac}{Auth\+Manager}} (const std\+::string \&connection\+\_\+string, const std\+::string \&table\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \doxylink{classAuthManager}{Auth\+Manager}. \end{DoxyCompactList}\item 
+\Hypertarget{classAuthManager_af75ea90bae18317d6490b41527214579}\label{classAuthManager_af75ea90bae18317d6490b41527214579} 
+void {\bfseries create\+Table} ()
+\begin{DoxyCompactList}\small\item\em Создает таблицу с заданным в поле названием, если она не существует. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAuthManager_a55967752ebb544c8b3c13b44929013dd}{add\+Record}} (const std\+::string \&login)
+\item 
+bool \mbox{\hyperlink{classAuthManager_a3560996aaf2d2dd0cab796fcfaddaad7}{login\+Exists}} (const std\+::string \&login)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс, отвечающий за аутентификацию. 
+
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{classAuthManager_a2a651aa8868db2033e1ad3a1dc6367ac}\index{AuthManager@{AuthManager}!AuthManager@{AuthManager}}
+\index{AuthManager@{AuthManager}!AuthManager@{AuthManager}}
+\doxysubsubsection{\texorpdfstring{AuthManager()}{AuthManager()}}
+{\footnotesize\ttfamily \label{classAuthManager_a2a651aa8868db2033e1ad3a1dc6367ac} 
+Auth\+Manager\+::\+Auth\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{connection\+\_\+string}{, }\item[{const std\+::string \&}]{table\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \doxylink{classAuthManager}{Auth\+Manager}. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em connection\+\_\+string} & Строка подключения к базе данных. \\
+\hline
+{\em table\+\_\+name} & Название таблицы в базе данных \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\Hypertarget{classAuthManager_a55967752ebb544c8b3c13b44929013dd}\index{AuthManager@{AuthManager}!addRecord@{addRecord}}
+\index{addRecord@{addRecord}!AuthManager@{AuthManager}}
+\doxysubsubsection{\texorpdfstring{addRecord()}{addRecord()}}
+{\footnotesize\ttfamily \label{classAuthManager_a55967752ebb544c8b3c13b44929013dd} 
+void Auth\+Manager\+::add\+Record (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{login}{}\end{DoxyParamCaption})}
+
+Добавляет запись в базу данных. 
+\begin{DoxyParams}{Аргументы}
+{\em login} & Логин, который нужно добавить. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAuthManager_a3560996aaf2d2dd0cab796fcfaddaad7}\index{AuthManager@{AuthManager}!loginExists@{loginExists}}
+\index{loginExists@{loginExists}!AuthManager@{AuthManager}}
+\doxysubsubsection{\texorpdfstring{loginExists()}{loginExists()}}
+{\footnotesize\ttfamily \label{classAuthManager_a3560996aaf2d2dd0cab796fcfaddaad7} 
+bool Auth\+Manager\+::login\+Exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{login}{}\end{DoxyParamCaption})}
+
+Проверяет, присутствует ли заданный логин в базе данных. 
+\begin{DoxyParams}{Аргументы}
+{\em login} & Логин, наличие которого нужно проверить. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+True, если логин существует, иначе false. 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+db\+Manager/auth\+Manager.\+h\item 
+db\+Manager/auth\+Manager.\+cpp\end{DoxyCompactItemize}

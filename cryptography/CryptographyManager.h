@@ -3,6 +3,7 @@
 
 #include <string>
 
+/// Класс, облегчающий работу с криптографической составляющей программы.
 class CryptographyManager {
 public:
     CryptographyManager(const std::string &username, const std::string &password);

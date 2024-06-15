@@ -1,0 +1,62 @@
+\doxysection{cryptography.\+h}
+\hypertarget{cryptography_8h_source}{}\label{cryptography_8h_source}\index{cryptography/cryptography.h@{cryptography/cryptography.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CRYPTOGRAPHY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CRYPTOGRAPHY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}\ =\ 16;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a6e73936bd7a8b00725f394771e57ebe8}{S}}[256];}
+\DoxyCodeLine{00014\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a83ad5e07d27552488b67b1068129f1f9}{INVERSE\_S}}[256];}
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a6898fc90a1cfe2e2e8ee7f7aac6964f9}{L}}[16];}
+\DoxyCodeLine{00016\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_aff763385251e2cf7d56fc6a54f5b69f9}{DEGREE}}[255];}
+\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a8b7156a89c49ef7d4618def503ba423d}{INVERSE\_DEGREE}}[255];}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a8c9078c33a04fee651e6129867ecbb64}{multiply\_in\_Galua}}(uint8\_t\ a,\ uint8\_t\ b);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a406da36d3e9c4487b5247e861c8b319f}{MULS}}[256][256];}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a131bef2b576ef02bc21f453a56eb095c}{create\_muls}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_a4d0f645c9b57fdaa200b604f7c61b54e}{MATRIX}}[\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}][256][\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}];}
+\DoxyCodeLine{00025\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{cryptography_8cpp_ad03bb6f46c7e66176a1193ae3a2a1a09}{INVERSE\_MATRIX}}[\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}][256][\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}];}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a4f14732e49620ad5737ed90a5c1a8e7a}{L\_transform}}(uint8\_t\ block[block\_len]);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_aa4d4f03594fc9246f2abedf1eb2071a3}{inverse\_L\_transform}}(uint8\_t\ block[block\_len]);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a7b15078daaf1b342490dadb38f2aafd8}{linear\_transform}}(uint8\_t\ block[block\_len]);}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_ad3d376e1cb032da8cd977fb417878244}{inverse\_linear\_transform}}(uint8\_t\ block[block\_len]);}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a5064b2908825a143531825c22525b05a}{create\_MATRIX}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a6823c9f6169569e266f30fe8f858fea6}{generate\_round\_constants}}(uint8\_t\ round\_constants[32][block\_len]);}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a3e24a9efd9a92e1edb39ff675c1e5e89}{generate}}(\textcolor{keyword}{const}\ uint8\_t\ key[32],\ uint8\_t\ round\_keys[10][block\_len]);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ std::string\ \mbox{\hyperlink{cryptography_8cpp_a2f86ffee2a14a48fff3d0dc98cefb37b}{textToHex}}(\textcolor{keyword}{const}\ std::string\ \&input);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a8436d079ac39837512488588cb0b9f15}{padKey}}(std::string\ \&input\_key);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{const}\ uint8\_t\ *\mbox{\hyperlink{cryptography_8cpp_acea6cedf0c4b8acac8498581188c339f}{stringToReversedKey}}(std::string\ \&input\_key);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ std::vector<uint8\_t>\ \mbox{\hyperlink{cryptography_8cpp_a2e232c4d437d34875e21b4d02bab9918}{hexToVector}}(\textcolor{keyword}{const}\ std::string\ \&hex);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ std::string\ \mbox{\hyperlink{cryptography_8cpp_abb07f9f28db5dddf4054f12a1a516894}{vectorToHex}}(\textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&vec);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a1b03cfc3c9a83e94ad045b48cb2be760}{encode\_block}}(uint8\_t\ block[block\_len],\ \textcolor{keyword}{const}\ uint8\_t\ round\_keys[10][block\_len]);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a36079049658dd78b71542e556b41fc0d}{decode\_block}}(uint8\_t\ block[block\_len],\ \textcolor{keyword}{const}\ uint8\_t\ round\_keys[10][block\_len]);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cryptography_8cpp_a5768a9571c6e0f284184a41662c5a61b}{xorBlocks}}(uint8\_t\ *block1,\ \textcolor{keyword}{const}\ uint8\_t\ *block2,\ \textcolor{keywordtype}{size\_t}\ length);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ std::vector<uint8\_t>\ \mbox{\hyperlink{cryptography_8cpp_a001f535f93b0fa98b52d60572cdd1532}{cbcEncrypt}}(\textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&plaintext,\ \textcolor{keyword}{const}\ uint8\_t\ round\_keys[10][block\_len]);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ std::vector<uint8\_t>\ \mbox{\hyperlink{cryptography_8cpp_a58737862c42617cd5deba76f7380eb2e}{cbcDecrypt}}(\textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&ciphertext,\ \textcolor{keyword}{const}\ uint8\_t\ round\_keys[10][block\_len]);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CRYPTOGRAPHY\_H}}
+
+\end{DoxyCode}

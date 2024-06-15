@@ -1,0 +1,63 @@
+\doxysection{Record.\+h}
+\hypertarget{Record_8h_source}{}\label{Record_8h_source}\index{Entities/Record.h@{Entities/Record.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ QWERTY123\_RECORD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ QWERTY123\_RECORD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structRecord}{Record}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRecord_a1ae1a7360e351f63cee67384de3e6345}{id}};}
+\DoxyCodeLine{00012\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_af4e00396310c360017b1d65f2f7d0ed9}{master\_username}};}
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_a531a97de6f4536390533ecab1cbff1cb}{rec\_name}};}
+\DoxyCodeLine{00016\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_a32612890f3b654dd6b08ac44d32eac8a}{url}};}
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_af1f8cbb084d441112b93d546cb8256c6}{username}};}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_a2b1672d8f047f1df95b44ac874048351}{password}};}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_ab0348cee515115d0fb673f60c7240567}{tag}};}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ \mbox{\hyperlink{structRecord_aaa492e3cdea355ee1fdd26ec658de238}{expires}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{structRecord}{Record}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\ \&masterUsername,\ \textcolor{keyword}{const}\ std::string\ \&recName,\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_a32612890f3b654dd6b08ac44d32eac8a}{url}},}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_af1f8cbb084d441112b93d546cb8256c6}{username}},\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_a2b1672d8f047f1df95b44ac874048351}{password}},\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_ab0348cee515115d0fb673f60c7240567}{tag}},\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_aaa492e3cdea355ee1fdd26ec658de238}{expires}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{structRecord}{Record}}(\textcolor{keyword}{const}\ std::string\ \&masterUsername,\ \textcolor{keyword}{const}\ std::string\ \&recName,\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_a32612890f3b654dd6b08ac44d32eac8a}{url}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_af1f8cbb084d441112b93d546cb8256c6}{username}},\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_a2b1672d8f047f1df95b44ac874048351}{password}},\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_ab0348cee515115d0fb673f60c7240567}{tag}},\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_aaa492e3cdea355ee1fdd26ec658de238}{expires}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ getId()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ setId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getMasterUsername()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ setMasterUsername(\textcolor{keyword}{const}\ std::string\ \&masterUsername);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getRecName()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ setRecName(\textcolor{keyword}{const}\ std::string\ \&recName);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getUrl()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ setUrl(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_a32612890f3b654dd6b08ac44d32eac8a}{url}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getUsername()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setUsername(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_af1f8cbb084d441112b93d546cb8256c6}{username}});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getPassword()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ setPassword(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_a2b1672d8f047f1df95b44ac874048351}{password}});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getTag()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ setTag(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_ab0348cee515115d0fb673f60c7240567}{tag}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getExpires()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ setExpires(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{structRecord_aaa492e3cdea355ee1fdd26ec658de238}{expires}});}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//QWERTY123\_RECORD\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qwerty123: Исходный файл dbManager/authManager.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qwerty123
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_3c114c526810a750e7a505fafc1a829c.html">dbManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">authManager.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;authManager.h&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="foldopen" id="foldopen00003" data-start="{" data-end="}">
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="classAuthManager.html#a2a651aa8868db2033e1ad3a1dc6367ac">    3</a></span><a class="code hl_function" href="classAuthManager.html#a2a651aa8868db2033e1ad3a1dc6367ac">AuthManager::AuthManager</a>(<span class="keyword">const</span> std::string&amp; connection_string, <span class="keyword">const</span> std::string&amp; table_name)</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>        : db(connection_string), table_name(table_name) {}</div>
+</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="}">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classAuthManager.html#af75ea90bae18317d6490b41527214579">    6</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classAuthManager.html#af75ea90bae18317d6490b41527214579">AuthManager::createTable</a>() {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    std::string create_table_sql =</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>            <span class="stringliteral">&quot;CREATE TABLE IF NOT EXISTS &quot;</span> + table_name + <span class="stringliteral">&quot; (&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>                                                         <span class="stringliteral">&quot;id SERIAL PRIMARY KEY, &quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>                                                         <span class="stringliteral">&quot;login VARCHAR(128) UNIQUE&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>                                                         <span class="stringliteral">&quot;);&quot;</span>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    db.<a class="code hl_function" href="classPostgresCRUD.html#a00c018acc5f14ee6fba5ac6818cbe915">read</a>(create_table_sql);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>}</div>
+</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classAuthManager.html#a55967752ebb544c8b3c13b44929013dd">   15</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classAuthManager.html#a55967752ebb544c8b3c13b44929013dd">AuthManager::addRecord</a>(<span class="keyword">const</span> std::string&amp; login) {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::map&lt;std::string, std::string&gt; data = {{<span class="stringliteral">&quot;login&quot;</span>, login}};</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    db.<a class="code hl_function" href="classPostgresCRUD.html#ae16f9bdc224e6d756091387a4fc1ee7e">create</a>(table_name, data);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
+</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classAuthManager.html#a3560996aaf2d2dd0cab796fcfaddaad7">   20</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classAuthManager.html#a3560996aaf2d2dd0cab796fcfaddaad7">AuthManager::loginExists</a>(<span class="keyword">const</span> std::string&amp; login) {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::string query = <span class="stringliteral">&quot;SELECT COUNT(*) FROM &quot;</span> + table_name + <span class="stringliteral">&quot; WHERE login = &#39;&quot;</span> + login + <span class="stringliteral">&quot;&#39;;&quot;</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    pqxx::result r = db.<a class="code hl_function" href="classPostgresCRUD.html#a00c018acc5f14ee6fba5ac6818cbe915">read</a>(query);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> r[0][0].as&lt;<span class="keywordtype">int</span>&gt;() &gt; 0;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+</div>
+<div class="ttc" id="aclassAuthManager_html_a2a651aa8868db2033e1ad3a1dc6367ac"><div class="ttname"><a href="classAuthManager.html#a2a651aa8868db2033e1ad3a1dc6367ac">AuthManager::AuthManager</a></div><div class="ttdeci">AuthManager(const std::string &amp;connection_string, const std::string &amp;table_name)</div><div class="ttdoc">Конструктор класса AuthManager.</div><div class="ttdef"><b>Definition</b> authManager.cpp:3</div></div>
+<div class="ttc" id="aclassAuthManager_html_a3560996aaf2d2dd0cab796fcfaddaad7"><div class="ttname"><a href="classAuthManager.html#a3560996aaf2d2dd0cab796fcfaddaad7">AuthManager::loginExists</a></div><div class="ttdeci">bool loginExists(const std::string &amp;login)</div><div class="ttdef"><b>Definition</b> authManager.cpp:20</div></div>
+<div class="ttc" id="aclassAuthManager_html_a55967752ebb544c8b3c13b44929013dd"><div class="ttname"><a href="classAuthManager.html#a55967752ebb544c8b3c13b44929013dd">AuthManager::addRecord</a></div><div class="ttdeci">void addRecord(const std::string &amp;login)</div><div class="ttdef"><b>Definition</b> authManager.cpp:15</div></div>
+<div class="ttc" id="aclassAuthManager_html_af75ea90bae18317d6490b41527214579"><div class="ttname"><a href="classAuthManager.html#af75ea90bae18317d6490b41527214579">AuthManager::createTable</a></div><div class="ttdeci">void createTable()</div><div class="ttdoc">Создает таблицу с заданным в поле названием, если она не существует.</div><div class="ttdef"><b>Definition</b> authManager.cpp:6</div></div>
+<div class="ttc" id="aclassPostgresCRUD_html_a00c018acc5f14ee6fba5ac6818cbe915"><div class="ttname"><a href="classPostgresCRUD.html#a00c018acc5f14ee6fba5ac6818cbe915">PostgresCRUD::read</a></div><div class="ttdeci">pqxx::result read(const std::string &amp;query)</div><div class="ttdoc">Выполняет запрос на чтение данных из базы данных.</div><div class="ttdef"><b>Definition</b> PostgresCRUD.cpp:35</div></div>
+<div class="ttc" id="aclassPostgresCRUD_html_ae16f9bdc224e6d756091387a4fc1ee7e"><div class="ttname"><a href="classPostgresCRUD.html#ae16f9bdc224e6d756091387a4fc1ee7e">PostgresCRUD::create</a></div><div class="ttdeci">void create(const std::string &amp;table, const std::map&lt; std::string, std::string &gt; &amp;data)</div><div class="ttdoc">Создает новую запись в указанной таблице.</div><div class="ttdef"><b>Definition</b> PostgresCRUD.cpp:13</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

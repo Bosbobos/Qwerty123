@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qwerty123: Исходный файл cryptography/cryptography.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qwerty123
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_e222a4d749c58194eb911d46bc0fc45f.html">cryptography</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">cryptography.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CRYPTOGRAPHY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CRYPTOGRAPHY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="cryptography_8cpp.html#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a> = 16;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#a6e73936bd7a8b00725f394771e57ebe8">S</a>[256];</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#a83ad5e07d27552488b67b1068129f1f9">INVERSE_S</a>[256];</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#a6898fc90a1cfe2e2e8ee7f7aac6964f9">L</a>[16];</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#aff763385251e2cf7d56fc6a54f5b69f9">DEGREE</a>[255];</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#a8b7156a89c49ef7d4618def503ba423d">INVERSE_DEGREE</a>[255];</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>uint8_t <a class="code hl_function" href="cryptography_8cpp.html#a8c9078c33a04fee651e6129867ecbb64">multiply_in_Galua</a>(uint8_t a, uint8_t b);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#a406da36d3e9c4487b5247e861c8b319f">MULS</a>[256][256];</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a131bef2b576ef02bc21f453a56eb095c">create_muls</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#a4d0f645c9b57fdaa200b604f7c61b54e">MATRIX</a>[<a class="code hl_variable" href="cryptography_8cpp.html#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>][256][<a class="code hl_variable" href="cryptography_8cpp.html#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>];</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="cryptography_8cpp.html#ad03bb6f46c7e66176a1193ae3a2a1a09">INVERSE_MATRIX</a>[<a class="code hl_variable" href="cryptography_8cpp.html#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>][256][<a class="code hl_variable" href="cryptography_8cpp.html#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>];</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a4f14732e49620ad5737ed90a5c1a8e7a">L_transform</a>(uint8_t block[block_len]);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#aa4d4f03594fc9246f2abedf1eb2071a3">inverse_L_transform</a>(uint8_t block[block_len]);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a7b15078daaf1b342490dadb38f2aafd8">linear_transform</a>(uint8_t block[block_len]);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#ad3d376e1cb032da8cd977fb417878244">inverse_linear_transform</a>(uint8_t block[block_len]);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a5064b2908825a143531825c22525b05a">create_MATRIX</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a6823c9f6169569e266f30fe8f858fea6">generate_round_constants</a>(uint8_t round_constants[32][block_len]);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a3e24a9efd9a92e1edb39ff675c1e5e89">generate</a>(<span class="keyword">const</span> uint8_t key[32], uint8_t round_keys[10][block_len]);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>std::string <a class="code hl_function" href="cryptography_8cpp.html#a2f86ffee2a14a48fff3d0dc98cefb37b">textToHex</a>(<span class="keyword">const</span> std::string &amp;input);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a8436d079ac39837512488588cb0b9f15">padKey</a>(std::string &amp;input_key);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">const</span> uint8_t *<a class="code hl_function" href="cryptography_8cpp.html#acea6cedf0c4b8acac8498581188c339f">stringToReversedKey</a>(std::string &amp;input_key);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>std::vector&lt;uint8_t&gt; <a class="code hl_function" href="cryptography_8cpp.html#a2e232c4d437d34875e21b4d02bab9918">hexToVector</a>(<span class="keyword">const</span> std::string &amp;hex);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>std::string <a class="code hl_function" href="cryptography_8cpp.html#abb07f9f28db5dddf4054f12a1a516894">vectorToHex</a>(<span class="keyword">const</span> std::vector&lt;uint8_t&gt; &amp;vec);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a1b03cfc3c9a83e94ad045b48cb2be760">encode_block</a>(uint8_t block[block_len], <span class="keyword">const</span> uint8_t round_keys[10][block_len]);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a36079049658dd78b71542e556b41fc0d">decode_block</a>(uint8_t block[block_len], <span class="keyword">const</span> uint8_t round_keys[10][block_len]);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">void</span> <a class="code hl_function" href="cryptography_8cpp.html#a5768a9571c6e0f284184a41662c5a61b">xorBlocks</a>(uint8_t *block1, <span class="keyword">const</span> uint8_t *block2, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>std::vector&lt;uint8_t&gt; <a class="code hl_function" href="cryptography_8cpp.html#a001f535f93b0fa98b52d60572cdd1532">cbcEncrypt</a>(<span class="keyword">const</span> std::vector&lt;uint8_t&gt; &amp;plaintext, <span class="keyword">const</span> uint8_t round_keys[10][block_len]);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>std::vector&lt;uint8_t&gt; <a class="code hl_function" href="cryptography_8cpp.html#a58737862c42617cd5deba76f7380eb2e">cbcDecrypt</a>(<span class="keyword">const</span> std::vector&lt;uint8_t&gt; &amp;ciphertext, <span class="keyword">const</span> uint8_t round_keys[10][block_len]);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif </span><span class="comment">// CRYPTOGRAPHY_H</span></div>
+<div class="ttc" id="acryptography_8cpp_html_a001f535f93b0fa98b52d60572cdd1532"><div class="ttname"><a href="cryptography_8cpp.html#a001f535f93b0fa98b52d60572cdd1532">cbcEncrypt</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; cbcEncrypt(const std::vector&lt; uint8_t &gt; &amp;plaintext, const uint8_t round_keys[10][block_len])</div><div class="ttdoc">Шифрует данные в режиме CBC (Cipher Block Chaining).</div><div class="ttdef"><b>Definition</b> cryptography.cpp:431</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a131bef2b576ef02bc21f453a56eb095c"><div class="ttname"><a href="cryptography_8cpp.html#a131bef2b576ef02bc21f453a56eb095c">create_muls</a></div><div class="ttdeci">void create_muls()</div><div class="ttdoc">Создает таблицу предварительно вычисленных произведений в поле Галуа (GF(2^8)).</div><div class="ttdef"><b>Definition</b> cryptography.cpp:128</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a1b03cfc3c9a83e94ad045b48cb2be760"><div class="ttname"><a href="cryptography_8cpp.html#a1b03cfc3c9a83e94ad045b48cb2be760">encode_block</a></div><div class="ttdeci">void encode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_len])</div><div class="ttdoc">Шифрует блок данных с использованием раундовых ключей.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:376</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a2e232c4d437d34875e21b4d02bab9918"><div class="ttname"><a href="cryptography_8cpp.html#a2e232c4d437d34875e21b4d02bab9918">hexToVector</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; hexToVector(const std::string &amp;hex)</div><div class="ttdoc">Преобразует hex строку в вектор байтов (uint8_t).</div><div class="ttdef"><b>Definition</b> cryptography.cpp:344</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a2f86ffee2a14a48fff3d0dc98cefb37b"><div class="ttname"><a href="cryptography_8cpp.html#a2f86ffee2a14a48fff3d0dc98cefb37b">textToHex</a></div><div class="ttdeci">std::string textToHex(const std::string &amp;input)</div><div class="ttdoc">Преобразует текстовую строку в её шестнадцатеричное представление.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:292</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a36079049658dd78b71542e556b41fc0d"><div class="ttname"><a href="cryptography_8cpp.html#a36079049658dd78b71542e556b41fc0d">decode_block</a></div><div class="ttdeci">void decode_block(uint8_t block[block_len], const uint8_t round_keys[10][block_len])</div><div class="ttdoc">Дешифрует блок данных с использованием раундовых ключей.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:394</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a3e24a9efd9a92e1edb39ff675c1e5e89"><div class="ttname"><a href="cryptography_8cpp.html#a3e24a9efd9a92e1edb39ff675c1e5e89">generate</a></div><div class="ttdeci">void generate(const uint8_t key[32], uint8_t round_keys[10][block_len])</div><div class="ttdoc">Генерация раундовых ключей для алгоритма Кузнечик с использованием сети Фейстеля.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:252</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a406da36d3e9c4487b5247e861c8b319f"><div class="ttname"><a href="cryptography_8cpp.html#a406da36d3e9c4487b5247e861c8b319f">MULS</a></div><div class="ttdeci">uint8_t MULS[256][256]</div><div class="ttdoc">Таблица предварительно вычисленных произведений в поле Галуа (GF(2^8)).</div><div class="ttdef"><b>Definition</b> cryptography.cpp:123</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a4d0f645c9b57fdaa200b604f7c61b54e"><div class="ttname"><a href="cryptography_8cpp.html#a4d0f645c9b57fdaa200b604f7c61b54e">MATRIX</a></div><div class="ttdeci">uint8_t MATRIX[block_len][256][block_len]</div><div class="ttdoc">Матрица для линейного преобразования.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:139</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a4e9a55250b9fa50f207ce090a8c7df3e"><div class="ttname"><a href="cryptography_8cpp.html#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a></div><div class="ttdeci">const int block_len</div><div class="ttdoc">Длина блока в алгоритме Кузнечика = 16 байт</div><div class="ttdef"><b>Definition</b> cryptography.cpp:13</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a4f14732e49620ad5737ed90a5c1a8e7a"><div class="ttname"><a href="cryptography_8cpp.html#a4f14732e49620ad5737ed90a5c1a8e7a">L_transform</a></div><div class="ttdeci">void L_transform(uint8_t block[block_len])</div><div class="ttdoc">Выполняет линейное преобразование блока данных.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:151</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a5064b2908825a143531825c22525b05a"><div class="ttname"><a href="cryptography_8cpp.html#a5064b2908825a143531825c22525b05a">create_MATRIX</a></div><div class="ttdeci">void create_MATRIX()</div><div class="ttdoc">Создает матрицы для линейного и обратного линейного преобразования.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:213</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a5768a9571c6e0f284184a41662c5a61b"><div class="ttname"><a href="cryptography_8cpp.html#a5768a9571c6e0f284184a41662c5a61b">xorBlocks</a></div><div class="ttdeci">void xorBlocks(uint8_t *block1, const uint8_t *block2, size_t length)</div><div class="ttdoc">Выполняет побитовую операцию XOR над двумя блоками данных.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:416</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a58737862c42617cd5deba76f7380eb2e"><div class="ttname"><a href="cryptography_8cpp.html#a58737862c42617cd5deba76f7380eb2e">cbcDecrypt</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; cbcDecrypt(const std::vector&lt; uint8_t &gt; &amp;ciphertext, const uint8_t round_keys[10][block_len])</div><div class="ttdoc">Расшифрование текста в режиме CBC.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:477</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a6823c9f6169569e266f30fe8f858fea6"><div class="ttname"><a href="cryptography_8cpp.html#a6823c9f6169569e266f30fe8f858fea6">generate_round_constants</a></div><div class="ttdeci">void generate_round_constants(uint8_t round_constants[32][16])</div><div class="ttdoc">Генерирует константы для раундов шифрования.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:234</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a6898fc90a1cfe2e2e8ee7f7aac6964f9"><div class="ttname"><a href="cryptography_8cpp.html#a6898fc90a1cfe2e2e8ee7f7aac6964f9">L</a></div><div class="ttdeci">const uint8_t L[16]</div><div class="ttdoc">вектор линейного преобразования</div><div class="ttdef"><b>Definition</b> cryptography.cpp:55</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a6e73936bd7a8b00725f394771e57ebe8"><div class="ttname"><a href="cryptography_8cpp.html#a6e73936bd7a8b00725f394771e57ebe8">S</a></div><div class="ttdeci">const uint8_t S[256]</div><div class="ttdoc">S-блок для нелинейного преобразования</div><div class="ttdef"><b>Definition</b> cryptography.cpp:18</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a7b15078daaf1b342490dadb38f2aafd8"><div class="ttname"><a href="cryptography_8cpp.html#a7b15078daaf1b342490dadb38f2aafd8">linear_transform</a></div><div class="ttdeci">void linear_transform(uint8_t block[block_len])</div><div class="ttdoc">Выполняет линейное преобразование блока данных без использования предварительно вычисленных матриц.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:181</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a83ad5e07d27552488b67b1068129f1f9"><div class="ttname"><a href="cryptography_8cpp.html#a83ad5e07d27552488b67b1068129f1f9">INVERSE_S</a></div><div class="ttdeci">const uint8_t INVERSE_S[256]</div><div class="ttdoc">Инверсный S-блок для нелинейного преобразования</div><div class="ttdef"><b>Definition</b> cryptography.cpp:35</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a8436d079ac39837512488588cb0b9f15"><div class="ttname"><a href="cryptography_8cpp.html#a8436d079ac39837512488588cb0b9f15">padKey</a></div><div class="ttdeci">void padKey(std::string &amp;input_key)</div><div class="ttdoc">Дополняет ключ до 64 символов нулями после первого символа.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:310</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a8b7156a89c49ef7d4618def503ba423d"><div class="ttname"><a href="cryptography_8cpp.html#a8b7156a89c49ef7d4618def503ba423d">INVERSE_DEGREE</a></div><div class="ttdeci">const uint8_t INVERSE_DEGREE[255]</div><div class="ttdoc">таблица: по числу получить его степень в поле Галуа</div><div class="ttdef"><b>Definition</b> cryptography.cpp:77</div></div>
+<div class="ttc" id="acryptography_8cpp_html_a8c9078c33a04fee651e6129867ecbb64"><div class="ttname"><a href="cryptography_8cpp.html#a8c9078c33a04fee651e6129867ecbb64">multiply_in_Galua</a></div><div class="ttdeci">uint8_t multiply_in_Galua(uint8_t a, uint8_t b)</div><div class="ttdoc">Выполняет умножение двух байтов в поле Галуа (GF(2^8)).</div><div class="ttdef"><b>Definition</b> cryptography.cpp:105</div></div>
+<div class="ttc" id="acryptography_8cpp_html_aa4d4f03594fc9246f2abedf1eb2071a3"><div class="ttname"><a href="cryptography_8cpp.html#aa4d4f03594fc9246f2abedf1eb2071a3">inverse_L_transform</a></div><div class="ttdeci">void inverse_L_transform(uint8_t block[block_len])</div><div class="ttdoc">Выполняет обратное линейное преобразование блока данных.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:166</div></div>
+<div class="ttc" id="acryptography_8cpp_html_abb07f9f28db5dddf4054f12a1a516894"><div class="ttname"><a href="cryptography_8cpp.html#abb07f9f28db5dddf4054f12a1a516894">vectorToHex</a></div><div class="ttdeci">std::string vectorToHex(const std::vector&lt; uint8_t &gt; &amp;vec)</div><div class="ttdoc">Преобразует вектор байтов (uint8_t) в hex строку.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:362</div></div>
+<div class="ttc" id="acryptography_8cpp_html_acea6cedf0c4b8acac8498581188c339f"><div class="ttname"><a href="cryptography_8cpp.html#acea6cedf0c4b8acac8498581188c339f">stringToReversedKey</a></div><div class="ttdeci">const uint8_t * stringToReversedKey(std::string &amp;input_key)</div><div class="ttdoc">Преобразует строку из шестнадцатеричного представления в обратный массив uint8_t.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:324</div></div>
+<div class="ttc" id="acryptography_8cpp_html_ad03bb6f46c7e66176a1193ae3a2a1a09"><div class="ttname"><a href="cryptography_8cpp.html#ad03bb6f46c7e66176a1193ae3a2a1a09">INVERSE_MATRIX</a></div><div class="ttdeci">uint8_t INVERSE_MATRIX[block_len][256][block_len]</div><div class="ttdoc">Матрица для обратного линейного преобразования.</div><div class="ttdef"><b>Definition</b> cryptography.cpp:144</div></div>
+<div class="ttc" id="acryptography_8cpp_html_ad3d376e1cb032da8cd977fb417878244"><div class="ttname"><a href="cryptography_8cpp.html#ad3d376e1cb032da8cd977fb417878244">inverse_linear_transform</a></div><div class="ttdeci">void inverse_linear_transform(uint8_t block[block_len])</div><div class="ttdoc">Выполняет обратное линейное преобразование блока данных без использования предварительно вычисленных ...</div><div class="ttdef"><b>Definition</b> cryptography.cpp:198</div></div>
+<div class="ttc" id="acryptography_8cpp_html_aff763385251e2cf7d56fc6a54f5b69f9"><div class="ttname"><a href="cryptography_8cpp.html#aff763385251e2cf7d56fc6a54f5b69f9">DEGREE</a></div><div class="ttdeci">const uint8_t DEGREE[255]</div><div class="ttdoc">таблица степеней двойки в поле GF(2^8)</div><div class="ttdef"><b>Definition</b> cryptography.cpp:60</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

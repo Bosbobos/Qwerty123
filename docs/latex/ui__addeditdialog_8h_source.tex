@@ -1,0 +1,115 @@
+\doxysection{ui\+\_\+addeditdialog.\+h}
+\hypertarget{ui__addeditdialog_8h_source}{}\label{ui__addeditdialog_8h_source}\index{UI/cmake-\/build-\/debug/UI\_autogen/include/ui\_addeditdialog.h@{UI/cmake-\/build-\/debug/UI\_autogen/include/ui\_addeditdialog.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Form\ generated\ from\ reading\ UI\ file\ 'addeditdialog.ui'}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ Created\ by:\ Qt\ User\ Interface\ Compiler\ version\ 6.7.1}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**}}
+\DoxyCodeLine{00006\ \textcolor{comment}{**\ WARNING!\ All\ changes\ made\ in\ this\ file\ will\ be\ lost\ when\ recompiling\ UI\ file!}}
+\DoxyCodeLine{00007\ \textcolor{comment}{********************************************************************************/}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ UI\_ADDEDITDIALOG\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ UI\_ADDEDITDIALOG\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QtCore/QVariant>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QtWidgets/QApplication>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QtWidgets/QDialog>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QtWidgets/QHBoxLayout>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QtWidgets/QLineEdit>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QtWidgets/QPushButton>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <QtWidgets/QVBoxLayout>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUi__EntryDialog}{Ui\_EntryDialog}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ QVBoxLayout\ *verticalLayout;}
+\DoxyCodeLine{00026\ \ \ \ \ QLineEdit\ *titleInput;}
+\DoxyCodeLine{00027\ \ \ \ \ QLineEdit\ *usernameInput;}
+\DoxyCodeLine{00028\ \ \ \ \ QLineEdit\ *passwordInput;}
+\DoxyCodeLine{00029\ \ \ \ \ QLineEdit\ *urlInput;}
+\DoxyCodeLine{00030\ \ \ \ \ QLineEdit\ *tagInput;}
+\DoxyCodeLine{00031\ \ \ \ \ QHBoxLayout\ *horizontalLayout;}
+\DoxyCodeLine{00032\ \ \ \ \ QPushButton\ *okButton;}
+\DoxyCodeLine{00033\ \ \ \ \ QPushButton\ *cancelButton;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ setupUi(QDialog\ *\mbox{\hyperlink{classEntryDialog}{EntryDialog}})}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classEntryDialog}{EntryDialog}}-\/>objectName().isEmpty())}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntryDialog}{EntryDialog}}-\/>setObjectName(\textcolor{stringliteral}{"{}EntryDialog"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntryDialog}{EntryDialog}}-\/>resize(400,\ 300);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ verticalLayout\ =\ \textcolor{keyword}{new}\ QVBoxLayout(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ verticalLayout-\/>setObjectName(\textcolor{stringliteral}{"{}verticalLayout"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ titleInput\ =\ \textcolor{keyword}{new}\ QLineEdit(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ titleInput-\/>setObjectName(\textcolor{stringliteral}{"{}titleInput"{}});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(titleInput);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ usernameInput\ =\ \textcolor{keyword}{new}\ QLineEdit(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ usernameInput-\/>setObjectName(\textcolor{stringliteral}{"{}usernameInput"{}});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(usernameInput);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ passwordInput\ =\ \textcolor{keyword}{new}\ QLineEdit(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ passwordInput-\/>setObjectName(\textcolor{stringliteral}{"{}passwordInput"{}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ passwordInput-\/>setEchoMode(QLineEdit::Password);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(passwordInput);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ urlInput\ =\ \textcolor{keyword}{new}\ QLineEdit(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ urlInput-\/>setObjectName(\textcolor{stringliteral}{"{}urlInput"{}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(urlInput);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ tagInput\ =\ \textcolor{keyword}{new}\ QLineEdit(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ tagInput-\/>setObjectName(\textcolor{stringliteral}{"{}tagInput"{}});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(tagInput);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ horizontalLayout\ =\ \textcolor{keyword}{new}\ QHBoxLayout();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ horizontalLayout-\/>setObjectName(\textcolor{stringliteral}{"{}horizontalLayout"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ okButton\ =\ \textcolor{keyword}{new}\ QPushButton(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ okButton-\/>setObjectName(\textcolor{stringliteral}{"{}okButton"{}});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ horizontalLayout-\/>addWidget(okButton);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ cancelButton\ =\ \textcolor{keyword}{new}\ QPushButton(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ cancelButton-\/>setObjectName(\textcolor{stringliteral}{"{}cancelButton"{}});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ horizontalLayout-\/>addWidget(cancelButton);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ verticalLayout-\/>addLayout(horizontalLayout);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ retranslateUi(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ QMetaObject::connectSlotsByName(\mbox{\hyperlink{classEntryDialog}{EntryDialog}});}
+\DoxyCodeLine{00087\ \ \ \ \ \}\ \textcolor{comment}{//\ setupUi}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ retranslateUi(QDialog\ *\mbox{\hyperlink{classEntryDialog}{EntryDialog}})}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntryDialog}{EntryDialog}}-\/>setWindowTitle(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)320\(\backslash\)224\(\backslash\)320\(\backslash\)276\(\backslash\)320\(\backslash\)261\(\backslash\)320\(\backslash\)260\(\backslash\)320\(\backslash\)262\(\backslash\)320\(\backslash\)270\(\backslash\)321\(\backslash\)202\(\backslash\)321\(\backslash\)214/\(\backslash\)320\(\backslash\)230\(\backslash\)320\(\backslash\)267\(\backslash\)320\(\backslash\)274\(\backslash\)320\(\backslash\)265\(\backslash\)320\(\backslash\)275\(\backslash\)320\(\backslash\)270\(\backslash\)321\(\backslash\)202\(\backslash\)321\(\backslash\)214\ \(\backslash\)320\(\backslash\)267\(\backslash\)320\(\backslash\)260\(\backslash\)320\(\backslash\)277\(\backslash\)320\(\backslash\)270\(\backslash\)321\(\backslash\)201\(\backslash\)321\(\backslash\)214"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ titleInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}Title"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ usernameInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}Username"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ passwordInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}Password"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ urlInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}URL"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ tagInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}Tag"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ okButton-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}OK"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ cancelButton-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}EntryDialog"{}},\ \textcolor{stringliteral}{"{}Cancel"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00099\ \ \ \ \ \}\ \textcolor{comment}{//\ retranslateUi}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{namespace\ }Ui\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUi_1_1EntryDialog}{EntryDialog}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classUi__EntryDialog}{Ui\_EntryDialog}}\ \{\};}
+\DoxyCodeLine{00105\ \}\ \textcolor{comment}{//\ namespace\ Ui}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UI\_ADDEDITDIALOG\_H}}
+
+\end{DoxyCode}

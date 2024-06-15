@@ -1,0 +1,30 @@
+\doxysection{auth\+Manager.\+cpp}
+\hypertarget{authManager_8cpp_source}{}\label{authManager_8cpp_source}\index{dbManager/authManager.cpp@{dbManager/authManager.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}authManager.h"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \mbox{\hyperlink{classAuthManager_a2a651aa8868db2033e1ad3a1dc6367ac}{AuthManager::AuthManager}}(\textcolor{keyword}{const}\ std::string\&\ connection\_string,\ \textcolor{keyword}{const}\ std::string\&\ table\_name)}
+\DoxyCodeLine{00004\ \ \ \ \ \ \ \ \ :\ db(connection\_string),\ table\_name(table\_name)\ \{\}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAuthManager_af75ea90bae18317d6490b41527214579}{AuthManager::createTable}}()\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ std::string\ create\_table\_sql\ =}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}CREATE\ TABLE\ IF\ NOT\ EXISTS\ "{}}\ +\ table\_name\ +\ \textcolor{stringliteral}{"{}\ ("{}}}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id\ SERIAL\ PRIMARY\ KEY,\ "{}}}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}login\ VARCHAR(128)\ UNIQUE"{}}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{});"{}};}
+\DoxyCodeLine{00012\ \ \ \ \ db.\mbox{\hyperlink{classPostgresCRUD_a00c018acc5f14ee6fba5ac6818cbe915}{read}}(create\_table\_sql);}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAuthManager_a55967752ebb544c8b3c13b44929013dd}{AuthManager::addRecord}}(\textcolor{keyword}{const}\ std::string\&\ login)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ std::map<std::string,\ std::string>\ data\ =\ \{\{\textcolor{stringliteral}{"{}login"{}},\ login\}\};}
+\DoxyCodeLine{00017\ \ \ \ \ db.\mbox{\hyperlink{classPostgresCRUD_ae16f9bdc224e6d756091387a4fc1ee7e}{create}}(table\_name,\ data);}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAuthManager_a3560996aaf2d2dd0cab796fcfaddaad7}{AuthManager::loginExists}}(\textcolor{keyword}{const}\ std::string\&\ login)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ query\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ "{}}\ +\ table\_name\ +\ \textcolor{stringliteral}{"{}\ WHERE\ login\ =\ '"{}}\ +\ login\ +\ \textcolor{stringliteral}{"{}';"{}};}
+\DoxyCodeLine{00022\ \ \ \ \ pqxx::result\ r\ =\ db.\mbox{\hyperlink{classPostgresCRUD_a00c018acc5f14ee6fba5ac6818cbe915}{read}}(query);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ r[0][0].as<\textcolor{keywordtype}{int}>()\ >\ 0;}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}

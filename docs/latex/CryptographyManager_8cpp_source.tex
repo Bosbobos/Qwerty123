@@ -1,0 +1,51 @@
+\doxysection{Cryptography\+Manager.\+cpp}
+\hypertarget{CryptographyManager_8cpp_source}{}\label{CryptographyManager_8cpp_source}\index{cryptography/CryptographyManager.cpp@{cryptography/CryptographyManager.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}cryptography.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}CryptographyManager.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ std::string\ CryptographyManager::Encrypt(\textcolor{keyword}{const}\ std::string\&\ plaintext)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ std::string\ textHex\ =\ \mbox{\hyperlink{cryptography_8cpp_a2f86ffee2a14a48fff3d0dc98cefb37b}{textToHex}}(plaintext);}
+\DoxyCodeLine{00009\ \ \ \ \ std::vector<uint8\_t>\ encoded(plaintext.begin(),\ plaintext.end());}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *key\ =\ \mbox{\hyperlink{cryptography_8cpp_acea6cedf0c4b8acac8498581188c339f}{stringToReversedKey}}(this-\/>password);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ создаем\ ключи}}
+\DoxyCodeLine{00014\ \ \ \ \ uint8\_t\ round\_keys[10][\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}]\ =\ \{\};}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{cryptography_8cpp_a3e24a9efd9a92e1edb39ff675c1e5e89}{generate}}(key,\ round\_keys);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ зашифровка}}
+\DoxyCodeLine{00018\ \ \ \ \ std::vector<uint8\_t>\ ciphertext\ =\ \mbox{\hyperlink{cryptography_8cpp_a001f535f93b0fa98b52d60572cdd1532}{cbcEncrypt}}(encoded,\ round\_keys);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{cryptography_8cpp_a2f86ffee2a14a48fff3d0dc98cefb37b}{textToHex}}(std::string(ciphertext.begin(),\ ciphertext.end()));}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ std::string\ CryptographyManager::Decrypt(\textcolor{keyword}{const}\ std::string\&\ ciphertext)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *key\ =\ \mbox{\hyperlink{cryptography_8cpp_acea6cedf0c4b8acac8498581188c339f}{stringToReversedKey}}(this-\/>password);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ создаем\ ключи}}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ round\_keys[10][\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\_len}}]\ =\ \{\};}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{cryptography_8cpp_a3e24a9efd9a92e1edb39ff675c1e5e89}{generate}}(key,\ round\_keys);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ преобразуем\ hex\ строку\ в\ вектор\ байтов}}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<uint8\_t>\ Ciphertext\ =\ \mbox{\hyperlink{cryptography_8cpp_a2e232c4d437d34875e21b4d02bab9918}{hexToVector}}(ciphertext);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ расшифровка}}
+\DoxyCodeLine{00032\ \ \ \ \ std::vector<uint8\_t>\ decryptedtext\ =\ \mbox{\hyperlink{cryptography_8cpp_a58737862c42617cd5deba76f7380eb2e}{cbcDecrypt}}(Ciphertext,\ round\_keys);}
+\DoxyCodeLine{00033\ \ \ \ \ std::string\ decrypted\_string(decryptedtext.begin(),\ decryptedtext.end());}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ decrypted\_string;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ CryptographyManager::CryptographyManager(\textcolor{keyword}{const}\ std::string\ \&username,\ \textcolor{keyword}{const}\ std::string\ \&password)\ :\ username(username),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ password(password)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ userId\ =\ Encrypt(username);}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{const}\ std::string\ \&CryptographyManager::getUserId()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ userId;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}

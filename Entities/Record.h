@@ -4,6 +4,7 @@
 
 #include <string>
 
+/// Запись в базе данных.
 struct Record {
     /// Id записи в БД
     int id;

@@ -1,0 +1,46 @@
+\doxysection{db\+Manager.\+h}
+\hypertarget{dbManager_8h_source}{}\label{dbManager_8h_source}\index{dbManager/dbManager.h@{dbManager/dbManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DBMANAGERTESTS\_DBMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DBMANAGERTESTS\_DBMANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}PostgresCRUD.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vector"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../Entities/Record.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDbManager}{DbManager}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classDbManager_a434756cef150a58972e24556a1801427}{DbManager}}(\textcolor{keyword}{const}\ std::string\&\ connection\_string,\ \textcolor{keyword}{const}\ std::string\&\ table\_name);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDbManager_abe30496b60d26cdf62e841e03d6fa246}{createTable}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDbManager_a0c7def80cad1ae5086a23e4f436c386a}{addRecord}}(\mbox{\hyperlink{structRecord}{Record}}\ record);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDbManager_a5091f1e0367008339bb38bc37166e13b}{updateRecord}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRecord}{Record}}\&\ record);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDbManager_af52054b0b64dba11e8e893b46c07c8ea}{updatePassword}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ password);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDbManager_acbe647877aac1ea5e6153d0f535ffb90}{updateTag}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ tag);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDbManager_aacd22871e5706e632f543f36ef6d9ebb}{deleteRecord}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{structRecord}{Record}}\ \mbox{\hyperlink{classDbManager_ada6b32ab67281b7fa308cdaf9629ca34}{findRecord}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<Record>\ \mbox{\hyperlink{classDbManager_a078cfc7deb2db805d7d6074fcaa69f59}{findAllUserRecords}}(\textcolor{keyword}{const}\ std::string\&\ username);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \ \ std::vector<Record>\ \mbox{\hyperlink{classDbManager_ad2da0424cf06b00c08e8d57ba975d5c3}{findAllUserRecordsWithTag}}(\textcolor{keyword}{const}\ std::string\&\ username,\ \textcolor{keyword}{const}\ std::string\&\ tag);}
+\DoxyCodeLine{00079\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classPostgresCRUD}{PostgresCRUD}}\ db;}
+\DoxyCodeLine{00083\ \ \ \ \ std::string\ table\_name;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ std::map<std::string,\ std::string>\ recordToMap(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRecord}{Record}}\&\ record);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ std::vector<Record>\ resultToRecord(\textcolor{keyword}{const}\ pqxx::result\&\ result);}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DBMANAGERTESTS\_DBMANAGER\_H}}
+
+\end{DoxyCode}

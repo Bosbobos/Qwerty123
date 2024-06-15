@@ -1,0 +1,128 @@
+\doxysection{Класс Postgres\+CRUD}
+\hypertarget{classPostgresCRUD}{}\label{classPostgresCRUD}\index{PostgresCRUD@{PostgresCRUD}}
+
+
+Класс для выполнения операций CRUD (Create, Read, Update, Delete) в базе данных Postgre\+SQL.  
+
+
+
+
+{\ttfamily \#include $<$Postgres\+CRUD.\+h$>$}
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPostgresCRUD_a14e7b5b11d3692697192aea855d939e0}{Postgres\+CRUD}} (const std\+::string \&connection\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \doxylink{classPostgresCRUD}{Postgres\+CRUD}. \end{DoxyCompactList}\item 
+\Hypertarget{classPostgresCRUD_ae578660d13309beab27ccf90369ed474}\label{classPostgresCRUD_ae578660d13309beab27ccf90369ed474} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Postgres\+CRUD} ()
+\begin{DoxyCompactList}\small\item\em Деструктор класса \doxylink{classPostgresCRUD}{Postgres\+CRUD}. Поскольку закрытие соединения происходит автоматически, не делает ничего. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPostgresCRUD_ae16f9bdc224e6d756091387a4fc1ee7e}{create}} (const std\+::string \&table, const std\+::map$<$ std\+::string, std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Создает новую запись в указанной таблице. \end{DoxyCompactList}\item 
+pqxx\+::result \mbox{\hyperlink{classPostgresCRUD_a00c018acc5f14ee6fba5ac6818cbe915}{read}} (const std\+::string \&query)
+\begin{DoxyCompactList}\small\item\em Выполняет запрос на чтение данных из базы данных. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPostgresCRUD_a0f7f0126d49cbc5c9f70be716845ba4a}{update}} (const std\+::string \&table, const std\+::map$<$ std\+::string, std\+::string $>$ \&data, const std\+::string \&condition)
+\begin{DoxyCompactList}\small\item\em Обновляет существующие записи в указанной таблице. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPostgresCRUD_ab578c5a3536d6fad3f9242d073aa76cb}{delete\+\_\+record}} (const std\+::string \&table, const std\+::string \&condition)
+\begin{DoxyCompactList}\small\item\em Удаляет записи из указанной таблицы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для выполнения операций CRUD (Create, Read, Update, Delete) в базе данных Postgre\+SQL. 
+
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{classPostgresCRUD_a14e7b5b11d3692697192aea855d939e0}\index{PostgresCRUD@{PostgresCRUD}!PostgresCRUD@{PostgresCRUD}}
+\index{PostgresCRUD@{PostgresCRUD}!PostgresCRUD@{PostgresCRUD}}
+\doxysubsubsection{\texorpdfstring{PostgresCRUD()}{PostgresCRUD()}}
+{\footnotesize\ttfamily \label{classPostgresCRUD_a14e7b5b11d3692697192aea855d939e0} 
+Postgres\+CRUD\+::\+Postgres\+CRUD (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{connection\+\_\+string}{}\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \doxylink{classPostgresCRUD}{Postgres\+CRUD}. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em connection\+\_\+string} & Строка подключения к базе данных Postgre\+SQL. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\Hypertarget{classPostgresCRUD_ae16f9bdc224e6d756091387a4fc1ee7e}\index{PostgresCRUD@{PostgresCRUD}!create@{create}}
+\index{create@{create}!PostgresCRUD@{PostgresCRUD}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{classPostgresCRUD_ae16f9bdc224e6d756091387a4fc1ee7e} 
+void Postgres\+CRUD\+::create (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{table}{, }\item[{const std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Создает новую запись в указанной таблице. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em table} & Имя таблицы, в которую будет добавлена запись. \\
+\hline
+{\em data} & Пара ключ-\/значение, представляющая данные для новой записи. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPostgresCRUD_ab578c5a3536d6fad3f9242d073aa76cb}\index{PostgresCRUD@{PostgresCRUD}!delete\_record@{delete\_record}}
+\index{delete\_record@{delete\_record}!PostgresCRUD@{PostgresCRUD}}
+\doxysubsubsection{\texorpdfstring{delete\_record()}{delete\_record()}}
+{\footnotesize\ttfamily \label{classPostgresCRUD_ab578c5a3536d6fad3f9242d073aa76cb} 
+void Postgres\+CRUD\+::delete\+\_\+record (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{table}{, }\item[{const std\+::string \&}]{condition}{}\end{DoxyParamCaption})}
+
+
+
+Удаляет записи из указанной таблицы. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em table} & Имя таблицы, из которой будут удалены записи. \\
+\hline
+{\em condition} & Условие для удаления записей (например, "{}id = 1"{}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPostgresCRUD_a00c018acc5f14ee6fba5ac6818cbe915}\index{PostgresCRUD@{PostgresCRUD}!read@{read}}
+\index{read@{read}!PostgresCRUD@{PostgresCRUD}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classPostgresCRUD_a00c018acc5f14ee6fba5ac6818cbe915} 
+pqxx\+::result Postgres\+CRUD\+::read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{query}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет запрос на чтение данных из базы данных. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em query} & SQL-\/запрос для чтения данных. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Результат выполнения запроса в виде объекта pqxx\+::result. 
+\end{DoxyReturn}
+\Hypertarget{classPostgresCRUD_a0f7f0126d49cbc5c9f70be716845ba4a}\index{PostgresCRUD@{PostgresCRUD}!update@{update}}
+\index{update@{update}!PostgresCRUD@{PostgresCRUD}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classPostgresCRUD_a0f7f0126d49cbc5c9f70be716845ba4a} 
+void Postgres\+CRUD\+::update (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{table}{, }\item[{const std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data}{, }\item[{const std\+::string \&}]{condition}{}\end{DoxyParamCaption})}
+
+
+
+Обновляет существующие записи в указанной таблице. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em table} & Имя таблицы, в которой будут обновлены записи. \\
+\hline
+{\em data} & Пара ключ-\/значение, представляющая новые данные для записи. \\
+\hline
+{\em condition} & Условие для обновления записей (например, "{}id = 1"{}). \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+db\+Manager/Postgres\+CRUD.\+h\item 
+db\+Manager/Postgres\+CRUD.\+cpp\end{DoxyCompactItemize}

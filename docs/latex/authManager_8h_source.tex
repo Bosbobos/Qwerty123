@@ -1,0 +1,29 @@
+\doxysection{auth\+Manager.\+h}
+\hypertarget{authManager_8h_source}{}\label{authManager_8h_source}\index{dbManager/authManager.h@{dbManager/authManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DBMANAGER\_AUTHMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DBMANAGER\_AUTHMANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}PostgresCRUD.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAuthManager}{AuthManager}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classAuthManager_a2a651aa8868db2033e1ad3a1dc6367ac}{AuthManager}}(\textcolor{keyword}{const}\ std::string\&\ connection\_string,\ \textcolor{keyword}{const}\ std::string\&\ table\_name);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAuthManager_af75ea90bae18317d6490b41527214579}{createTable}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAuthManager_a55967752ebb544c8b3c13b44929013dd}{addRecord}}(\textcolor{keyword}{const}\ std::string\&\ login);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAuthManager_a3560996aaf2d2dd0cab796fcfaddaad7}{loginExists}}(\textcolor{keyword}{const}\ std::string\&\ login);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classPostgresCRUD}{PostgresCRUD}}\ db;}
+\DoxyCodeLine{00041\ \ \ \ \ std::string\ table\_name;}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DBMANAGER\_AUTHMANAGER\_H}}
+
+\end{DoxyCode}

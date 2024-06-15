@@ -1,0 +1,29 @@
+\doxysection{Cryptography\+Manager.\+h}
+\hypertarget{CryptographyManager_8h_source}{}\label{CryptographyManager_8h_source}\index{cryptography/CryptographyManager.h@{cryptography/CryptographyManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CRYPTOGRAPHY\_CRYPTOGRAPHYMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CRYPTOGRAPHY\_CRYPTOGRAPHYMANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCryptographyManager}{CryptographyManager}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{classCryptographyManager}{CryptographyManager}}(\textcolor{keyword}{const}\ std::string\ \&username,\ \textcolor{keyword}{const}\ std::string\ \&password);}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ \ *\ Зашифрование\ текста\ паролем,\ хранящимся\ в}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00013\ \ \ \ \ std::string\ Encrypt(\textcolor{keyword}{const}\ std::string\ \&plaintext);}
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ Decrypt(\textcolor{keyword}{const}\ std::string\ \&ciphertext);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getUserId()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ username;}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ password;}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ userId;}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//CRYPTOGRAPHY\_CRYPTOGRAPHYMANAGER\_H}}
+
+\end{DoxyCode}

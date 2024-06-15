@@ -1,0 +1,110 @@
+\doxysection{ui\+\_\+registrationwindow.\+h}
+\hypertarget{ui__registrationwindow_8h_source}{}\label{ui__registrationwindow_8h_source}\index{UI/cmake-\/build-\/debug/UI\_autogen/include/ui\_registrationwindow.h@{UI/cmake-\/build-\/debug/UI\_autogen/include/ui\_registrationwindow.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Form\ generated\ from\ reading\ UI\ file\ 'registrationwindow.ui'}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ Created\ by:\ Qt\ User\ Interface\ Compiler\ version\ 6.7.1}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**}}
+\DoxyCodeLine{00006\ \textcolor{comment}{**\ WARNING!\ All\ changes\ made\ in\ this\ file\ will\ be\ lost\ when\ recompiling\ UI\ file!}}
+\DoxyCodeLine{00007\ \textcolor{comment}{********************************************************************************/}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ UI\_REGISTRATIONWINDOW\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ UI\_REGISTRATIONWINDOW\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QtCore/QVariant>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QtWidgets/QApplication>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QtWidgets/QLabel>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QtWidgets/QLineEdit>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QtWidgets/QMainWindow>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QtWidgets/QPushButton>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <QtWidgets/QVBoxLayout>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <QtWidgets/QWidget>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUi__RegistrationWindow}{Ui\_RegistrationWindow}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ QWidget\ *centralWidget;}
+\DoxyCodeLine{00027\ \ \ \ \ QVBoxLayout\ *verticalLayout;}
+\DoxyCodeLine{00028\ \ \ \ \ QLabel\ *label;}
+\DoxyCodeLine{00029\ \ \ \ \ QLabel\ *rulesLabel;}
+\DoxyCodeLine{00030\ \ \ \ \ QLineEdit\ *usernameInput;}
+\DoxyCodeLine{00031\ \ \ \ \ QLineEdit\ *passwordInput;}
+\DoxyCodeLine{00032\ \ \ \ \ QLineEdit\ *confirmPasswordInput;}
+\DoxyCodeLine{00033\ \ \ \ \ QPushButton\ *registerButton;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ setupUi(QMainWindow\ *\mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}})}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}}-\/>objectName().isEmpty())}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}}-\/>setObjectName(\textcolor{stringliteral}{"{}RegistrationWindow"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}}-\/>setWindowModality(Qt::WindowModality::WindowModal);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}}-\/>resize(400,\ 300);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ centralWidget\ =\ \textcolor{keyword}{new}\ QWidget(\mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ centralWidget-\/>setObjectName(\textcolor{stringliteral}{"{}centralWidget"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ verticalLayout\ =\ \textcolor{keyword}{new}\ QVBoxLayout(centralWidget);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ verticalLayout-\/>setObjectName(\textcolor{stringliteral}{"{}verticalLayout"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ label\ =\ \textcolor{keyword}{new}\ QLabel(centralWidget);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ label-\/>setObjectName(\textcolor{stringliteral}{"{}label"{}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(label);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ rulesLabel\ =\ \textcolor{keyword}{new}\ QLabel(centralWidget);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ rulesLabel-\/>setObjectName(\textcolor{stringliteral}{"{}rulesLabel"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ rulesLabel-\/>setEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(rulesLabel);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ usernameInput\ =\ \textcolor{keyword}{new}\ QLineEdit(centralWidget);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ usernameInput-\/>setObjectName(\textcolor{stringliteral}{"{}usernameInput"{}});}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(usernameInput);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ passwordInput\ =\ \textcolor{keyword}{new}\ QLineEdit(centralWidget);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ passwordInput-\/>setObjectName(\textcolor{stringliteral}{"{}passwordInput"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ passwordInput-\/>setEchoMode(QLineEdit::EchoMode::Password);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(passwordInput);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ confirmPasswordInput\ =\ \textcolor{keyword}{new}\ QLineEdit(centralWidget);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ confirmPasswordInput-\/>setObjectName(\textcolor{stringliteral}{"{}confirmPasswordInput"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ confirmPasswordInput-\/>setEchoMode(QLineEdit::EchoMode::Password);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(confirmPasswordInput);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ registerButton\ =\ \textcolor{keyword}{new}\ QPushButton(centralWidget);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ registerButton-\/>setObjectName(\textcolor{stringliteral}{"{}registerButton"{}});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ verticalLayout-\/>addWidget(registerButton);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}}-\/>setCentralWidget(centralWidget);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ retranslateUi(\mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ QMetaObject::connectSlotsByName(\mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}});}
+\DoxyCodeLine{00083\ \ \ \ \ \}\ \textcolor{comment}{//\ setupUi}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ retranslateUi(QMainWindow\ *\mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}})}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRegistrationWindow}{RegistrationWindow}}-\/>setWindowTitle(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}Password\ Manager\ -\/\ Register"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ label-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}<html><head/><body><p\ align=\(\backslash\)"{}center\(\backslash\)"{}><span\ style=\(\backslash\)"{}\ font-\/size:22pt;\ font-\/weight:700;\(\backslash\)"{}>Register</span></p></body></html>"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ rulesLabel-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}<html><head/><body><p\ align=\(\backslash\)"{}center\(\backslash\)"{}>Username\ and\ password\ must\ be\ 8-\/32\ characters\ long,\ include\ at\ least\ one\ uppercase\ letter,\ one\ lowercase\ letter,\ and\ one\ digit.</p></body></html>"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ usernameInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}Username"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ passwordInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}Password"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ confirmPasswordInput-\/>setPlaceholderText(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}Confirm\ Password"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ registerButton-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}RegistrationWindow"{}},\ \textcolor{stringliteral}{"{}Register"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00094\ \ \ \ \ \}\ \textcolor{comment}{//\ retranslateUi}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{namespace\ }Ui\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUi_1_1RegistrationWindow}{RegistrationWindow}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classUi__RegistrationWindow}{Ui\_RegistrationWindow}}\ \{\};}
+\DoxyCodeLine{00100\ \}\ \textcolor{comment}{//\ namespace\ Ui}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UI\_REGISTRATIONWINDOW\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,841 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qwerty123: Файл cryptography/cryptography.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qwerty123
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_e222a4d749c58194eb911d46bc0fc45f.html">cryptography</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл cryptography.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Реализация алгоритма блочного шифра Кузнечика (ГОСТ Р 34.12-2015).  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;random&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+</div>
+<p><a href="cryptography_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a8c9078c33a04fee651e6129867ecbb64" id="r_a8c9078c33a04fee651e6129867ecbb64"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c9078c33a04fee651e6129867ecbb64">multiply_in_Galua</a> (uint8_t a, uint8_t b)</td></tr>
+<tr class="memdesc:a8c9078c33a04fee651e6129867ecbb64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет умножение двух байтов в поле Галуа (GF(2^8)).  <br /></td></tr>
+<tr class="separator:a8c9078c33a04fee651e6129867ecbb64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131bef2b576ef02bc21f453a56eb095c" id="r_a131bef2b576ef02bc21f453a56eb095c"><td class="memItemLeft" align="right" valign="top"><a id="a131bef2b576ef02bc21f453a56eb095c" name="a131bef2b576ef02bc21f453a56eb095c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>create_muls</b> ()</td></tr>
+<tr class="memdesc:a131bef2b576ef02bc21f453a56eb095c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает таблицу предварительно вычисленных произведений в поле Галуа (GF(2^8)). <br /></td></tr>
+<tr class="separator:a131bef2b576ef02bc21f453a56eb095c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f14732e49620ad5737ed90a5c1a8e7a" id="r_a4f14732e49620ad5737ed90a5c1a8e7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f14732e49620ad5737ed90a5c1a8e7a">L_transform</a> (uint8_t block[<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a4f14732e49620ad5737ed90a5c1a8e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет линейное преобразование блока данных.  <br /></td></tr>
+<tr class="separator:a4f14732e49620ad5737ed90a5c1a8e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4d4f03594fc9246f2abedf1eb2071a3" id="r_aa4d4f03594fc9246f2abedf1eb2071a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4d4f03594fc9246f2abedf1eb2071a3">inverse_L_transform</a> (uint8_t block[<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:aa4d4f03594fc9246f2abedf1eb2071a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет обратное линейное преобразование блока данных.  <br /></td></tr>
+<tr class="separator:aa4d4f03594fc9246f2abedf1eb2071a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b15078daaf1b342490dadb38f2aafd8" id="r_a7b15078daaf1b342490dadb38f2aafd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b15078daaf1b342490dadb38f2aafd8">linear_transform</a> (uint8_t block[<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a7b15078daaf1b342490dadb38f2aafd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет линейное преобразование блока данных без использования предварительно вычисленных матриц.  <br /></td></tr>
+<tr class="separator:a7b15078daaf1b342490dadb38f2aafd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d376e1cb032da8cd977fb417878244" id="r_ad3d376e1cb032da8cd977fb417878244"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3d376e1cb032da8cd977fb417878244">inverse_linear_transform</a> (uint8_t block[<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:ad3d376e1cb032da8cd977fb417878244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет обратное линейное преобразование блока данных без использования предварительно вычисленных матриц.  <br /></td></tr>
+<tr class="separator:ad3d376e1cb032da8cd977fb417878244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5064b2908825a143531825c22525b05a" id="r_a5064b2908825a143531825c22525b05a"><td class="memItemLeft" align="right" valign="top"><a id="a5064b2908825a143531825c22525b05a" name="a5064b2908825a143531825c22525b05a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>create_MATRIX</b> ()</td></tr>
+<tr class="memdesc:a5064b2908825a143531825c22525b05a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает матрицы для линейного и обратного линейного преобразования. <br /></td></tr>
+<tr class="separator:a5064b2908825a143531825c22525b05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6823c9f6169569e266f30fe8f858fea6" id="r_a6823c9f6169569e266f30fe8f858fea6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6823c9f6169569e266f30fe8f858fea6">generate_round_constants</a> (uint8_t round_constants[32][16])</td></tr>
+<tr class="memdesc:a6823c9f6169569e266f30fe8f858fea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерирует константы для раундов шифрования.  <br /></td></tr>
+<tr class="separator:a6823c9f6169569e266f30fe8f858fea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e24a9efd9a92e1edb39ff675c1e5e89" id="r_a3e24a9efd9a92e1edb39ff675c1e5e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e24a9efd9a92e1edb39ff675c1e5e89">generate</a> (const uint8_t key[32], uint8_t round_keys[10][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a3e24a9efd9a92e1edb39ff675c1e5e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация раундовых ключей для алгоритма Кузнечик с использованием сети Фейстеля.  <br /></td></tr>
+<tr class="separator:a3e24a9efd9a92e1edb39ff675c1e5e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f86ffee2a14a48fff3d0dc98cefb37b" id="r_a2f86ffee2a14a48fff3d0dc98cefb37b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f86ffee2a14a48fff3d0dc98cefb37b">textToHex</a> (const std::string &amp;input)</td></tr>
+<tr class="memdesc:a2f86ffee2a14a48fff3d0dc98cefb37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразует текстовую строку в её шестнадцатеричное представление.  <br /></td></tr>
+<tr class="separator:a2f86ffee2a14a48fff3d0dc98cefb37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8436d079ac39837512488588cb0b9f15" id="r_a8436d079ac39837512488588cb0b9f15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8436d079ac39837512488588cb0b9f15">padKey</a> (std::string &amp;input_key)</td></tr>
+<tr class="memdesc:a8436d079ac39837512488588cb0b9f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Дополняет ключ до 64 символов нулями после первого символа.  <br /></td></tr>
+<tr class="separator:a8436d079ac39837512488588cb0b9f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acea6cedf0c4b8acac8498581188c339f" id="r_acea6cedf0c4b8acac8498581188c339f"><td class="memItemLeft" align="right" valign="top">const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acea6cedf0c4b8acac8498581188c339f">stringToReversedKey</a> (std::string &amp;input_key)</td></tr>
+<tr class="memdesc:acea6cedf0c4b8acac8498581188c339f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразует строку из шестнадцатеричного представления в обратный массив uint8_t.  <br /></td></tr>
+<tr class="separator:acea6cedf0c4b8acac8498581188c339f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e232c4d437d34875e21b4d02bab9918" id="r_a2e232c4d437d34875e21b4d02bab9918"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e232c4d437d34875e21b4d02bab9918">hexToVector</a> (const std::string &amp;hex)</td></tr>
+<tr class="memdesc:a2e232c4d437d34875e21b4d02bab9918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразует hex строку в вектор байтов (uint8_t).  <br /></td></tr>
+<tr class="separator:a2e232c4d437d34875e21b4d02bab9918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb07f9f28db5dddf4054f12a1a516894" id="r_abb07f9f28db5dddf4054f12a1a516894"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb07f9f28db5dddf4054f12a1a516894">vectorToHex</a> (const std::vector&lt; uint8_t &gt; &amp;vec)</td></tr>
+<tr class="memdesc:abb07f9f28db5dddf4054f12a1a516894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразует вектор байтов (uint8_t) в hex строку.  <br /></td></tr>
+<tr class="separator:abb07f9f28db5dddf4054f12a1a516894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b03cfc3c9a83e94ad045b48cb2be760" id="r_a1b03cfc3c9a83e94ad045b48cb2be760"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b03cfc3c9a83e94ad045b48cb2be760">encode_block</a> (uint8_t block[<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>], const uint8_t round_keys[10][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a1b03cfc3c9a83e94ad045b48cb2be760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Шифрует блок данных с использованием раундовых ключей.  <br /></td></tr>
+<tr class="separator:a1b03cfc3c9a83e94ad045b48cb2be760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36079049658dd78b71542e556b41fc0d" id="r_a36079049658dd78b71542e556b41fc0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36079049658dd78b71542e556b41fc0d">decode_block</a> (uint8_t block[<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>], const uint8_t round_keys[10][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a36079049658dd78b71542e556b41fc0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Дешифрует блок данных с использованием раундовых ключей.  <br /></td></tr>
+<tr class="separator:a36079049658dd78b71542e556b41fc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5768a9571c6e0f284184a41662c5a61b" id="r_a5768a9571c6e0f284184a41662c5a61b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5768a9571c6e0f284184a41662c5a61b">xorBlocks</a> (uint8_t *block1, const uint8_t *block2, size_t length)</td></tr>
+<tr class="memdesc:a5768a9571c6e0f284184a41662c5a61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет побитовую операцию XOR над двумя блоками данных.  <br /></td></tr>
+<tr class="separator:a5768a9571c6e0f284184a41662c5a61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001f535f93b0fa98b52d60572cdd1532" id="r_a001f535f93b0fa98b52d60572cdd1532"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a001f535f93b0fa98b52d60572cdd1532">cbcEncrypt</a> (const std::vector&lt; uint8_t &gt; &amp;plaintext, const uint8_t round_keys[10][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a001f535f93b0fa98b52d60572cdd1532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Шифрует данные в режиме CBC (Cipher Block Chaining).  <br /></td></tr>
+<tr class="separator:a001f535f93b0fa98b52d60572cdd1532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58737862c42617cd5deba76f7380eb2e" id="r_a58737862c42617cd5deba76f7380eb2e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58737862c42617cd5deba76f7380eb2e">cbcDecrypt</a> (const std::vector&lt; uint8_t &gt; &amp;ciphertext, const uint8_t round_keys[10][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>])</td></tr>
+<tr class="memdesc:a58737862c42617cd5deba76f7380eb2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Расшифрование текста в режиме CBC.  <br /></td></tr>
+<tr class="separator:a58737862c42617cd5deba76f7380eb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a4e9a55250b9fa50f207ce090a8c7df3e" id="r_a4e9a55250b9fa50f207ce090a8c7df3e"><td class="memItemLeft" align="right" valign="top"><a id="a4e9a55250b9fa50f207ce090a8c7df3e" name="a4e9a55250b9fa50f207ce090a8c7df3e"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>block_len</b> = 16</td></tr>
+<tr class="memdesc:a4e9a55250b9fa50f207ce090a8c7df3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Длина блока в алгоритме Кузнечика = 16 байт <br /></td></tr>
+<tr class="separator:a4e9a55250b9fa50f207ce090a8c7df3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e73936bd7a8b00725f394771e57ebe8" id="r_a6e73936bd7a8b00725f394771e57ebe8"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e73936bd7a8b00725f394771e57ebe8">S</a> [256]</td></tr>
+<tr class="memdesc:a6e73936bd7a8b00725f394771e57ebe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">S-блок для нелинейного преобразования  <br /></td></tr>
+<tr class="separator:a6e73936bd7a8b00725f394771e57ebe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83ad5e07d27552488b67b1068129f1f9" id="r_a83ad5e07d27552488b67b1068129f1f9"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83ad5e07d27552488b67b1068129f1f9">INVERSE_S</a> [256]</td></tr>
+<tr class="memdesc:a83ad5e07d27552488b67b1068129f1f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Инверсный S-блок для нелинейного преобразования  <br /></td></tr>
+<tr class="separator:a83ad5e07d27552488b67b1068129f1f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6898fc90a1cfe2e2e8ee7f7aac6964f9" id="r_a6898fc90a1cfe2e2e8ee7f7aac6964f9"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6898fc90a1cfe2e2e8ee7f7aac6964f9">L</a> [16]</td></tr>
+<tr class="memdesc:a6898fc90a1cfe2e2e8ee7f7aac6964f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">вектор линейного преобразования  <br /></td></tr>
+<tr class="separator:a6898fc90a1cfe2e2e8ee7f7aac6964f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff763385251e2cf7d56fc6a54f5b69f9" id="r_aff763385251e2cf7d56fc6a54f5b69f9"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff763385251e2cf7d56fc6a54f5b69f9">DEGREE</a> [255]</td></tr>
+<tr class="memdesc:aff763385251e2cf7d56fc6a54f5b69f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">таблица степеней двойки в поле GF(2^8)  <br /></td></tr>
+<tr class="separator:aff763385251e2cf7d56fc6a54f5b69f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b7156a89c49ef7d4618def503ba423d" id="r_a8b7156a89c49ef7d4618def503ba423d"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b7156a89c49ef7d4618def503ba423d">INVERSE_DEGREE</a> [255]</td></tr>
+<tr class="memdesc:a8b7156a89c49ef7d4618def503ba423d"><td class="mdescLeft">&#160;</td><td class="mdescRight">таблица: по числу получить его степень в поле Галуа  <br /></td></tr>
+<tr class="separator:a8b7156a89c49ef7d4618def503ba423d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a406da36d3e9c4487b5247e861c8b319f" id="r_a406da36d3e9c4487b5247e861c8b319f"><td class="memItemLeft" align="right" valign="top"><a id="a406da36d3e9c4487b5247e861c8b319f" name="a406da36d3e9c4487b5247e861c8b319f"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>MULS</b> [256][256] = {}</td></tr>
+<tr class="memdesc:a406da36d3e9c4487b5247e861c8b319f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Таблица предварительно вычисленных произведений в поле Галуа (GF(2^8)). <br /></td></tr>
+<tr class="separator:a406da36d3e9c4487b5247e861c8b319f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0f645c9b57fdaa200b604f7c61b54e" id="r_a4d0f645c9b57fdaa200b604f7c61b54e"><td class="memItemLeft" align="right" valign="top"><a id="a4d0f645c9b57fdaa200b604f7c61b54e" name="a4d0f645c9b57fdaa200b604f7c61b54e"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>MATRIX</b> [<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>][256][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>] = {}</td></tr>
+<tr class="memdesc:a4d0f645c9b57fdaa200b604f7c61b54e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Матрица для линейного преобразования. <br /></td></tr>
+<tr class="separator:a4d0f645c9b57fdaa200b604f7c61b54e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03bb6f46c7e66176a1193ae3a2a1a09" id="r_ad03bb6f46c7e66176a1193ae3a2a1a09"><td class="memItemLeft" align="right" valign="top"><a id="ad03bb6f46c7e66176a1193ae3a2a1a09" name="ad03bb6f46c7e66176a1193ae3a2a1a09"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>INVERSE_MATRIX</b> [<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>][256][<a class="el" href="#a4e9a55250b9fa50f207ce090a8c7df3e">block_len</a>] = {}</td></tr>
+<tr class="memdesc:ad03bb6f46c7e66176a1193ae3a2a1a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Матрица для обратного линейного преобразования. <br /></td></tr>
+<tr class="separator:ad03bb6f46c7e66176a1193ae3a2a1a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Реализация алгоритма блочного шифра Кузнечика (ГОСТ Р 34.12-2015). </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a58737862c42617cd5deba76f7380eb2e" name="a58737862c42617cd5deba76f7380eb2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58737862c42617cd5deba76f7380eb2e">&#9670;&#160;</a></span>cbcDecrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; cbcDecrypt </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ciphertext</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t</td>          <td class="paramname"><span class="paramname"><em>round_keys</em></span>[10][block_len]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Расшифрование текста в режиме CBC. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ciphertext</td><td>Входной зашифрованный текст. </td></tr>
+    <tr><td class="paramname">round_keys</td><td>Раундовые ключи. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Расшифрованный текст. </dd></dl>
+
+</div>
+</div>
+<a id="a001f535f93b0fa98b52d60572cdd1532" name="a001f535f93b0fa98b52d60572cdd1532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001f535f93b0fa98b52d60572cdd1532">&#9670;&#160;</a></span>cbcEncrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; cbcEncrypt </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>plaintext</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t</td>          <td class="paramname"><span class="paramname"><em>round_keys</em></span>[10][block_len]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Шифрует данные в режиме CBC (Cipher Block Chaining). </p>
+<p>Эта функция шифрует данные, используя режим CBC, с заданными раундовыми ключами.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plaintext</td><td>Вектор данных, представляющий открытый текст для шифрования. </td></tr>
+    <tr><td class="paramname">round_keys</td><td>Раундовые ключи для шифрования. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>std::vector&lt;uint8_t&gt; Вектор данных, представляющий зашифрованный текст. </dd></dl>
+
+</div>
+</div>
+<a id="a36079049658dd78b71542e556b41fc0d" name="a36079049658dd78b71542e556b41fc0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36079049658dd78b71542e556b41fc0d">&#9670;&#160;</a></span>decode_block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void decode_block </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>block</em></span>[block_len], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t</td>          <td class="paramname"><span class="paramname"><em>round_keys</em></span>[10][block_len]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Дешифрует блок данных с использованием раундовых ключей. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Указатель на блок данных для дешифрования. </td></tr>
+    <tr><td class="paramname">round_keys</td><td>Массив раундовых ключей. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b03cfc3c9a83e94ad045b48cb2be760" name="a1b03cfc3c9a83e94ad045b48cb2be760"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b03cfc3c9a83e94ad045b48cb2be760">&#9670;&#160;</a></span>encode_block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void encode_block </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>block</em></span>[block_len], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t</td>          <td class="paramname"><span class="paramname"><em>round_keys</em></span>[10][block_len]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Шифрует блок данных с использованием раундовых ключей. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Указатель на блок данных для шифрования. </td></tr>
+    <tr><td class="paramname">round_keys</td><td>Массив раундовых ключей. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e24a9efd9a92e1edb39ff675c1e5e89" name="a3e24a9efd9a92e1edb39ff675c1e5e89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e24a9efd9a92e1edb39ff675c1e5e89">&#9670;&#160;</a></span>generate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generate </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t</td>          <td class="paramname"><span class="paramname"><em>key</em></span>[32], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>round_keys</em></span>[10][block_len]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация раундовых ключей для алгоритма Кузнечик с использованием сети Фейстеля. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Исходный ключ длиной 32 байта. </td></tr>
+    <tr><td class="paramname">round_keys</td><td>Массив для хранения 10 раундовых ключей, каждый длиной block_len байт. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6823c9f6169569e266f30fe8f858fea6" name="a6823c9f6169569e266f30fe8f858fea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6823c9f6169569e266f30fe8f858fea6">&#9670;&#160;</a></span>generate_round_constants()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generate_round_constants </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>round_constants</em></span>[32][16]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерирует константы для раундов шифрования. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">round_constants</td><td>Массив для хранения раундовых констант (размер 32x16). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2e232c4d437d34875e21b4d02bab9918" name="a2e232c4d437d34875e21b4d02bab9918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e232c4d437d34875e21b4d02bab9918">&#9670;&#160;</a></span>hexToVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; hexToVector </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>hex</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразует hex строку в вектор байтов (uint8_t). </p>
+<p>Эта функция принимает строку в формате hex и преобразует её в вектор байтов (uint8_t).</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hex</td><td>Входная строка в формате hex. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>std::vector&lt;uint8_t&gt; Вектор байтов, представляющих входную hex строку. </dd></dl>
+
+</div>
+</div>
+<a id="aa4d4f03594fc9246f2abedf1eb2071a3" name="aa4d4f03594fc9246f2abedf1eb2071a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4d4f03594fc9246f2abedf1eb2071a3">&#9670;&#160;</a></span>inverse_L_transform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inverse_L_transform </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>block</em></span>[block_len]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет обратное линейное преобразование блока данных. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Блок данных длиной block_len байт. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad3d376e1cb032da8cd977fb417878244" name="ad3d376e1cb032da8cd977fb417878244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3d376e1cb032da8cd977fb417878244">&#9670;&#160;</a></span>inverse_linear_transform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inverse_linear_transform </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>block</em></span>[block_len]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет обратное линейное преобразование блока данных без использования предварительно вычисленных матриц. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Блок данных длиной block_len байт. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4f14732e49620ad5737ed90a5c1a8e7a" name="a4f14732e49620ad5737ed90a5c1a8e7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f14732e49620ad5737ed90a5c1a8e7a">&#9670;&#160;</a></span>L_transform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void L_transform </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>block</em></span>[block_len]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет линейное преобразование блока данных. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Блок данных длиной block_len байт. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7b15078daaf1b342490dadb38f2aafd8" name="a7b15078daaf1b342490dadb38f2aafd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b15078daaf1b342490dadb38f2aafd8">&#9670;&#160;</a></span>linear_transform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void linear_transform </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>block</em></span>[block_len]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет линейное преобразование блока данных без использования предварительно вычисленных матриц. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Блок данных длиной block_len байт. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8c9078c33a04fee651e6129867ecbb64" name="a8c9078c33a04fee651e6129867ecbb64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c9078c33a04fee651e6129867ecbb64">&#9670;&#160;</a></span>multiply_in_Galua()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t multiply_in_Galua </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет умножение двух байтов в поле Галуа (GF(2^8)). </p>
+<p>Функция принимает два байта и выполняет их умножение в поле Галуа. Если один из байтов равен 0, результатом будет 0. Иначе, используются логарифмы и экспоненты для выполнения умножения.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>Первый байт. </td></tr>
+    <tr><td class="paramname">b</td><td>Второй байт. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>uint8_t Результат умножения в поле Галуа. </dd></dl>
+
+</div>
+</div>
+<a id="a8436d079ac39837512488588cb0b9f15" name="a8436d079ac39837512488588cb0b9f15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8436d079ac39837512488588cb0b9f15">&#9670;&#160;</a></span>padKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void padKey </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>input_key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Дополняет ключ до 64 символов нулями после первого символа. </p>
+<p>Эта функция принимает строку ключа и дополняет её нулями после первого символа, если длина ключа меньше 64 символов. Это необходимо для обеспечения того, чтобы ключ всегда имел длину 64 символа.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_key</td><td>Строка ключа, которая будет дополнена нулями. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acea6cedf0c4b8acac8498581188c339f" name="acea6cedf0c4b8acac8498581188c339f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea6cedf0c4b8acac8498581188c339f">&#9670;&#160;</a></span>stringToReversedKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t * stringToReversedKey </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>input_key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразует строку из шестнадцатеричного представления в обратный массив uint8_t. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_key</td><td>Входная строка ключа. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>const uint8_t* Указатель на массив обратного ключа. </dd></dl>
+
+</div>
+</div>
+<a id="a2f86ffee2a14a48fff3d0dc98cefb37b" name="a2f86ffee2a14a48fff3d0dc98cefb37b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f86ffee2a14a48fff3d0dc98cefb37b">&#9670;&#160;</a></span>textToHex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string textToHex </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>input</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразует текстовую строку в её шестнадцатеричное представление. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Строка текста. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строка, содержащая шестнадцатеричное представление входной строки. </dd></dl>
+
+</div>
+</div>
+<a id="abb07f9f28db5dddf4054f12a1a516894" name="abb07f9f28db5dddf4054f12a1a516894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb07f9f28db5dddf4054f12a1a516894">&#9670;&#160;</a></span>vectorToHex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string vectorToHex </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразует вектор байтов (uint8_t) в hex строку. </p>
+<p>Эта функция принимает вектор байтов (uint8_t) и преобразует его в строку в формате hex.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>Вектор байтов для преобразования. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>std::string Строка в формате hex, представляющая входной вектор байтов. </dd></dl>
+
+</div>
+</div>
+<a id="a5768a9571c6e0f284184a41662c5a61b" name="a5768a9571c6e0f284184a41662c5a61b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5768a9571c6e0f284184a41662c5a61b">&#9670;&#160;</a></span>xorBlocks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xorBlocks </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>block1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>block2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет побитовую операцию XOR над двумя блоками данных. </p>
+<p>Эта функция принимает два блока данных и выполняет побитовую операцию XOR над ними. Результат операции записывается в первый блок данных.</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block1</td><td>Указатель на первый блок данных. Результат операции будет записан в этот блок. </td></tr>
+    <tr><td class="paramname">block2</td><td>Указатель на второй блок данных, с которым будет выполнена операция XOR. </td></tr>
+    <tr><td class="paramname">length</td><td>Длина блоков данных. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="aff763385251e2cf7d56fc6a54f5b69f9" name="aff763385251e2cf7d56fc6a54f5b69f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff763385251e2cf7d56fc6a54f5b69f9">&#9670;&#160;</a></span>DEGREE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t DEGREE[255]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        1, 2, 4, 8, 16, 32, 64, 128, 195, 69, 138, 215, 109, 218, 119, 238, 31, 62, 124, 248, 51, 102,</div>
+<div class="line">        204, 91, 182, 175, 157, 249, 49, 98, 196, 75, 150, 239, 29, 58, 116, 232, 19, 38, 76, 152, 243,</div>
+<div class="line">        37, 74, 148, 235, 21, 42, 84, 168, 147, 229, 9, 18, 36, 72, 144, 227, 5, 10, 20, 40, 80, 160,</div>
+<div class="line">        131, 197, 73, 146, 231, 13, 26, 52, 104, 208, 99, 198, 79, 158, 255, 61, 122, 244, 43, 86, 172,</div>
+<div class="line">        155, 245, 41, 82, 164, 139, 213, 105, 210, 103, 206, 95, 190, 191, 189, 185, 177, 161, 129,</div>
+<div class="line">        193, 65, 130, 199, 77, 154, 247, 45, 90, 180, 171, 149, 233, 17, 34, 68, 136, 211, 101, 202,</div>
+<div class="line">        87, 174, 159, 253, 57, 114, 228, 11, 22, 44, 88, 176, 163, 133, 201, 81, 162, 135, 205, 89,</div>
+<div class="line">        178, 167, 141, 217, 113, 226, 7, 14, 28, 56, 112, 224, 3, 6, 12, 24, 48, 96, 192, 67, 134, 207,</div>
+<div class="line">        93, 186, 183, 173, 153, 241, 33, 66, 132, 203, 85, 170, 151, 237, 25, 50, 100, 200, 83, 166,</div>
+<div class="line">        143, 221, 121, 242, 39, 78, 156, 251, 53, 106, 212, 107, 214, 111, 222, 127, 254, 63, 126, 252,</div>
+<div class="line">        59, 118, 236, 27, 54, 108, 216, 115, 230, 15, 30, 60, 120, 240, 35, 70, 140, 219, 117, 234, 23,</div>
+<div class="line">        46, 92, 184, 179, 165, 137, 209, 97, 194, 71, 142, 223, 125, 250, 55, 110, 220, 123, 246, 47,</div>
+<div class="line">        94, 188, 187, 181, 169, 145, 225,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>таблица степеней двойки в поле GF(2^8) </p>
+
+</div>
+</div>
+<a id="a8b7156a89c49ef7d4618def503ba423d" name="a8b7156a89c49ef7d4618def503ba423d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b7156a89c49ef7d4618def503ba423d">&#9670;&#160;</a></span>INVERSE_DEGREE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t INVERSE_DEGREE[255]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        0, 1, 157, 2, 59, 158, 151, 3, 53, 60, 132, 159, 70, 152, 216, 4, 118, 54, 38, 61, 47, 133,</div>
+<div class="line">        227, 160, 181, 71, 210, 153, 34, 217, 16, 5, 173, 119, 221, 55, 43, 39, 191, 62, 88, 48, 83,</div>
+<div class="line">        134, 112, 228, 247, 161, 28, 182, 20, 72, 195, 211, 242, 154, 129, 35, 207, 218, 80, 17, 204,</div>
+<div class="line">        6, 106, 174, 164, 120, 9, 222, 237, 56, 67, 44, 31, 40, 109, 192, 77, 63, 140, 89, 185, 49,</div>
+<div class="line">        177, 84, 125, 135, 144, 113, 23, 229, 167, 248, 97, 162, 235, 29, 75, 183, 123, 21, 95, 73, 93,</div>
+<div class="line">        196, 198, 212, 12, 243, 200, 155, 149, 130, 214, 36, 225, 208, 14, 219, 189, 81, 245, 18, 240,</div>
+<div class="line">        205, 202, 7, 104, 107, 65, 175, 138, 165, 142, 121, 233, 10, 91, 223, 147, 238, 187, 57, 253,</div>
+<div class="line">        68, 51, 45, 116, 32, 179, 41, 171, 110, 86, 193, 26, 78, 127, 64, 103, 141, 137, 90, 232, 186,</div>
+<div class="line">        146, 50, 252, 178, 115, 85, 170, 126, 25, 136, 102, 145, 231, 114, 251, 24, 169, 230, 101, 168,</div>
+<div class="line">        250, 249, 100, 98, 99, 163, 105, 236, 8, 30, 66, 76, 108, 184, 139, 124, 176, 22, 143, 96, 166,</div>
+<div class="line">        74, 234, 94, 122, 197, 92, 199, 11, 213, 148, 13, 224, 244, 188, 201, 239, 156, 254, 150, 58,</div>
+<div class="line">        131, 52, 215, 69, 37, 117, 226, 46, 209, 180, 15, 33, 220, 172, 190, 42, 82, 87, 246, 111, 19,</div>
+<div class="line">        27, 241, 194, 206, 128, 203, 79,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>таблица: по числу получить его степень в поле Галуа </p>
+
+</div>
+</div>
+<a id="a83ad5e07d27552488b67b1068129f1f9" name="a83ad5e07d27552488b67b1068129f1f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83ad5e07d27552488b67b1068129f1f9">&#9670;&#160;</a></span>INVERSE_S</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t INVERSE_S[256]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        0xa5, 0x2D, 0x32, 0x8F, 0x0E, 0x30, 0x38, 0xC0, 0x54, 0xE6, 0x9E, 0x39, 0x55, 0x7E, 0x52, 0x91,</div>
+<div class="line">        0x64, 0x03, 0x57, 0x5A, 0x1C, 0x60, 0x07, 0x18, 0x21, 0x72, 0xA8, 0xD1, 0x29, 0xC6, 0xA4, 0x3F,</div>
+<div class="line">        0xE0, 0x27, 0x8D, 0x0C, 0x82, 0xEA, 0xAE, 0xB4, 0x9A, 0x63, 0x49, 0xE5, 0x42, 0xE4, 0x15, 0xB7,</div>
+<div class="line">        0xC8, 0x06, 0x70, 0x9D, 0x41, 0x75, 0x19, 0xC9, 0xAA, 0xFC, 0x4D, 0xBF, 0x2A, 0x73, 0x84, 0xD5,</div>
+<div class="line">        0xC3, 0xAF, 0x2B, 0x86, 0xA7, 0xB1, 0xB2, 0x5B, 0x46, 0xD3, 0x9F, 0xFD, 0xD4, 0x0F, 0x9C, 0x2F,</div>
+<div class="line">        0x9B, 0x43, 0xEF, 0xD9, 0x79, 0xB6, 0x53, 0x7F, 0xC1, 0xF0, 0x23, 0xE7, 0x25, 0x5E, 0xB5, 0x1E,</div>
+<div class="line">        0xA2, 0xDF, 0xA6, 0xFE, 0xAC, 0x22, 0xF9, 0xE2, 0x4A, 0xBC, 0x35, 0xCA, 0xEE, 0x78, 0x05, 0x6B,</div>
+<div class="line">        0x51, 0xE1, 0x59, 0xA3, 0xF2, 0x71, 0x56, 0x11, 0x6A, 0x89, 0x94, 0x65, 0x8C, 0xBB, 0x77, 0x3C,</div>
+<div class="line">        0x7B, 0x28, 0xAB, 0xD2, 0x31, 0xDE, 0xC4, 0x5F, 0xCC, 0xCF, 0x76, 0x2C, 0xB8, 0xD8, 0x2E, 0x36,</div>
+<div class="line">        0xDB, 0x69, 0xB3, 0x14, 0x95, 0xBE, 0x62, 0xA1, 0x3B, 0x16, 0x66, 0xE9, 0x5C, 0x6C, 0x6D, 0xAD,</div>
+<div class="line">        0x37, 0x61, 0x4B, 0xB9, 0xE3, 0xBA, 0xF1, 0xA0, 0x85, 0x83, 0xDA, 0x47, 0xC5, 0xB0, 0x33, 0xFA,</div>
+<div class="line">        0x96, 0x6F, 0x6E, 0xC2, 0xF6, 0x50, 0xFF, 0x5D, 0xA9, 0x8E, 0x17, 0x1B, 0x97, 0x7D, 0xEC, 0x58,</div>
+<div class="line">        0xF7, 0x1F, 0xFB, 0x7C, 0x09, 0x0D, 0x7A, 0x67, 0x45, 0x87, 0xDC, 0xE8, 0x4F, 0x1D, 0x4E, 0x04,</div>
+<div class="line">        0xEB, 0xF8, 0xF3, 0x3E, 0x3D, 0xBD, 0x8A, 0x88, 0xDD, 0xCD, 0x0B, 0x13, 0x98, 0x02, 0x93, 0x80,</div>
+<div class="line">        0x90, 0xD0, 0x24, 0x34, 0xCB, 0xED, 0xF4, 0xCE, 0x99, 0x10, 0x44, 0x40, 0x92, 0x3A, 0x01, 0x26,</div>
+<div class="line">        0x12, 0x1A, 0x48, 0x68, 0xF5, 0x81, 0x8B, 0xC7, 0xD6, 0x20, 0x0A, 0x08, 0x00, 0x4C, 0xD7, 0x74,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Инверсный S-блок для нелинейного преобразования </p>
+
+</div>
+</div>
+<a id="a6898fc90a1cfe2e2e8ee7f7aac6964f9" name="a6898fc90a1cfe2e2e8ee7f7aac6964f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6898fc90a1cfe2e2e8ee7f7aac6964f9">&#9670;&#160;</a></span>L</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t L[16]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        1, 148, 32, 133, 16, 194, 192, 1, 251, 1, 192, 194, 16, 133, 32, 148,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>вектор линейного преобразования </p>
+
+</div>
+</div>
+<a id="a6e73936bd7a8b00725f394771e57ebe8" name="a6e73936bd7a8b00725f394771e57ebe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e73936bd7a8b00725f394771e57ebe8">&#9670;&#160;</a></span>S</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S[256]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        252, 238, 221, 17, 207, 110, 49, 22, 251, 196, 250, 218, 35, 197, 4, 77, 233, 119, 240, 219,</div>
+<div class="line">        147, 46, 153, 186, 23, 54, 241, 187, 20, 205, 95, 193, 249, 24, 101, 90, 226, 92, 239, 33, 129,</div>
+<div class="line">        28, 60, 66, 139, 1, 142, 79, 5, 132, 2, 174, 227, 106, 143, 160, 6, 11, 237, 152, 127, 212,</div>
+<div class="line">        211, 31, 235, 52, 44, 81, 234, 200, 72, 171, 242, 42, 104, 162, 253, 58, 206, 204, 181, 112,</div>
+<div class="line">        14, 86, 8, 12, 118, 18, 191, 114, 19, 71, 156, 183, 93, 135, 21, 161, 150, 41, 16, 123, 154,</div>
+<div class="line">        199, 243, 145, 120, 111, 157, 158, 178, 177, 50, 117, 25, 61, 255, 53, 138, 126, 109, 84, 198,</div>
+<div class="line">        128, 195, 189, 13, 87, 223, 245, 36, 169, 62, 168, 67, 201, 215, 121, 214, 246, 124, 34, 185,</div>
+<div class="line">        3, 224, 15, 236, 222, 122, 148, 176, 188, 220, 232, 40, 80, 78, 51, 10, 74, 167, 151, 96, 115,</div>
+<div class="line">        30, 0, 98, 68, 26, 184, 56, 130, 100, 159, 38, 65, 173, 69, 70, 146, 39, 94, 85, 47, 140, 163,</div>
+<div class="line">        165, 125, 105, 213, 149, 59, 7, 88, 179, 64, 134, 172, 29, 247, 48, 55, 107, 228, 136, 217,</div>
+<div class="line">        231, 137, 225, 27, 131, 73, 76, 63, 248, 254, 141, 83, 170, 144, 202, 216, 133, 97, 32, 113,</div>
+<div class="line">        103, 164, 45, 43, 9, 91, 203, 155, 37, 208, 190, 229, 108, 82, 89, 166, 116, 210, 230, 244,</div>
+<div class="line">        180, 192, 209, 102, 175, 194, 57, 75, 99, 182,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>S-блок для нелинейного преобразования </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

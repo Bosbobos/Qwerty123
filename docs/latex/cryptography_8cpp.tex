@@ -1,0 +1,532 @@
+\doxysection{Файл cryptography/cryptography.cpp}
+\hypertarget{cryptography_8cpp}{}\label{cryptography_8cpp}\index{cryptography/cryptography.cpp@{cryptography/cryptography.cpp}}
+
+
+Реализация алгоритма блочного шифра Кузнечика (ГОСТ Р 34.\+12-\/2015).  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{cryptography_8cpp_a8c9078c33a04fee651e6129867ecbb64}{multiply\+\_\+in\+\_\+\+Galua}} (uint8\+\_\+t a, uint8\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Выполняет умножение двух байтов в поле Галуа (GF(2\texorpdfstring{$^\wedge$}{\string^}8)). \end{DoxyCompactList}\item 
+\Hypertarget{cryptography_8cpp_a131bef2b576ef02bc21f453a56eb095c}\label{cryptography_8cpp_a131bef2b576ef02bc21f453a56eb095c} 
+void {\bfseries create\+\_\+muls} ()
+\begin{DoxyCompactList}\small\item\em Создает таблицу предварительно вычисленных произведений в поле Галуа (GF(2\texorpdfstring{$^\wedge$}{\string^}8)). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a4f14732e49620ad5737ed90a5c1a8e7a}{L\+\_\+transform}} (uint8\+\_\+t block\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Выполняет линейное преобразование блока данных. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_aa4d4f03594fc9246f2abedf1eb2071a3}{inverse\+\_\+\+L\+\_\+transform}} (uint8\+\_\+t block\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Выполняет обратное линейное преобразование блока данных. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a7b15078daaf1b342490dadb38f2aafd8}{linear\+\_\+transform}} (uint8\+\_\+t block\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Выполняет линейное преобразование блока данных без использования предварительно вычисленных матриц. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_ad3d376e1cb032da8cd977fb417878244}{inverse\+\_\+linear\+\_\+transform}} (uint8\+\_\+t block\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Выполняет обратное линейное преобразование блока данных без использования предварительно вычисленных матриц. \end{DoxyCompactList}\item 
+\Hypertarget{cryptography_8cpp_a5064b2908825a143531825c22525b05a}\label{cryptography_8cpp_a5064b2908825a143531825c22525b05a} 
+void {\bfseries create\+\_\+\+MATRIX} ()
+\begin{DoxyCompactList}\small\item\em Создает матрицы для линейного и обратного линейного преобразования. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a6823c9f6169569e266f30fe8f858fea6}{generate\+\_\+round\+\_\+constants}} (uint8\+\_\+t round\+\_\+constants\mbox{[}32\mbox{]}\mbox{[}16\mbox{]})
+\begin{DoxyCompactList}\small\item\em Генерирует константы для раундов шифрования. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a3e24a9efd9a92e1edb39ff675c1e5e89}{generate}} (const uint8\+\_\+t key\mbox{[}32\mbox{]}, uint8\+\_\+t round\+\_\+keys\mbox{[}10\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Генерация раундовых ключей для алгоритма Кузнечик с использованием сети Фейстеля. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{cryptography_8cpp_a2f86ffee2a14a48fff3d0dc98cefb37b}{text\+To\+Hex}} (const std\+::string \&input)
+\begin{DoxyCompactList}\small\item\em Преобразует текстовую строку в её шестнадцатеричное представление. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a8436d079ac39837512488588cb0b9f15}{pad\+Key}} (std\+::string \&input\+\_\+key)
+\begin{DoxyCompactList}\small\item\em Дополняет ключ до 64 символов нулями после первого символа. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cryptography_8cpp_acea6cedf0c4b8acac8498581188c339f}{string\+To\+Reversed\+Key}} (std\+::string \&input\+\_\+key)
+\begin{DoxyCompactList}\small\item\em Преобразует строку из шестнадцатеричного представления в обратный массив uint8\+\_\+t. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{cryptography_8cpp_a2e232c4d437d34875e21b4d02bab9918}{hex\+To\+Vector}} (const std\+::string \&hex)
+\begin{DoxyCompactList}\small\item\em Преобразует hex строку в вектор байтов (uint8\+\_\+t). \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{cryptography_8cpp_abb07f9f28db5dddf4054f12a1a516894}{vector\+To\+Hex}} (const std\+::vector$<$ uint8\+\_\+t $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Преобразует вектор байтов (uint8\+\_\+t) в hex строку. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a1b03cfc3c9a83e94ad045b48cb2be760}{encode\+\_\+block}} (uint8\+\_\+t block\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]}, const uint8\+\_\+t round\+\_\+keys\mbox{[}10\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Шифрует блок данных с использованием раундовых ключей. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a36079049658dd78b71542e556b41fc0d}{decode\+\_\+block}} (uint8\+\_\+t block\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]}, const uint8\+\_\+t round\+\_\+keys\mbox{[}10\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Дешифрует блок данных с использованием раундовых ключей. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cryptography_8cpp_a5768a9571c6e0f284184a41662c5a61b}{xor\+Blocks}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}block1, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}block2, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Выполняет побитовую операцию XOR над двумя блоками данных. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{cryptography_8cpp_a001f535f93b0fa98b52d60572cdd1532}{cbc\+Encrypt}} (const std\+::vector$<$ uint8\+\_\+t $>$ \&plaintext, const uint8\+\_\+t round\+\_\+keys\mbox{[}10\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Шифрует данные в режиме CBC (Cipher Block Chaining). \end{DoxyCompactList}\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{cryptography_8cpp_a58737862c42617cd5deba76f7380eb2e}{cbc\+Decrypt}} (const std\+::vector$<$ uint8\+\_\+t $>$ \&ciphertext, const uint8\+\_\+t round\+\_\+keys\mbox{[}10\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Расшифрование текста в режиме CBC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}\label{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e} 
+const int {\bfseries block\+\_\+len} = 16
+\begin{DoxyCompactList}\small\item\em Длина блока в алгоритме Кузнечика = 16 байт \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{cryptography_8cpp_a6e73936bd7a8b00725f394771e57ebe8}{S}} \mbox{[}256\mbox{]}
+\begin{DoxyCompactList}\small\item\em S-\/блок для нелинейного преобразования \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{cryptography_8cpp_a83ad5e07d27552488b67b1068129f1f9}{INVERSE\+\_\+S}} \mbox{[}256\mbox{]}
+\begin{DoxyCompactList}\small\item\em Инверсный S-\/блок для нелинейного преобразования \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{cryptography_8cpp_a6898fc90a1cfe2e2e8ee7f7aac6964f9}{L}} \mbox{[}16\mbox{]}
+\begin{DoxyCompactList}\small\item\em вектор линейного преобразования \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{cryptography_8cpp_aff763385251e2cf7d56fc6a54f5b69f9}{DEGREE}} \mbox{[}255\mbox{]}
+\begin{DoxyCompactList}\small\item\em таблица степеней двойки в поле GF(2\texorpdfstring{$^\wedge$}{\string^}8) \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{cryptography_8cpp_a8b7156a89c49ef7d4618def503ba423d}{INVERSE\+\_\+\+DEGREE}} \mbox{[}255\mbox{]}
+\begin{DoxyCompactList}\small\item\em таблица\+: по числу получить его степень в поле Галуа \end{DoxyCompactList}\item 
+\Hypertarget{cryptography_8cpp_a406da36d3e9c4487b5247e861c8b319f}\label{cryptography_8cpp_a406da36d3e9c4487b5247e861c8b319f} 
+uint8\+\_\+t {\bfseries MULS} \mbox{[}256\mbox{]}\mbox{[}256\mbox{]} = \{\}
+\begin{DoxyCompactList}\small\item\em Таблица предварительно вычисленных произведений в поле Галуа (GF(2\texorpdfstring{$^\wedge$}{\string^}8)). \end{DoxyCompactList}\item 
+\Hypertarget{cryptography_8cpp_a4d0f645c9b57fdaa200b604f7c61b54e}\label{cryptography_8cpp_a4d0f645c9b57fdaa200b604f7c61b54e} 
+uint8\+\_\+t {\bfseries MATRIX} \mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]}\mbox{[}256\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]} = \{\}
+\begin{DoxyCompactList}\small\item\em Матрица для линейного преобразования. \end{DoxyCompactList}\item 
+\Hypertarget{cryptography_8cpp_ad03bb6f46c7e66176a1193ae3a2a1a09}\label{cryptography_8cpp_ad03bb6f46c7e66176a1193ae3a2a1a09} 
+uint8\+\_\+t {\bfseries INVERSE\+\_\+\+MATRIX} \mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]}\mbox{[}256\mbox{]}\mbox{[}\mbox{\hyperlink{cryptography_8cpp_a4e9a55250b9fa50f207ce090a8c7df3e}{block\+\_\+len}}\mbox{]} = \{\}
+\begin{DoxyCompactList}\small\item\em Матрица для обратного линейного преобразования. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Реализация алгоритма блочного шифра Кузнечика (ГОСТ Р 34.\+12-\/2015). 
+
+
+
+\doxysubsection{Функции}
+\Hypertarget{cryptography_8cpp_a58737862c42617cd5deba76f7380eb2e}\index{cryptography.cpp@{cryptography.cpp}!cbcDecrypt@{cbcDecrypt}}
+\index{cbcDecrypt@{cbcDecrypt}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{cbcDecrypt()}{cbcDecrypt()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a58737862c42617cd5deba76f7380eb2e} 
+std\+::vector$<$ uint8\+\_\+t $>$ cbc\+Decrypt (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{ciphertext}{, }\item[{const uint8\+\_\+t}]{round\+\_\+keys}{\mbox{[}10\mbox{]}\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Расшифрование текста в режиме CBC. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em ciphertext} & Входной зашифрованный текст. \\
+\hline
+{\em round\+\_\+keys} & Раундовые ключи. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Расшифрованный текст. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_a001f535f93b0fa98b52d60572cdd1532}\index{cryptography.cpp@{cryptography.cpp}!cbcEncrypt@{cbcEncrypt}}
+\index{cbcEncrypt@{cbcEncrypt}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{cbcEncrypt()}{cbcEncrypt()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a001f535f93b0fa98b52d60572cdd1532} 
+std\+::vector$<$ uint8\+\_\+t $>$ cbc\+Encrypt (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{plaintext}{, }\item[{const uint8\+\_\+t}]{round\+\_\+keys}{\mbox{[}10\mbox{]}\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Шифрует данные в режиме CBC (Cipher Block Chaining). 
+
+Эта функция шифрует данные, используя режим CBC, с заданными раундовыми ключами.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em plaintext} & Вектор данных, представляющий открытый текст для шифрования. \\
+\hline
+{\em round\+\_\+keys} & Раундовые ключи для шифрования. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+std\+::vector$<$uint8\+\_\+t$>$ Вектор данных, представляющий зашифрованный текст. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_a36079049658dd78b71542e556b41fc0d}\index{cryptography.cpp@{cryptography.cpp}!decode\_block@{decode\_block}}
+\index{decode\_block@{decode\_block}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{decode\_block()}{decode\_block()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a36079049658dd78b71542e556b41fc0d} 
+void decode\+\_\+block (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block}{\mbox{[}block\+\_\+len\mbox{]}, }\item[{const uint8\+\_\+t}]{round\+\_\+keys}{\mbox{[}10\mbox{]}\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Дешифрует блок данных с использованием раундовых ключей. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block} & Указатель на блок данных для дешифрования. \\
+\hline
+{\em round\+\_\+keys} & Массив раундовых ключей. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a1b03cfc3c9a83e94ad045b48cb2be760}\index{cryptography.cpp@{cryptography.cpp}!encode\_block@{encode\_block}}
+\index{encode\_block@{encode\_block}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{encode\_block()}{encode\_block()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a1b03cfc3c9a83e94ad045b48cb2be760} 
+void encode\+\_\+block (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block}{\mbox{[}block\+\_\+len\mbox{]}, }\item[{const uint8\+\_\+t}]{round\+\_\+keys}{\mbox{[}10\mbox{]}\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Шифрует блок данных с использованием раундовых ключей. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block} & Указатель на блок данных для шифрования. \\
+\hline
+{\em round\+\_\+keys} & Массив раундовых ключей. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a3e24a9efd9a92e1edb39ff675c1e5e89}\index{cryptography.cpp@{cryptography.cpp}!generate@{generate}}
+\index{generate@{generate}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a3e24a9efd9a92e1edb39ff675c1e5e89} 
+void generate (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{key}{\mbox{[}32\mbox{]}, }\item[{uint8\+\_\+t}]{round\+\_\+keys}{\mbox{[}10\mbox{]}\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Генерация раундовых ключей для алгоритма Кузнечик с использованием сети Фейстеля. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em key} & Исходный ключ длиной 32 байта. \\
+\hline
+{\em round\+\_\+keys} & Массив для хранения 10 раундовых ключей, каждый длиной block\+\_\+len байт. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a6823c9f6169569e266f30fe8f858fea6}\index{cryptography.cpp@{cryptography.cpp}!generate\_round\_constants@{generate\_round\_constants}}
+\index{generate\_round\_constants@{generate\_round\_constants}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{generate\_round\_constants()}{generate\_round\_constants()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a6823c9f6169569e266f30fe8f858fea6} 
+void generate\+\_\+round\+\_\+constants (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{round\+\_\+constants}{\mbox{[}32\mbox{]}\mbox{[}16\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Генерирует константы для раундов шифрования. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em round\+\_\+constants} & Массив для хранения раундовых констант (размер 32x16). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a2e232c4d437d34875e21b4d02bab9918}\index{cryptography.cpp@{cryptography.cpp}!hexToVector@{hexToVector}}
+\index{hexToVector@{hexToVector}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{hexToVector()}{hexToVector()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a2e232c4d437d34875e21b4d02bab9918} 
+std\+::vector$<$ uint8\+\_\+t $>$ hex\+To\+Vector (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{hex}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует hex строку в вектор байтов (uint8\+\_\+t). 
+
+Эта функция принимает строку в формате hex и преобразует её в вектор байтов (uint8\+\_\+t).
+
+
+\begin{DoxyParams}{Аргументы}
+{\em hex} & Входная строка в формате hex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+std\+::vector$<$uint8\+\_\+t$>$ Вектор байтов, представляющих входную hex строку. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_aa4d4f03594fc9246f2abedf1eb2071a3}\index{cryptography.cpp@{cryptography.cpp}!inverse\_L\_transform@{inverse\_L\_transform}}
+\index{inverse\_L\_transform@{inverse\_L\_transform}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{inverse\_L\_transform()}{inverse\_L\_transform()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_aa4d4f03594fc9246f2abedf1eb2071a3} 
+void inverse\+\_\+\+L\+\_\+transform (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block}{\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Выполняет обратное линейное преобразование блока данных. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block} & Блок данных длиной block\+\_\+len байт. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_ad3d376e1cb032da8cd977fb417878244}\index{cryptography.cpp@{cryptography.cpp}!inverse\_linear\_transform@{inverse\_linear\_transform}}
+\index{inverse\_linear\_transform@{inverse\_linear\_transform}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{inverse\_linear\_transform()}{inverse\_linear\_transform()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_ad3d376e1cb032da8cd977fb417878244} 
+void inverse\+\_\+linear\+\_\+transform (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block}{\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Выполняет обратное линейное преобразование блока данных без использования предварительно вычисленных матриц. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block} & Блок данных длиной block\+\_\+len байт. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a4f14732e49620ad5737ed90a5c1a8e7a}\index{cryptography.cpp@{cryptography.cpp}!L\_transform@{L\_transform}}
+\index{L\_transform@{L\_transform}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{L\_transform()}{L\_transform()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a4f14732e49620ad5737ed90a5c1a8e7a} 
+void L\+\_\+transform (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block}{\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Выполняет линейное преобразование блока данных. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block} & Блок данных длиной block\+\_\+len байт. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a7b15078daaf1b342490dadb38f2aafd8}\index{cryptography.cpp@{cryptography.cpp}!linear\_transform@{linear\_transform}}
+\index{linear\_transform@{linear\_transform}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{linear\_transform()}{linear\_transform()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a7b15078daaf1b342490dadb38f2aafd8} 
+void linear\+\_\+transform (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block}{\mbox{[}block\+\_\+len\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Выполняет линейное преобразование блока данных без использования предварительно вычисленных матриц. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block} & Блок данных длиной block\+\_\+len байт. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_a8c9078c33a04fee651e6129867ecbb64}\index{cryptography.cpp@{cryptography.cpp}!multiply\_in\_Galua@{multiply\_in\_Galua}}
+\index{multiply\_in\_Galua@{multiply\_in\_Galua}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{multiply\_in\_Galua()}{multiply\_in\_Galua()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a8c9078c33a04fee651e6129867ecbb64} 
+uint8\+\_\+t multiply\+\_\+in\+\_\+\+Galua (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a}{, }\item[{uint8\+\_\+t}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет умножение двух байтов в поле Галуа (GF(2\texorpdfstring{$^\wedge$}{\string^}8)). 
+
+Функция принимает два байта и выполняет их умножение в поле Галуа. Если один из байтов равен 0, результатом будет 0. Иначе, используются логарифмы и экспоненты для выполнения умножения.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em a} & Первый байт. \\
+\hline
+{\em b} & Второй байт. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+uint8\+\_\+t Результат умножения в поле Галуа. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_a8436d079ac39837512488588cb0b9f15}\index{cryptography.cpp@{cryptography.cpp}!padKey@{padKey}}
+\index{padKey@{padKey}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{padKey()}{padKey()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a8436d079ac39837512488588cb0b9f15} 
+void pad\+Key (\begin{DoxyParamCaption}\item[{std\+::string \&}]{input\+\_\+key}{}\end{DoxyParamCaption})}
+
+
+
+Дополняет ключ до 64 символов нулями после первого символа. 
+
+Эта функция принимает строку ключа и дополняет её нулями после первого символа, если длина ключа меньше 64 символов. Это необходимо для обеспечения того, чтобы ключ всегда имел длину 64 символа.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em input\+\_\+key} & Строка ключа, которая будет дополнена нулями. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cryptography_8cpp_acea6cedf0c4b8acac8498581188c339f}\index{cryptography.cpp@{cryptography.cpp}!stringToReversedKey@{stringToReversedKey}}
+\index{stringToReversedKey@{stringToReversedKey}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{stringToReversedKey()}{stringToReversedKey()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_acea6cedf0c4b8acac8498581188c339f} 
+const uint8\+\_\+t \texorpdfstring{$\ast$}{*} string\+To\+Reversed\+Key (\begin{DoxyParamCaption}\item[{std\+::string \&}]{input\+\_\+key}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует строку из шестнадцатеричного представления в обратный массив uint8\+\_\+t. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em input\+\_\+key} & Входная строка ключа. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+const uint8\+\_\+t\texorpdfstring{$\ast$}{*} Указатель на массив обратного ключа. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_a2f86ffee2a14a48fff3d0dc98cefb37b}\index{cryptography.cpp@{cryptography.cpp}!textToHex@{textToHex}}
+\index{textToHex@{textToHex}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{textToHex()}{textToHex()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a2f86ffee2a14a48fff3d0dc98cefb37b} 
+std\+::string text\+To\+Hex (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует текстовую строку в её шестнадцатеричное представление. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em input} & Строка текста. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Строка, содержащая шестнадцатеричное представление входной строки. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_abb07f9f28db5dddf4054f12a1a516894}\index{cryptography.cpp@{cryptography.cpp}!vectorToHex@{vectorToHex}}
+\index{vectorToHex@{vectorToHex}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{vectorToHex()}{vectorToHex()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_abb07f9f28db5dddf4054f12a1a516894} 
+std\+::string vector\+To\+Hex (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{vec}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует вектор байтов (uint8\+\_\+t) в hex строку. 
+
+Эта функция принимает вектор байтов (uint8\+\_\+t) и преобразует его в строку в формате hex.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em vec} & Вектор байтов для преобразования. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+std\+::string Строка в формате hex, представляющая входной вектор байтов. 
+\end{DoxyReturn}
+\Hypertarget{cryptography_8cpp_a5768a9571c6e0f284184a41662c5a61b}\index{cryptography.cpp@{cryptography.cpp}!xorBlocks@{xorBlocks}}
+\index{xorBlocks@{xorBlocks}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{xorBlocks()}{xorBlocks()}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a5768a9571c6e0f284184a41662c5a61b} 
+void xor\+Blocks (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{block1}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{block2}{, }\item[{size\+\_\+t}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет побитовую операцию XOR над двумя блоками данных. 
+
+Эта функция принимает два блока данных и выполняет побитовую операцию XOR над ними. Результат операции записывается в первый блок данных.
+
+
+\begin{DoxyParams}{Аргументы}
+{\em block1} & Указатель на первый блок данных. Результат операции будет записан в этот блок. \\
+\hline
+{\em block2} & Указатель на второй блок данных, с которым будет выполнена операция XOR. \\
+\hline
+{\em length} & Длина блоков данных. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Переменные}
+\Hypertarget{cryptography_8cpp_aff763385251e2cf7d56fc6a54f5b69f9}\index{cryptography.cpp@{cryptography.cpp}!DEGREE@{DEGREE}}
+\index{DEGREE@{DEGREE}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{DEGREE}{DEGREE}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_aff763385251e2cf7d56fc6a54f5b69f9} 
+const uint8\+\_\+t DEGREE\mbox{[}255\mbox{]}}
+
+{\bfseries Инициализатор}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 1,\ 2,\ 4,\ 8,\ 16,\ 32,\ 64,\ 128,\ 195,\ 69,\ 138,\ 215,\ 109,\ 218,\ 119,\ 238,\ 31,\ 62,\ 124,\ 248,\ 51,\ 102,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 204,\ 91,\ 182,\ 175,\ 157,\ 249,\ 49,\ 98,\ 196,\ 75,\ 150,\ 239,\ 29,\ 58,\ 116,\ 232,\ 19,\ 38,\ 76,\ 152,\ 243,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 37,\ 74,\ 148,\ 235,\ 21,\ 42,\ 84,\ 168,\ 147,\ 229,\ 9,\ 18,\ 36,\ 72,\ 144,\ 227,\ 5,\ 10,\ 20,\ 40,\ 80,\ 160,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 131,\ 197,\ 73,\ 146,\ 231,\ 13,\ 26,\ 52,\ 104,\ 208,\ 99,\ 198,\ 79,\ 158,\ 255,\ 61,\ 122,\ 244,\ 43,\ 86,\ 172,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 155,\ 245,\ 41,\ 82,\ 164,\ 139,\ 213,\ 105,\ 210,\ 103,\ 206,\ 95,\ 190,\ 191,\ 189,\ 185,\ 177,\ 161,\ 129,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 193,\ 65,\ 130,\ 199,\ 77,\ 154,\ 247,\ 45,\ 90,\ 180,\ 171,\ 149,\ 233,\ 17,\ 34,\ 68,\ 136,\ 211,\ 101,\ 202,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 87,\ 174,\ 159,\ 253,\ 57,\ 114,\ 228,\ 11,\ 22,\ 44,\ 88,\ 176,\ 163,\ 133,\ 201,\ 81,\ 162,\ 135,\ 205,\ 89,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 178,\ 167,\ 141,\ 217,\ 113,\ 226,\ 7,\ 14,\ 28,\ 56,\ 112,\ 224,\ 3,\ 6,\ 12,\ 24,\ 48,\ 96,\ 192,\ 67,\ 134,\ 207,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 93,\ 186,\ 183,\ 173,\ 153,\ 241,\ 33,\ 66,\ 132,\ 203,\ 85,\ 170,\ 151,\ 237,\ 25,\ 50,\ 100,\ 200,\ 83,\ 166,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 143,\ 221,\ 121,\ 242,\ 39,\ 78,\ 156,\ 251,\ 53,\ 106,\ 212,\ 107,\ 214,\ 111,\ 222,\ 127,\ 254,\ 63,\ 126,\ 252,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 59,\ 118,\ 236,\ 27,\ 54,\ 108,\ 216,\ 115,\ 230,\ 15,\ 30,\ 60,\ 120,\ 240,\ 35,\ 70,\ 140,\ 219,\ 117,\ 234,\ 23,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 46,\ 92,\ 184,\ 179,\ 165,\ 137,\ 209,\ 97,\ 194,\ 71,\ 142,\ 223,\ 125,\ 250,\ 55,\ 110,\ 220,\ 123,\ 246,\ 47,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 94,\ 188,\ 187,\ 181,\ 169,\ 145,\ 225,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+таблица степеней двойки в поле GF(2\texorpdfstring{$^\wedge$}{\string^}8) 
+
+\Hypertarget{cryptography_8cpp_a8b7156a89c49ef7d4618def503ba423d}\index{cryptography.cpp@{cryptography.cpp}!INVERSE\_DEGREE@{INVERSE\_DEGREE}}
+\index{INVERSE\_DEGREE@{INVERSE\_DEGREE}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{INVERSE\_DEGREE}{INVERSE\_DEGREE}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a8b7156a89c49ef7d4618def503ba423d} 
+const uint8\+\_\+t INVERSE\+\_\+\+DEGREE\mbox{[}255\mbox{]}}
+
+{\bfseries Инициализатор}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0,\ 1,\ 157,\ 2,\ 59,\ 158,\ 151,\ 3,\ 53,\ 60,\ 132,\ 159,\ 70,\ 152,\ 216,\ 4,\ 118,\ 54,\ 38,\ 61,\ 47,\ 133,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 227,\ 160,\ 181,\ 71,\ 210,\ 153,\ 34,\ 217,\ 16,\ 5,\ 173,\ 119,\ 221,\ 55,\ 43,\ 39,\ 191,\ 62,\ 88,\ 48,\ 83,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 134,\ 112,\ 228,\ 247,\ 161,\ 28,\ 182,\ 20,\ 72,\ 195,\ 211,\ 242,\ 154,\ 129,\ 35,\ 207,\ 218,\ 80,\ 17,\ 204,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 6,\ 106,\ 174,\ 164,\ 120,\ 9,\ 222,\ 237,\ 56,\ 67,\ 44,\ 31,\ 40,\ 109,\ 192,\ 77,\ 63,\ 140,\ 89,\ 185,\ 49,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 177,\ 84,\ 125,\ 135,\ 144,\ 113,\ 23,\ 229,\ 167,\ 248,\ 97,\ 162,\ 235,\ 29,\ 75,\ 183,\ 123,\ 21,\ 95,\ 73,\ 93,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 196,\ 198,\ 212,\ 12,\ 243,\ 200,\ 155,\ 149,\ 130,\ 214,\ 36,\ 225,\ 208,\ 14,\ 219,\ 189,\ 81,\ 245,\ 18,\ 240,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 205,\ 202,\ 7,\ 104,\ 107,\ 65,\ 175,\ 138,\ 165,\ 142,\ 121,\ 233,\ 10,\ 91,\ 223,\ 147,\ 238,\ 187,\ 57,\ 253,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 68,\ 51,\ 45,\ 116,\ 32,\ 179,\ 41,\ 171,\ 110,\ 86,\ 193,\ 26,\ 78,\ 127,\ 64,\ 103,\ 141,\ 137,\ 90,\ 232,\ 186,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 146,\ 50,\ 252,\ 178,\ 115,\ 85,\ 170,\ 126,\ 25,\ 136,\ 102,\ 145,\ 231,\ 114,\ 251,\ 24,\ 169,\ 230,\ 101,\ 168,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 250,\ 249,\ 100,\ 98,\ 99,\ 163,\ 105,\ 236,\ 8,\ 30,\ 66,\ 76,\ 108,\ 184,\ 139,\ 124,\ 176,\ 22,\ 143,\ 96,\ 166,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 74,\ 234,\ 94,\ 122,\ 197,\ 92,\ 199,\ 11,\ 213,\ 148,\ 13,\ 224,\ 244,\ 188,\ 201,\ 239,\ 156,\ 254,\ 150,\ 58,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 131,\ 52,\ 215,\ 69,\ 37,\ 117,\ 226,\ 46,\ 209,\ 180,\ 15,\ 33,\ 220,\ 172,\ 190,\ 42,\ 82,\ 87,\ 246,\ 111,\ 19,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 27,\ 241,\ 194,\ 206,\ 128,\ 203,\ 79,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+таблица\+: по числу получить его степень в поле Галуа 
+
+\Hypertarget{cryptography_8cpp_a83ad5e07d27552488b67b1068129f1f9}\index{cryptography.cpp@{cryptography.cpp}!INVERSE\_S@{INVERSE\_S}}
+\index{INVERSE\_S@{INVERSE\_S}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{INVERSE\_S}{INVERSE\_S}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a83ad5e07d27552488b67b1068129f1f9} 
+const uint8\+\_\+t INVERSE\+\_\+S\mbox{[}256\mbox{]}}
+
+{\bfseries Инициализатор}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xa5,\ 0x2D,\ 0x32,\ 0x8F,\ 0x0E,\ 0x30,\ 0x38,\ 0xC0,\ 0x54,\ 0xE6,\ 0x9E,\ 0x39,\ 0x55,\ 0x7E,\ 0x52,\ 0x91,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x64,\ 0x03,\ 0x57,\ 0x5A,\ 0x1C,\ 0x60,\ 0x07,\ 0x18,\ 0x21,\ 0x72,\ 0xA8,\ 0xD1,\ 0x29,\ 0xC6,\ 0xA4,\ 0x3F,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xE0,\ 0x27,\ 0x8D,\ 0x0C,\ 0x82,\ 0xEA,\ 0xAE,\ 0xB4,\ 0x9A,\ 0x63,\ 0x49,\ 0xE5,\ 0x42,\ 0xE4,\ 0x15,\ 0xB7,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xC8,\ 0x06,\ 0x70,\ 0x9D,\ 0x41,\ 0x75,\ 0x19,\ 0xC9,\ 0xAA,\ 0xFC,\ 0x4D,\ 0xBF,\ 0x2A,\ 0x73,\ 0x84,\ 0xD5,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xC3,\ 0xAF,\ 0x2B,\ 0x86,\ 0xA7,\ 0xB1,\ 0xB2,\ 0x5B,\ 0x46,\ 0xD3,\ 0x9F,\ 0xFD,\ 0xD4,\ 0x0F,\ 0x9C,\ 0x2F,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x9B,\ 0x43,\ 0xEF,\ 0xD9,\ 0x79,\ 0xB6,\ 0x53,\ 0x7F,\ 0xC1,\ 0xF0,\ 0x23,\ 0xE7,\ 0x25,\ 0x5E,\ 0xB5,\ 0x1E,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xA2,\ 0xDF,\ 0xA6,\ 0xFE,\ 0xAC,\ 0x22,\ 0xF9,\ 0xE2,\ 0x4A,\ 0xBC,\ 0x35,\ 0xCA,\ 0xEE,\ 0x78,\ 0x05,\ 0x6B,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x51,\ 0xE1,\ 0x59,\ 0xA3,\ 0xF2,\ 0x71,\ 0x56,\ 0x11,\ 0x6A,\ 0x89,\ 0x94,\ 0x65,\ 0x8C,\ 0xBB,\ 0x77,\ 0x3C,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x7B,\ 0x28,\ 0xAB,\ 0xD2,\ 0x31,\ 0xDE,\ 0xC4,\ 0x5F,\ 0xCC,\ 0xCF,\ 0x76,\ 0x2C,\ 0xB8,\ 0xD8,\ 0x2E,\ 0x36,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xDB,\ 0x69,\ 0xB3,\ 0x14,\ 0x95,\ 0xBE,\ 0x62,\ 0xA1,\ 0x3B,\ 0x16,\ 0x66,\ 0xE9,\ 0x5C,\ 0x6C,\ 0x6D,\ 0xAD,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x37,\ 0x61,\ 0x4B,\ 0xB9,\ 0xE3,\ 0xBA,\ 0xF1,\ 0xA0,\ 0x85,\ 0x83,\ 0xDA,\ 0x47,\ 0xC5,\ 0xB0,\ 0x33,\ 0xFA,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x96,\ 0x6F,\ 0x6E,\ 0xC2,\ 0xF6,\ 0x50,\ 0xFF,\ 0x5D,\ 0xA9,\ 0x8E,\ 0x17,\ 0x1B,\ 0x97,\ 0x7D,\ 0xEC,\ 0x58,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xF7,\ 0x1F,\ 0xFB,\ 0x7C,\ 0x09,\ 0x0D,\ 0x7A,\ 0x67,\ 0x45,\ 0x87,\ 0xDC,\ 0xE8,\ 0x4F,\ 0x1D,\ 0x4E,\ 0x04,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0xEB,\ 0xF8,\ 0xF3,\ 0x3E,\ 0x3D,\ 0xBD,\ 0x8A,\ 0x88,\ 0xDD,\ 0xCD,\ 0x0B,\ 0x13,\ 0x98,\ 0x02,\ 0x93,\ 0x80,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x90,\ 0xD0,\ 0x24,\ 0x34,\ 0xCB,\ 0xED,\ 0xF4,\ 0xCE,\ 0x99,\ 0x10,\ 0x44,\ 0x40,\ 0x92,\ 0x3A,\ 0x01,\ 0x26,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0x12,\ 0x1A,\ 0x48,\ 0x68,\ 0xF5,\ 0x81,\ 0x8B,\ 0xC7,\ 0xD6,\ 0x20,\ 0x0A,\ 0x08,\ 0x00,\ 0x4C,\ 0xD7,\ 0x74,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Инверсный S-\/блок для нелинейного преобразования 
+
+\Hypertarget{cryptography_8cpp_a6898fc90a1cfe2e2e8ee7f7aac6964f9}\index{cryptography.cpp@{cryptography.cpp}!L@{L}}
+\index{L@{L}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{L}{L}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a6898fc90a1cfe2e2e8ee7f7aac6964f9} 
+const uint8\+\_\+t L\mbox{[}16\mbox{]}}
+
+{\bfseries Инициализатор}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 1,\ 148,\ 32,\ 133,\ 16,\ 194,\ 192,\ 1,\ 251,\ 1,\ 192,\ 194,\ 16,\ 133,\ 32,\ 148,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+вектор линейного преобразования 
+
+\Hypertarget{cryptography_8cpp_a6e73936bd7a8b00725f394771e57ebe8}\index{cryptography.cpp@{cryptography.cpp}!S@{S}}
+\index{S@{S}!cryptography.cpp@{cryptography.cpp}}
+\doxysubsubsection{\texorpdfstring{S}{S}}
+{\footnotesize\ttfamily \label{cryptography_8cpp_a6e73936bd7a8b00725f394771e57ebe8} 
+const uint8\+\_\+t S\mbox{[}256\mbox{]}}
+
+{\bfseries Инициализатор}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 252,\ 238,\ 221,\ 17,\ 207,\ 110,\ 49,\ 22,\ 251,\ 196,\ 250,\ 218,\ 35,\ 197,\ 4,\ 77,\ 233,\ 119,\ 240,\ 219,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 147,\ 46,\ 153,\ 186,\ 23,\ 54,\ 241,\ 187,\ 20,\ 205,\ 95,\ 193,\ 249,\ 24,\ 101,\ 90,\ 226,\ 92,\ 239,\ 33,\ 129,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 28,\ 60,\ 66,\ 139,\ 1,\ 142,\ 79,\ 5,\ 132,\ 2,\ 174,\ 227,\ 106,\ 143,\ 160,\ 6,\ 11,\ 237,\ 152,\ 127,\ 212,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 211,\ 31,\ 235,\ 52,\ 44,\ 81,\ 234,\ 200,\ 72,\ 171,\ 242,\ 42,\ 104,\ 162,\ 253,\ 58,\ 206,\ 204,\ 181,\ 112,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 14,\ 86,\ 8,\ 12,\ 118,\ 18,\ 191,\ 114,\ 19,\ 71,\ 156,\ 183,\ 93,\ 135,\ 21,\ 161,\ 150,\ 41,\ 16,\ 123,\ 154,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 199,\ 243,\ 145,\ 120,\ 111,\ 157,\ 158,\ 178,\ 177,\ 50,\ 117,\ 25,\ 61,\ 255,\ 53,\ 138,\ 126,\ 109,\ 84,\ 198,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 128,\ 195,\ 189,\ 13,\ 87,\ 223,\ 245,\ 36,\ 169,\ 62,\ 168,\ 67,\ 201,\ 215,\ 121,\ 214,\ 246,\ 124,\ 34,\ 185,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 3,\ 224,\ 15,\ 236,\ 222,\ 122,\ 148,\ 176,\ 188,\ 220,\ 232,\ 40,\ 80,\ 78,\ 51,\ 10,\ 74,\ 167,\ 151,\ 96,\ 115,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 30,\ 0,\ 98,\ 68,\ 26,\ 184,\ 56,\ 130,\ 100,\ 159,\ 38,\ 65,\ 173,\ 69,\ 70,\ 146,\ 39,\ 94,\ 85,\ 47,\ 140,\ 163,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 165,\ 125,\ 105,\ 213,\ 149,\ 59,\ 7,\ 88,\ 179,\ 64,\ 134,\ 172,\ 29,\ 247,\ 48,\ 55,\ 107,\ 228,\ 136,\ 217,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 231,\ 137,\ 225,\ 27,\ 131,\ 73,\ 76,\ 63,\ 248,\ 254,\ 141,\ 83,\ 170,\ 144,\ 202,\ 216,\ 133,\ 97,\ 32,\ 113,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 103,\ 164,\ 45,\ 43,\ 9,\ 91,\ 203,\ 155,\ 37,\ 208,\ 190,\ 229,\ 108,\ 82,\ 89,\ 166,\ 116,\ 210,\ 230,\ 244,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 180,\ 192,\ 209,\ 102,\ 175,\ 194,\ 57,\ 75,\ 99,\ 182,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+S-\/блок для нелинейного преобразования 
+

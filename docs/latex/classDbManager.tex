@@ -1,0 +1,207 @@
+\doxysection{Класс Db\+Manager}
+\hypertarget{classDbManager}{}\label{classDbManager}\index{DbManager@{DbManager}}
+
+
+Класс \doxylink{classDbManager}{Db\+Manager} отвечает за управление любой базой данных с конкретной структурой.  
+
+
+
+
+{\ttfamily \#include $<$db\+Manager.\+h$>$}
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDbManager_a434756cef150a58972e24556a1801427}{Db\+Manager}} (const std\+::string \&connection\+\_\+string, const std\+::string \&table\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \doxylink{classDbManager}{Db\+Manager}. \end{DoxyCompactList}\item 
+\Hypertarget{classDbManager_abe30496b60d26cdf62e841e03d6fa246}\label{classDbManager_abe30496b60d26cdf62e841e03d6fa246} 
+void {\bfseries create\+Table} ()
+\begin{DoxyCompactList}\small\item\em Создает таблицу с заданным в поле названием, если она не существует. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDbManager_a0c7def80cad1ae5086a23e4f436c386a}{add\+Record}} (\mbox{\hyperlink{structRecord}{Record}} record)
+\begin{DoxyCompactList}\small\item\em Добавляет запись в таблицу. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDbManager_a5091f1e0367008339bb38bc37166e13b}{update\+Record}} (const \mbox{\hyperlink{structRecord}{Record}} \&record)
+\begin{DoxyCompactList}\small\item\em Полностью обновляет запись в БД на основе переданной. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDbManager_af52054b0b64dba11e8e893b46c07c8ea}{update\+Password}} (int id, const std\+::string \&password)
+\begin{DoxyCompactList}\small\item\em Обновляет пароль записи по идентификатору. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDbManager_acbe647877aac1ea5e6153d0f535ffb90}{update\+Tag}} (int id, const std\+::string \&tag)
+\begin{DoxyCompactList}\small\item\em Обновляет тег записи по идентификатору. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDbManager_aacd22871e5706e632f543f36ef6d9ebb}{delete\+Record}} (int id)
+\begin{DoxyCompactList}\small\item\em Удаляет запись по идентификатору. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRecord}{Record}} \mbox{\hyperlink{classDbManager_ada6b32ab67281b7fa308cdaf9629ca34}{find\+Record}} (int id)
+\begin{DoxyCompactList}\small\item\em Находит запись по идентификатору. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structRecord}{Record}} $>$ \mbox{\hyperlink{classDbManager_a078cfc7deb2db805d7d6074fcaa69f59}{find\+All\+User\+Records}} (const std\+::string \&username)
+\begin{DoxyCompactList}\small\item\em Находит все записи пользователя по имени пользователя. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structRecord}{Record}} $>$ \mbox{\hyperlink{classDbManager_ad2da0424cf06b00c08e8d57ba975d5c3}{find\+All\+User\+Records\+With\+Tag}} (const std\+::string \&username, const std\+::string \&tag)
+\begin{DoxyCompactList}\small\item\em Находит все записи пользователя по имени пользователя и тегу. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс \doxylink{classDbManager}{Db\+Manager} отвечает за управление любой базой данных с конкретной структурой. 
+
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{classDbManager_a434756cef150a58972e24556a1801427}\index{DbManager@{DbManager}!DbManager@{DbManager}}
+\index{DbManager@{DbManager}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{DbManager()}{DbManager()}}
+{\footnotesize\ttfamily \label{classDbManager_a434756cef150a58972e24556a1801427} 
+Db\+Manager\+::\+Db\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{connection\+\_\+string}{, }\item[{const std\+::string \&}]{table\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Конструктор класса \doxylink{classDbManager}{Db\+Manager}. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em connection\+\_\+string} & Строка подключения к базе данных. \\
+\hline
+{\em table\+\_\+name} & Название таблицы в базе данных \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\Hypertarget{classDbManager_a0c7def80cad1ae5086a23e4f436c386a}\index{DbManager@{DbManager}!addRecord@{addRecord}}
+\index{addRecord@{addRecord}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{addRecord()}{addRecord()}}
+{\footnotesize\ttfamily \label{classDbManager_a0c7def80cad1ae5086a23e4f436c386a} 
+void Db\+Manager\+::add\+Record (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRecord}{Record}}}]{record}{}\end{DoxyParamCaption})}
+
+
+
+Добавляет запись в таблицу. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em record} & Запись, которую нужно добавить. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDbManager_aacd22871e5706e632f543f36ef6d9ebb}\index{DbManager@{DbManager}!deleteRecord@{deleteRecord}}
+\index{deleteRecord@{deleteRecord}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{deleteRecord()}{deleteRecord()}}
+{\footnotesize\ttfamily \label{classDbManager_aacd22871e5706e632f543f36ef6d9ebb} 
+void Db\+Manager\+::delete\+Record (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Удаляет запись по идентификатору. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Идентификатор записи. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDbManager_a078cfc7deb2db805d7d6074fcaa69f59}\index{DbManager@{DbManager}!findAllUserRecords@{findAllUserRecords}}
+\index{findAllUserRecords@{findAllUserRecords}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{findAllUserRecords()}{findAllUserRecords()}}
+{\footnotesize\ttfamily \label{classDbManager_a078cfc7deb2db805d7d6074fcaa69f59} 
+std\+::vector$<$ \mbox{\hyperlink{structRecord}{Record}} $>$ Db\+Manager\+::find\+All\+User\+Records (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Находит все записи пользователя по имени пользователя. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em username} & Имя пользователя. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Вектор записей в виде объектов \doxylink{structRecord}{Record}. 
+\end{DoxyReturn}
+\Hypertarget{classDbManager_ad2da0424cf06b00c08e8d57ba975d5c3}\index{DbManager@{DbManager}!findAllUserRecordsWithTag@{findAllUserRecordsWithTag}}
+\index{findAllUserRecordsWithTag@{findAllUserRecordsWithTag}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{findAllUserRecordsWithTag()}{findAllUserRecordsWithTag()}}
+{\footnotesize\ttfamily \label{classDbManager_ad2da0424cf06b00c08e8d57ba975d5c3} 
+std\+::vector$<$ \mbox{\hyperlink{structRecord}{Record}} $>$ Db\+Manager\+::find\+All\+User\+Records\+With\+Tag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username}{, }\item[{const std\+::string \&}]{tag}{}\end{DoxyParamCaption})}
+
+
+
+Находит все записи пользователя по имени пользователя и тегу. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em username} & Имя пользователя. \\
+\hline
+{\em tag} & Тег. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Вектор записей в виде объектов \doxylink{structRecord}{Record}. 
+\end{DoxyReturn}
+\Hypertarget{classDbManager_ada6b32ab67281b7fa308cdaf9629ca34}\index{DbManager@{DbManager}!findRecord@{findRecord}}
+\index{findRecord@{findRecord}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{findRecord()}{findRecord()}}
+{\footnotesize\ttfamily \label{classDbManager_ada6b32ab67281b7fa308cdaf9629ca34} 
+\mbox{\hyperlink{structRecord}{Record}} Db\+Manager\+::find\+Record (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Находит запись по идентификатору. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Идентификатор записи. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Запись в виде объекта \doxylink{structRecord}{Record}. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::runtime\+\_\+error} & Если запись не найдена. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classDbManager_af52054b0b64dba11e8e893b46c07c8ea}\index{DbManager@{DbManager}!updatePassword@{updatePassword}}
+\index{updatePassword@{updatePassword}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{updatePassword()}{updatePassword()}}
+{\footnotesize\ttfamily \label{classDbManager_af52054b0b64dba11e8e893b46c07c8ea} 
+void Db\+Manager\+::update\+Password (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const std\+::string \&}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Обновляет пароль записи по идентификатору. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Идентификатор записи. \\
+\hline
+{\em password} & Новый пароль. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDbManager_a5091f1e0367008339bb38bc37166e13b}\index{DbManager@{DbManager}!updateRecord@{updateRecord}}
+\index{updateRecord@{updateRecord}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{updateRecord()}{updateRecord()}}
+{\footnotesize\ttfamily \label{classDbManager_a5091f1e0367008339bb38bc37166e13b} 
+void Db\+Manager\+::update\+Record (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRecord}{Record}} \&}]{record}{}\end{DoxyParamCaption})}
+
+
+
+Полностью обновляет запись в БД на основе переданной. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em record} & Новый вид записи. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDbManager_acbe647877aac1ea5e6153d0f535ffb90}\index{DbManager@{DbManager}!updateTag@{updateTag}}
+\index{updateTag@{updateTag}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{updateTag()}{updateTag()}}
+{\footnotesize\ttfamily \label{classDbManager_acbe647877aac1ea5e6153d0f535ffb90} 
+void Db\+Manager\+::update\+Tag (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const std\+::string \&}]{tag}{}\end{DoxyParamCaption})}
+
+
+
+Обновляет тег записи по идентификатору. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Идентификатор записи. \\
+\hline
+{\em tag} & Новый тег. \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+db\+Manager/db\+Manager.\+h\item 
+db\+Manager/db\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qwerty123: Класс DbManager</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qwerty123
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classDbManager-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Класс DbManager</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Класс <a class="el" href="classDbManager.html" title="Класс DbManager отвечает за управление любой базой данных с конкретной структурой.">DbManager</a> отвечает за управление любой базой данных с конкретной структурой.  
+ <a href="#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="dbManager_8h_source.html">dbManager.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a434756cef150a58972e24556a1801427" id="r_a434756cef150a58972e24556a1801427"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a434756cef150a58972e24556a1801427">DbManager</a> (const std::string &amp;connection_string, const std::string &amp;table_name)</td></tr>
+<tr class="memdesc:a434756cef150a58972e24556a1801427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор класса <a class="el" href="classDbManager.html" title="Класс DbManager отвечает за управление любой базой данных с конкретной структурой.">DbManager</a>.  <br /></td></tr>
+<tr class="separator:a434756cef150a58972e24556a1801427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe30496b60d26cdf62e841e03d6fa246" id="r_abe30496b60d26cdf62e841e03d6fa246"><td class="memItemLeft" align="right" valign="top"><a id="abe30496b60d26cdf62e841e03d6fa246" name="abe30496b60d26cdf62e841e03d6fa246"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>createTable</b> ()</td></tr>
+<tr class="memdesc:abe30496b60d26cdf62e841e03d6fa246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает таблицу с заданным в поле названием, если она не существует. <br /></td></tr>
+<tr class="separator:abe30496b60d26cdf62e841e03d6fa246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c7def80cad1ae5086a23e4f436c386a" id="r_a0c7def80cad1ae5086a23e4f436c386a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c7def80cad1ae5086a23e4f436c386a">addRecord</a> (<a class="el" href="structRecord.html">Record</a> record)</td></tr>
+<tr class="memdesc:a0c7def80cad1ae5086a23e4f436c386a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавляет запись в таблицу.  <br /></td></tr>
+<tr class="separator:a0c7def80cad1ae5086a23e4f436c386a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5091f1e0367008339bb38bc37166e13b" id="r_a5091f1e0367008339bb38bc37166e13b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5091f1e0367008339bb38bc37166e13b">updateRecord</a> (const <a class="el" href="structRecord.html">Record</a> &amp;record)</td></tr>
+<tr class="memdesc:a5091f1e0367008339bb38bc37166e13b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Полностью обновляет запись в БД на основе переданной.  <br /></td></tr>
+<tr class="separator:a5091f1e0367008339bb38bc37166e13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52054b0b64dba11e8e893b46c07c8ea" id="r_af52054b0b64dba11e8e893b46c07c8ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af52054b0b64dba11e8e893b46c07c8ea">updatePassword</a> (int id, const std::string &amp;password)</td></tr>
+<tr class="memdesc:af52054b0b64dba11e8e893b46c07c8ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обновляет пароль записи по идентификатору.  <br /></td></tr>
+<tr class="separator:af52054b0b64dba11e8e893b46c07c8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe647877aac1ea5e6153d0f535ffb90" id="r_acbe647877aac1ea5e6153d0f535ffb90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbe647877aac1ea5e6153d0f535ffb90">updateTag</a> (int id, const std::string &amp;tag)</td></tr>
+<tr class="memdesc:acbe647877aac1ea5e6153d0f535ffb90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обновляет тег записи по идентификатору.  <br /></td></tr>
+<tr class="separator:acbe647877aac1ea5e6153d0f535ffb90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd22871e5706e632f543f36ef6d9ebb" id="r_aacd22871e5706e632f543f36ef6d9ebb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacd22871e5706e632f543f36ef6d9ebb">deleteRecord</a> (int id)</td></tr>
+<tr class="memdesc:aacd22871e5706e632f543f36ef6d9ebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Удаляет запись по идентификатору.  <br /></td></tr>
+<tr class="separator:aacd22871e5706e632f543f36ef6d9ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada6b32ab67281b7fa308cdaf9629ca34" id="r_ada6b32ab67281b7fa308cdaf9629ca34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRecord.html">Record</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada6b32ab67281b7fa308cdaf9629ca34">findRecord</a> (int id)</td></tr>
+<tr class="memdesc:ada6b32ab67281b7fa308cdaf9629ca34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Находит запись по идентификатору.  <br /></td></tr>
+<tr class="separator:ada6b32ab67281b7fa308cdaf9629ca34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a078cfc7deb2db805d7d6074fcaa69f59" id="r_a078cfc7deb2db805d7d6074fcaa69f59"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structRecord.html">Record</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a078cfc7deb2db805d7d6074fcaa69f59">findAllUserRecords</a> (const std::string &amp;username)</td></tr>
+<tr class="memdesc:a078cfc7deb2db805d7d6074fcaa69f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Находит все записи пользователя по имени пользователя.  <br /></td></tr>
+<tr class="separator:a078cfc7deb2db805d7d6074fcaa69f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2da0424cf06b00c08e8d57ba975d5c3" id="r_ad2da0424cf06b00c08e8d57ba975d5c3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structRecord.html">Record</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2da0424cf06b00c08e8d57ba975d5c3">findAllUserRecordsWithTag</a> (const std::string &amp;username, const std::string &amp;tag)</td></tr>
+<tr class="memdesc:ad2da0424cf06b00c08e8d57ba975d5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Находит все записи пользователя по имени пользователя и тегу.  <br /></td></tr>
+<tr class="separator:ad2da0424cf06b00c08e8d57ba975d5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс <a class="el" href="classDbManager.html" title="Класс DbManager отвечает за управление любой базой данных с конкретной структурой.">DbManager</a> отвечает за управление любой базой данных с конкретной структурой. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a434756cef150a58972e24556a1801427" name="a434756cef150a58972e24556a1801427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a434756cef150a58972e24556a1801427">&#9670;&#160;</a></span>DbManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DbManager::DbManager </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>connection_string</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>table_name</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Конструктор класса <a class="el" href="classDbManager.html" title="Класс DbManager отвечает за управление любой базой данных с конкретной структурой.">DbManager</a>. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connection_string</td><td>Строка подключения к базе данных. </td></tr>
+    <tr><td class="paramname">table_name</td><td>Название таблицы в базе данных </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a0c7def80cad1ae5086a23e4f436c386a" name="a0c7def80cad1ae5086a23e4f436c386a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c7def80cad1ae5086a23e4f436c386a">&#9670;&#160;</a></span>addRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DbManager::addRecord </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRecord.html">Record</a></td>          <td class="paramname"><span class="paramname"><em>record</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Добавляет запись в таблицу. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">record</td><td>Запись, которую нужно добавить. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aacd22871e5706e632f543f36ef6d9ebb" name="aacd22871e5706e632f543f36ef6d9ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd22871e5706e632f543f36ef6d9ebb">&#9670;&#160;</a></span>deleteRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DbManager::deleteRecord </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Удаляет запись по идентификатору. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Идентификатор записи. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a078cfc7deb2db805d7d6074fcaa69f59" name="a078cfc7deb2db805d7d6074fcaa69f59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a078cfc7deb2db805d7d6074fcaa69f59">&#9670;&#160;</a></span>findAllUserRecords()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structRecord.html">Record</a> &gt; DbManager::findAllUserRecords </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Находит все записи пользователя по имени пользователя. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>Имя пользователя. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Вектор записей в виде объектов <a class="el" href="structRecord.html" title="Запись в базе данных.">Record</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ad2da0424cf06b00c08e8d57ba975d5c3" name="ad2da0424cf06b00c08e8d57ba975d5c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2da0424cf06b00c08e8d57ba975d5c3">&#9670;&#160;</a></span>findAllUserRecordsWithTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structRecord.html">Record</a> &gt; DbManager::findAllUserRecordsWithTag </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Находит все записи пользователя по имени пользователя и тегу. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>Имя пользователя. </td></tr>
+    <tr><td class="paramname">tag</td><td>Тег. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Вектор записей в виде объектов <a class="el" href="structRecord.html" title="Запись в базе данных.">Record</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ada6b32ab67281b7fa308cdaf9629ca34" name="ada6b32ab67281b7fa308cdaf9629ca34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada6b32ab67281b7fa308cdaf9629ca34">&#9670;&#160;</a></span>findRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structRecord.html">Record</a> DbManager::findRecord </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Находит запись по идентификатору. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Идентификатор записи. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Запись в виде объекта <a class="el" href="structRecord.html" title="Запись в базе данных.">Record</a>. </dd></dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>Если запись не найдена. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af52054b0b64dba11e8e893b46c07c8ea" name="af52054b0b64dba11e8e893b46c07c8ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af52054b0b64dba11e8e893b46c07c8ea">&#9670;&#160;</a></span>updatePassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DbManager::updatePassword </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обновляет пароль записи по идентификатору. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Идентификатор записи. </td></tr>
+    <tr><td class="paramname">password</td><td>Новый пароль. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5091f1e0367008339bb38bc37166e13b" name="a5091f1e0367008339bb38bc37166e13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5091f1e0367008339bb38bc37166e13b">&#9670;&#160;</a></span>updateRecord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DbManager::updateRecord </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structRecord.html">Record</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>record</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Полностью обновляет запись в БД на основе переданной. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">record</td><td>Новый вид записи. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acbe647877aac1ea5e6153d0f535ffb90" name="acbe647877aac1ea5e6153d0f535ffb90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe647877aac1ea5e6153d0f535ffb90">&#9670;&#160;</a></span>updateTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DbManager::updateTag </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обновляет тег записи по идентификатору. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Идентификатор записи. </td></tr>
+    <tr><td class="paramname">tag</td><td>Новый тег. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>dbManager/<a class="el" href="dbManager_8h_source.html">dbManager.h</a></li>
+<li>dbManager/<b>dbManager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

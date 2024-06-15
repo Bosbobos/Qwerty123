@@ -1,0 +1,32 @@
+\doxysection{Postgres\+CRUD.\+h}
+\hypertarget{PostgresCRUD_8h_source}{}\label{PostgresCRUD_8h_source}\index{dbManager/PostgresCRUD.h@{dbManager/PostgresCRUD.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CRUD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CRUD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <pqxx/pqxx>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPostgresCRUD}{PostgresCRUD}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classPostgresCRUD_a14e7b5b11d3692697192aea855d939e0}{PostgresCRUD}}(\textcolor{keyword}{const}\ std::string\&\ connection\_string);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classPostgresCRUD_ae578660d13309beab27ccf90369ed474}{\string~PostgresCRUD}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPostgresCRUD_ae16f9bdc224e6d756091387a4fc1ee7e}{create}}(\textcolor{keyword}{const}\ std::string\&\ table,\ \textcolor{keyword}{const}\ std::map<std::string,\ std::string>\&\ data);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \ \ \ \ pqxx::result\ \mbox{\hyperlink{classPostgresCRUD_a00c018acc5f14ee6fba5ac6818cbe915}{read}}(\textcolor{keyword}{const}\ std::string\&\ query);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPostgresCRUD_a0f7f0126d49cbc5c9f70be716845ba4a}{update}}(\textcolor{keyword}{const}\ std::string\&\ table,\ \textcolor{keyword}{const}\ std::map<std::string,\ std::string>\&\ data,\ \textcolor{keyword}{const}\ std::string\&\ condition);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPostgresCRUD_ab578c5a3536d6fad3f9242d073aa76cb}{delete\_record}}(\textcolor{keyword}{const}\ std::string\&\ table,\ \textcolor{keyword}{const}\ std::string\&\ condition);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ pqxx::connection\ conn;}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CRUD\_H}}
+
+\end{DoxyCode}

@@ -3,6 +3,7 @@
 
 #include <string>
 
+/// Функция, получающая строку подключения к базе данных из файла DbConf.txt
 std::string GetDbConnectionString();
 
 

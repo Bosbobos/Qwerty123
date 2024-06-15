@@ -6,23 +6,24 @@
 #include "../Entities/Record.h"
 
 /**
- * @brief Класс DbManager отвечает за управление базой данных Qwerty123.
+ * @brief Класс DbManager отвечает за управление любой базой данных с конкретной структурой.
  */
 class DbManager {
 public:
     /**
      * @brief Конструктор класса DbManager.
      * @param connection_string Строка подключения к базе данных.
+     * @param table_name Название таблицы в базе данных
      */
     explicit DbManager(const std::string& connection_string, const std::string& table_name);
 
     /**
-     * @brief Создает таблицу Qwerty123, если она не существует.
+     * @brief Создает таблицу с заданным в поле названием, если она не существует.
      */
     void createTable();
 
     /**
-     * @brief Добавляет запись в таблицу Qwerty123.
+     * @brief Добавляет запись в таблицу.
      * @param record Запись, которую нужно добавить.
      */
     void addRecord(Record record);
@@ -76,10 +77,16 @@ public:
      */
     std::vector<Record> findAllUserRecordsWithTag(const std::string& username, const std::string& tag);
 private:
-    std::string table_name;
+    /// Средство управления базой данных
     PostgresCRUD db;
+    /// Имя таблицы
+    std::string table_name;
 
+
+    /// Метод конвертации record в std::map
     std::map<std::string, std::string> recordToMap(const Record& record);
+
+    /// Метод конвертации pqxx::result в std::vector<Record>
     std::vector<Record> resultToRecord(const pqxx::result& result);
 };
 

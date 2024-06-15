@@ -6,7 +6,9 @@
 class CryptographyManager {
 public:
     CryptographyManager(const std::string &username, const std::string &password);
-
+    /*
+     * Зашифрование текста паролем, хранящимся в
+     */
     std::string Encrypt(const std::string &plaintext);
     std::string Decrypt(const std::string &ciphertext);
 

@@ -3,17 +3,24 @@ project(cryptographyTests)
 
 set(CMAKE_CXX_STANDARD 23)
 
-# Locate and include Google Test
+
+# Поиск и включение Google Test
 find_package(GTest REQUIRED)
 
-# Add an executable target for the test suite
-add_executable(cryptographyTests CryptographyManagerTests.cpp)
+# Добавление исходных файлов библиотеки
+add_library(cryptography STATIC ../cryptography/cryptography.cpp ../cryptography/CryptographyManager.cpp)
 
-# Link the test executable with the library being tested and Google Test
-add_subdirectory(../cryptography cryptography)
+# Указание директорий для include
+target_include_directories(cryptography PUBLIC ../cryptography)
+
+# Добавление исполняемого файла для тестов
+add_executable(cryptographyTests CryptographyManagerTests.cpp cryptographyTests.cpp)
+
+# Линковка тестов с библиотекой и Google Test
 target_link_libraries(cryptographyTests PRIVATE cryptography GTest::GTest GTest::Main)
 
-# Set output directory to avoid conflicts with directory names
+# Установка выходной директории
 set_target_properties(cryptographyTests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+# Указание директорий для include для тестов
 target_include_directories(cryptographyTests PRIVATE ${GTEST_INCLUDE_DIRS})
